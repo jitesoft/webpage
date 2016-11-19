@@ -1,0 +1,67 @@
+version: "2"
+
+services:
+
+    # Data only containers.
+    web-data:
+        container_name: Jitesoft_web_data
+        image: busybox
+        volumes:
+            - "./:/webapp"
+
+     nginx-data:
+        container_name: Jitesoft_nginx_data
+        image: busybox
+        volumes:
+             - "./nginx:/tmp/nginx"
+
+    # Database.
+    database:
+        container_name: Jitesoft_mysql
+        env_file: .env
+        image: mysql:5.7
+        volumes_from:
+          - dbdata
+        expose:
+          - "3306"
+        ports:
+          - "3306:3306"
+        networks:
+          local-network:
+            aliases:
+              - mysql
+
+    # Php-fpm
+    fpm:
+        container_name: Jitesoft_fpm
+        build:
+          context: .
+          dockerfile: docker/php7fpm.docker
+        image: php7-fpm:latest
+        networks:
+          local-network:
+            aliases:
+              - fpm
+              - php
+          develop-network:
+            aliases:
+              - php
+        volumes_from:
+          - web-data:rw
+        working_dir: /webapp
+
+    # Nginx
+    nginx:
+        container_name: Jitesoft_nginx
+        depends_on:
+          - fpm
+        image: nginx:latest
+        volumes_from:
+          - nginx-data
+        networks:
+          local-network:
+            aliases:
+              - nginx
+        ports:
+          - "10813:80"
+        command: /bin/bash -c "cp /tmp/nginx.conf /etc/nginx/nginx.conf && nginx"
