@@ -28,17 +28,14 @@
             "database"
         ],
         "psr-4": {
-            "Jitesoft\\Web\\App\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
         "classmap": [
             "tests/",
             "database/"
-        ],
-      "psr-4": {
-          "Jitesoft\\Web\\App\\Tests\\": "tests/"
-      }
+        ]
     },
     "scripts": {
         "post-root-package-install": [
