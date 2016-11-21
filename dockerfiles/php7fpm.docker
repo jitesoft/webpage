@@ -1,4 +1,5 @@
 FROM php:7-fpm-alpine
+
 RUN apk upgrade --update && apk add \
   autoconf file g++ gcc binutils isl libatomic libc-dev musl-dev make re2c libstdc++ libgcc binutils-libs mpc1 mpfr3 gmp libgomp \
   coreutils \
@@ -12,3 +13,5 @@ RUN apk upgrade --update && apk add \
 && docker-php-ext-install gd \
 && apk del autoconf file g++ gcc binutils isl libatomic libc-dev musl-dev make re2c libstdc++ libgcc binutils-libs mpc1 mpfr3 gmp libgomp \
 && rm -rf /var/cache/apk/*
+
+WORKDIR /usr/share/nginx/html

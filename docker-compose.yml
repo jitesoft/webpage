@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 
 services:
 
@@ -7,13 +7,26 @@ services:
         container_name: Jitesoft_web_data
         image: busybox
         volumes:
-            - "./:/webapp"
+            - "./:/usr/share/nginx/html"
 
-     nginx-data:
-        container_name: Jitesoft_nginx_data
+    nginx-data:
+       container_name: Jitesoft_nginx_data
+       image: busybox
+       volumes:
+           - "./nginx:/tmp/nginx"
+           - "./:/usr/share/nginx/html"
+
+    mysql-data:
+        container_name: Jitesoft_mysql_data
         image: busybox
         volumes:
-             - "./nginx:/tmp/nginx"
+            - "./storage/database:/var/lib/mysql"
+
+    redis-data:
+        container_name: Jitesoft_redis_data
+        image: busybox
+        volumes:
+            - "./storage/redis:/data"
 
     # Database.
     database:
@@ -21,47 +34,53 @@ services:
         env_file: .env
         image: mysql:5.7
         volumes_from:
-          - dbdata
-        expose:
-          - "3306"
-        ports:
-          - "3306:3306"
+            - mysql-data
         networks:
-          local-network:
-            aliases:
-              - mysql
+            local-network:
+                aliases:
+                    - mysql
 
     # Php-fpm
     fpm:
         container_name: Jitesoft_fpm
         build:
-          context: .
-          dockerfile: docker/php7fpm.docker
+            context: .
+            dockerfile: dockerfiles/php7fpm.docker
         image: php7-fpm:latest
         networks:
-          local-network:
-            aliases:
-              - fpm
-              - php
-          develop-network:
-            aliases:
-              - php
+            local-network:
+                aliases:
+                    - fpm
+                    - php
         volumes_from:
-          - web-data:rw
-        working_dir: /webapp
+            - web-data
 
     # Nginx
     nginx:
         container_name: Jitesoft_nginx
         depends_on:
-          - fpm
+            - fpm
         image: nginx:latest
         volumes_from:
-          - nginx-data
+            - nginx-data
         networks:
-          local-network:
-            aliases:
-              - nginx
+            local-network:
+                aliases:
+                    - nginx
         ports:
           - "10813:80"
-        command: /bin/bash -c "cp /tmp/nginx.conf /etc/nginx/nginx.conf && nginx"
+        command: /bin/bash -c "cp /tmp/nginx/nginx.conf /etc/nginx/nginx.conf && nginx"
+
+    redis:
+        image: redis:alpine
+        container_name: Jitesoft_redis
+        volumes_from:
+            - redis-data
+        networks:
+            local-network:
+                aliases:
+                    - redis
+        command: redis-server --port 6379 --appendonly yes
+
+networks:
+  local-network:
