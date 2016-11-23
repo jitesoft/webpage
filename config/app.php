@@ -178,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+        Jite\AssetHandler\AssetHandlerServiceProvider::class
+
     ],
 
     /*
@@ -226,6 +229,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
+        'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
+        'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        'AssetHandler' => Jite\AssetHandler\AssetHandler::class
     ],
 
 ];

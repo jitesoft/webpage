@@ -5,7 +5,7 @@
     "type": "project",
     "repositories": [
         {
-            "url": "https://github.com/Johannestegner/AssetHandler",
+            "url": "https://github.com/jitesoft/AssetHandler",
             "type": "git"
         }
     ],
@@ -13,15 +13,16 @@
         "php": ">=7",
         "laravel/framework": "5.3.*",
         "laravel-doctrine/orm": "1.2.*",
-        "barryvdh/laravel-ide-helper": "^2.2",
-        "itsgoingd/clockwork": "~1.12"
+        "itsgoingd/clockwork": "~1.12",
+        "jitesoft/asset-handler": "^1.0.0-RC2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "barryvdh/laravel-ide-helper": "^2.2"
     },
     "autoload": {
         "classmap": [
@@ -50,6 +51,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "test": [
