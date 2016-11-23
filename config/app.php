@@ -232,7 +232,7 @@ return [
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
-        'AssetHandler' => Jite\AssetHandler\AssetHandlerFacade::class
+        'AssetHandler' => Jite\AssetHandler\AssetHandler::class
     ],
 
 ];
