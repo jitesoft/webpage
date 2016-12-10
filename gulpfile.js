@@ -1,3 +1,4 @@
+require('es6-promise').polyfill();
 const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
