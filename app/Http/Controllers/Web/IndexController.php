@@ -15,7 +15,7 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getWelcome() {
-        return view('web.welcome');
+        return view('page.welcome');
     }
 
     /**
@@ -23,7 +23,7 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getContact() {
-        return view('web.contact');
+        return view('page.contact');
     }
 
     /**
@@ -31,7 +31,7 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getAbout() {
-        return view('web.about');
+        return view('page.about');
     }
 
 }
