@@ -1,20 +1,18 @@
+var onClick = function(e) {
+    e.preventDefault();
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+    var _nodes = document.querySelectorAll('div[id^="text-"]');
+    var _name = this.classList.item(1);
+    var i =_nodes.length;
 
-require('./bootstrap');
+    for(i;i-->0;) {
+        _nodes.item(i).classList.add("hidden");
+    }
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    document.querySelector('#text-' + _name).classList.remove('hidden');
+};
 
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+var links = document.querySelectorAll('.link');
+for(var i=links.length;i-->0;) {
+    links.item(i).addEventListener('click', onClick);
+}

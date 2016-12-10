@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.24 on 2016-11-22.
+ * Generated for Laravel 5.3.26 on 2016-12-10.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -5523,6 +5523,18 @@ namespace {
          */
         public static function append($path, $data){
             return \Illuminate\Filesystem\Filesystem::append($path, $data);
+        }
+        
+        /**
+         * Get or set UNIX mode of a file or directory.
+         *
+         * @param string $path
+         * @param int $mode
+         * @return mixed 
+         * @static 
+         */
+        public static function chmod($path, $mode = null){
+            return \Illuminate\Filesystem\Filesystem::chmod($path, $mode);
         }
         
         /**
@@ -12612,98 +12624,135 @@ namespace {
     class AssetHandler extends \Jite\AssetHandler\AssetHandlerFacade{
         
         /**
-         * Hotswap the underlying instance behind the facade.
+         * 
          *
-         * @param mixed $instance
-         * @return void 
+         * @inheritdoc 
+         * @throws AssetNameNotUniqueException
+         * @throws InvalidContainerException
          * @static 
          */
-        public static function swap($instance){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \Jite\AssetHandler\AssetHandlerFacade::swap($instance);
+        public static function add($asset, $assetName = '', $container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::add($asset, $assetName, $container);
         }
         
         /**
-         * Convert the facade into a Mockery spy.
+         * 
          *
-         * @return void 
+         * @inheritdoc 
+         * @throws AssetNameNotUniqueException
+         * @throws InvalidAssetException
+         * @throws InvalidContainerException
          * @static 
          */
-        public static function spy(){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \Jite\AssetHandler\AssetHandlerFacade::spy();
+        public static function remove($assetName, $container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::remove($assetName, $container);
         }
         
         /**
-         * Initiate a mock expectation on the facade.
+         * 
          *
-         * @return \Mockery\Expectation 
+         * @inheritdoc 
+         * @throws InvalidContainerException
+         * @throws InvalidPathException
+         * @throws InvalidAssetException
          * @static 
          */
-        public static function shouldReceive(){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \Jite\AssetHandler\AssetHandlerFacade::shouldReceive();
+        public static function printAll($container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::printAll($container);
         }
         
         /**
-         * Get the root object behind the facade.
+         * 
          *
-         * @return mixed 
+         * @inheritdoc 
          * @static 
          */
-        public static function getFacadeRoot(){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \Jite\AssetHandler\AssetHandlerFacade::getFacadeRoot();
+        public static function getAssets($container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::getAssets($container);
         }
         
         /**
-         * Clear a resolved facade instance.
+         * 
          *
-         * @param string $name
-         * @return void 
+         * @inheritdoc 
+         * @throws InvalidContainerException
          * @static 
          */
-        public static function clearResolvedInstance($name){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \Jite\AssetHandler\AssetHandlerFacade::clearResolvedInstance($name);
+        public static function removeContainer($containerName){
+            return \Jite\AssetHandler\AssetHandler::removeContainer($containerName);
         }
         
         /**
-         * Clear all of the resolved instances.
+         * 
          *
-         * @return void 
+         * @inheritdoc 
+         * @throws InvalidContainerException
          * @static 
          */
-        public static function clearResolvedInstances(){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \Jite\AssetHandler\AssetHandlerFacade::clearResolvedInstances();
+        public static function setBaseUrl($url = '/assets', $container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::setBaseUrl($url, $container);
         }
         
         /**
-         * Get the application instance behind the facade.
+         * 
          *
-         * @return \Illuminate\Contracts\Foundation\Application 
+         * @inheritdoc 
+         * @throws InvalidContainerException
+         * @throws InvalidPathException
          * @static 
          */
-        public static function getFacadeApplication(){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \Jite\AssetHandler\AssetHandlerFacade::getFacadeApplication();
+        public static function setBasePath($path = null, $container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::setBasePath($path, $container);
         }
         
         /**
-         * Set the application instance.
+         * 
          *
-         * @param \Illuminate\Contracts\Foundation\Application $app
-         * @return void 
+         * @inheritdoc 
+         * @throws InvalidContainerException
+         * @throws InvalidAssetException
          * @static 
          */
-        public static function setFacadeApplication($app){
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \Jite\AssetHandler\AssetHandlerFacade::setFacadeApplication($app);
+        public static function print($assetName, $container = 'any', $custom = ''){
+            return \Jite\AssetHandler\AssetHandler::print($assetName, $container, $custom);
+        }
+        
+        /**
+         * 
+         *
+         * @inheritdoc 
+         * @throws InvalidContainerException
+         * @static 
+         */
+        public static function addContainer($containerName, $customTag, $assetPath = '/public/assets', $assetUrl = '/assets', $fileRegex = null){
+            return \Jite\AssetHandler\AssetHandler::addContainer($containerName, $customTag, $assetPath, $assetUrl, $fileRegex);
+        }
+        
+        /**
+         * 
+         *
+         * @inheritDoc 
+         * @static 
+         */
+        public static function setIsUsingVersioning($state, $container = 'any'){
+            return \Jite\AssetHandler\AssetHandler::setIsUsingVersioning($state, $container);
+        }
+        
+        /**
+         * 
+         *
+         * @inheritDoc 
+         * @throws InvalidContainerException
+         * @static 
+         */
+        public static function isUsingVersioning($container){
+            return \Jite\AssetHandler\AssetHandler::isUsingVersioning($container);
         }
         
     }
 
 
 }
+
+
 
