@@ -61,14 +61,12 @@ services:
         depends_on:
             - fpm
         image: nginx:latest
+        env_file: .env
         volumes_from:
             - nginx-data
         networks:
-            local-network:
-                aliases:
-                    - nginx
-        ports:
-          - "10813:80"
+            - proxy-tier
+        expose: 80
         command: /bin/bash -c "cp /tmp/nginx/nginx.conf /etc/nginx/nginx.conf && nginx"
 
     redis:
@@ -84,3 +82,6 @@ services:
 
 networks:
   local-network:
+  proxy-tier:
+    external:
+      name: nginx-proxy
