@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.26 on 2016-12-10.
+ * Generated for Laravel 5.3.26 on 2016-12-11.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12616,137 +12616,6 @@ namespace {
          */
         public static function getMetaDataDriver($connection, $registry){
             return \LaravelDoctrine\ORM\DoctrineManager::getMetaDataDriver($connection, $registry);
-        }
-        
-    }
-
-
-    class AssetHandler extends \Jite\AssetHandler\AssetHandlerFacade{
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws AssetNameNotUniqueException
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function add($asset, $assetName = '', $container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::add($asset, $assetName, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws AssetNameNotUniqueException
-         * @throws InvalidAssetException
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function remove($assetName, $container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::remove($assetName, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @throws InvalidPathException
-         * @throws InvalidAssetException
-         * @static 
-         */
-        public static function printAll($container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::printAll($container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */
-        public static function getAssets($container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::getAssets($container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function removeContainer($containerName){
-            return \Jite\AssetHandler\AssetHandler::removeContainer($containerName);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function setBaseUrl($url = '/assets', $container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::setBaseUrl($url, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @throws InvalidPathException
-         * @static 
-         */
-        public static function setBasePath($path = null, $container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::setBasePath($path, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @throws InvalidAssetException
-         * @static 
-         */
-        public static function print($assetName, $container = 'any', $custom = ''){
-            return \Jite\AssetHandler\AssetHandler::print($assetName, $container, $custom);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function addContainer($containerName, $customTag, $assetPath = '/public/assets', $assetUrl = '/assets', $fileRegex = null){
-            return \Jite\AssetHandler\AssetHandler::addContainer($containerName, $customTag, $assetPath, $assetUrl, $fileRegex);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritDoc 
-         * @static 
-         */
-        public static function setIsUsingVersioning($state, $container = 'any'){
-            return \Jite\AssetHandler\AssetHandler::setIsUsingVersioning($state, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritDoc 
-         * @throws InvalidContainerException
-         * @static 
-         */
-        public static function isUsingVersioning($container){
-            return \Jite\AssetHandler\AssetHandler::isUsingVersioning($container);
         }
         
     }

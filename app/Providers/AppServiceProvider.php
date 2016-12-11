@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use AssetHandler;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 

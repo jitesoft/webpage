@@ -3,18 +3,10 @@
     "description": "Jitesoft webpage.",
     "license": "",
     "type": "project",
-    "repositories": [
-        {
-            "url": "https://github.com/jitesoft/AssetHandler",
-            "type": "git"
-        }
-    ],
     "require": {
         "php": ">=7",
         "laravel/framework": "5.3.*",
-        "laravel-doctrine/orm": "1.2.*",
-        "itsgoingd/clockwork": "~1.12",
-        "jitesoft/asset-handler": "^1.0.0-RC2"
+        "laravel-doctrine/orm": "1.2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -22,7 +14,8 @@
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
-        "barryvdh/laravel-ide-helper": "^2.2"
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "itsgoingd/clockwork": "~1.12"
     },
     "autoload": {
         "classmap": [

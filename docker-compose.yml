@@ -66,6 +66,7 @@ services:
             - nginx-data
         networks:
             - proxy-tier
+            - local-network
         expose:
           - 80
         command: /bin/bash -c "cp /tmp/nginx/nginx.conf /etc/nginx/nginx.conf && nginx"

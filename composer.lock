@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40dadf911d914c1709d53d566e504b41",
-    "content-hash": "44acff3eecd3113b15587fc9c21c8df6",
+    "hash": "f2b52bcdaa23d6b95d117106daabaecd",
+    "content-hash": "de10324aba7bff39725b5dcafe513b62",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -736,51 +736,6 @@
             "time": "2014-11-20 16:49:30"
         },
         {
-            "name": "itsgoingd/clockwork",
-            "version": "v1.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "76488226d8fdeab29c1782a5a6c154403ad9cdcf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/76488226d8fdeab29c1782a5a6c154403ad9cdcf",
-                "reference": "76488226d8fdeab29c1782a5a6c154403ad9cdcf",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9",
-                "psr/log": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Clockwork\\": "Clockwork/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "itsgoingd",
-                    "email": "itsgoingd@luzer.sk",
-                    "homepage": "http://twitter.com/itsgoingd"
-                }
-            ],
-            "description": "Server-side component of Clockwork, a Chrome extension for PHP development",
-            "homepage": "http://github.com/itsgoingd/clockwork",
-            "keywords": [
-                "debugging",
-                "laravel",
-                "logging",
-                "profiling"
-            ],
-            "time": "2016-06-18 18:17:25"
-        },
-        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -924,56 +879,6 @@
                 "tokenizer"
             ],
             "time": "2016-12-07 09:37:55"
-        },
-        {
-            "name": "jitesoft/asset-handler",
-            "version": "1.0.0-RC2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jitesoft/AssetHandler",
-                "reference": "e46f400634b3a0995de8ac5fde33c29609e29997"
-            },
-            "require": {
-                "illuminate/support": "5.3.*",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "1.6.*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Jite\\AssetHandler\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Jite\\AssetHandler\\Tests\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes Tegnér",
-                    "email": "jitedev@gmail.com",
-                    "homepage": "https://jite.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple asset handler for laravel.",
-            "keywords": [
-                "asset",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/Johannestegner/AssetHandler/issues",
-                "email": "jitedev@gmail.com",
-                "source": "https://github.com/Johannestegner/AssetHandler"
-            },
-            "time": "2016-09-11 17:27:45"
         },
         {
             "name": "laravel-doctrine/orm",
@@ -2942,6 +2847,51 @@
             "time": "2015-05-11 14:41:42"
         },
         {
+            "name": "itsgoingd/clockwork",
+            "version": "v1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itsgoingd/clockwork.git",
+                "reference": "76488226d8fdeab29c1782a5a6c154403ad9cdcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/76488226d8fdeab29c1782a5a6c154403ad9cdcf",
+                "reference": "76488226d8fdeab29c1782a5a6c154403ad9cdcf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "psr/log": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clockwork\\": "Clockwork/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "itsgoingd",
+                    "email": "itsgoingd@luzer.sk",
+                    "homepage": "http://twitter.com/itsgoingd"
+                }
+            ],
+            "description": "Server-side component of Clockwork, a Chrome extension for PHP development",
+            "homepage": "http://github.com/itsgoingd/clockwork",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "logging",
+                "profiling"
+            ],
+            "time": "2016-06-18 18:17:25"
+        },
+        {
             "name": "mockery/mockery",
             "version": "0.9.6",
             "source": {
@@ -4428,9 +4378,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jitesoft/asset-handler": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
