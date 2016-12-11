@@ -13,7 +13,7 @@ services:
        container_name: Jitesoft_nginx_data
        image: busybox
        volumes:
-           - "./nginx:/tmp/nginx"
+           - "./nginx:/etc/nginx/conf.d"
            - "./:/usr/share/nginx/html"
 
     mysql-data:
@@ -31,6 +31,7 @@ services:
     # Database.
     database:
         container_name: Jitesoft_mysql
+        restart: unless-stopped
         env_file: .env
         image: mysql:5.7
         volumes_from:
@@ -43,6 +44,7 @@ services:
     # Php-fpm
     fpm:
         container_name: Jitesoft_fpm
+        restart: unless-stopped
         build:
             context: .
             dockerfile: dockerfiles/php7fpm.docker
@@ -58,12 +60,15 @@ services:
     # Nginx
     nginx:
         container_name: Jitesoft_nginx
+        restart: unless-stopped
         depends_on:
             - fpm
-        image: nginx:latest
+        image: nginx
         env_file: .env
         volumes_from:
             - nginx-data
+        expose:
+          - 80
         networks:
             proxy-tier:
                 aliases:
@@ -71,13 +76,11 @@ services:
             jitesoft-web-internal:
                 aliases:
                     - nginx
-        expose:
-          - 80
-        command: /bin/bash -c "cp /tmp/nginx/nginx.conf /etc/nginx/nginx.conf && nginx"
 
     redis:
         image: redis:alpine
         container_name: Jitesoft_redis
+        restart: unless-stopped
         volumes_from:
             - redis-data
         networks:
@@ -87,7 +90,7 @@ services:
         command: redis-server --port 6379 --appendonly yes
 
 networks:
-   jitesoft-web-internal:
-   proxy-tier:
-      external:
-          name: nginx-proxy
+    jitesoft-web-internal:
+    proxy-tier:
+        external:
+            name: nginx-proxy
