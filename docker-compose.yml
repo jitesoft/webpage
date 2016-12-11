@@ -36,7 +36,7 @@ services:
         volumes_from:
             - mysql-data
         networks:
-            local-network:
+            jitesoft-web-internal:
                 aliases:
                     - mysql
 
@@ -48,7 +48,7 @@ services:
             dockerfile: dockerfiles/php7fpm.docker
         image: php7-fpm:latest
         networks:
-            local-network:
+            jitesoft-web-internal:
                 aliases:
                     - fpm
                     - php
@@ -65,8 +65,11 @@ services:
         volumes_from:
             - nginx-data
         networks:
-            - proxy-tier
-            - local-network
+            proxy-tier:
+              aliases:
+                - jitesoft-web-nginx
+            jitesoft-web-internal:
+                - nginx
         expose:
           - 80
         command: /bin/bash -c "cp /tmp/nginx/nginx.conf /etc/nginx/nginx.conf && nginx"
@@ -77,13 +80,13 @@ services:
         volumes_from:
             - redis-data
         networks:
-            local-network:
+            jitesoft-web-internal:
                 aliases:
                     - redis
         command: redis-server --port 6379 --appendonly yes
 
 networks:
-  local-network:
+  jitesoft-web-internal:
   proxy-tier:
     external:
       name: nginx-proxy
