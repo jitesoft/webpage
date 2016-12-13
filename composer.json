@@ -7,7 +7,8 @@
         "php": ">=7",
         "laravel/framework": "5.3.*",
         "laravel-doctrine/orm": "1.2.*",
-        "aacotroneo/laravel-saml2": "^0.8.0"
+        "aacotroneo/laravel-saml2": "^0.8.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -51,6 +52,11 @@
         ],
         "test": [
             "./vendor/bin/phpunit"
+        ],
+        "generate-meta": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
+            "php artisan optimize"
         ]
     },
     "config": {
