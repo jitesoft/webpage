@@ -12,8 +12,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         //
     }
 
@@ -27,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         // Development packages:
-        if($this->app->environment() !== "production") {
+        if ($this->app->environment() !== "production") {
             $this->app->register(IdeHelperServiceProvider::class);
         }
     }
