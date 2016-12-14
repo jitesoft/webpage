@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+    nginx-data:
+       image: busybox
+       volumes:
+           - "./nginx/dev:/etc/nginx/conf.d"
+
+
+    database:
+        ports:
+            - "10810:3306"
+
+
+
+    fpm:
+        ports:
+            - "10811:9000"
+
+    redis:
+        ports:
+            - "10812:6379"
+
+    jitesoft-nginx:
+        ports:
+            - "10813:80"

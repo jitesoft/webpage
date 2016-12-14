@@ -10,7 +10,7 @@ services:
     nginx-data:
        image: busybox
        volumes:
-           - "./nginx:/etc/nginx/conf.d"
+           - "./nginx/prod:/etc/nginx/conf.d"
 
     mysql-data:
         image: busybox
