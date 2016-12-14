@@ -113,7 +113,7 @@ return array(
     |
     */
     'custom_db_types' => array(
-        \Jitesoft\Web\App\Extensions\Doctrine\CarbonType::class
+        \App\Extensions\Doctrine\CarbonType::class
     ),
 
     /*

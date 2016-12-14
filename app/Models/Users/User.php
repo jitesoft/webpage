@@ -4,47 +4,46 @@
 
   © - Jitesoft 2016
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Web\App\Models\Users;
+namespace App\Models\Users;
 
 use Doctrine\ORM\Mapping as ORM;
-use Jitesoft\Web\App\Models\AbstractModel;
-use Jitesoft\Web\App\Models\SoftDeleteTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use App\Models\AbstractModel;
+use App\Models\SoftDeleteTrait;
 
 /**
  * User model.
+ * @ORM\Entity
  */
-class User extends AbstractModel
-{
-    use SoftDeleteTrait;
+class User extends AbstractModel implements Authenticatable {
 
-    /**
-     * @var string
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
+    use \Illuminate\Auth\Authenticatable;
+    use SoftDeleteTrait;
 
     /**
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
     /**
      * @var string
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="saml_id", type="string", length=255)
      */
-    private $password;
+    private $samlId;
 
-    /**
-     * @param string $email
-     * @param string $name
-     * @param string $password
-     */
-    public function __construct (string $email, string $name, string $password) {
+    public function __construct (string $samlId, string $name) {
         parent::__construct();
 
-        $this->email    = $email;
-        $this->name     = $name;
-        $this->password = $password;
+        $this->samlId = $samlId;
+        $this->name   = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSamlId() : string {
+        return $this->samlId;
     }
 
     /**
@@ -54,32 +53,4 @@ class User extends AbstractModel
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail() : string {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email) {
-        $this->email = $email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword() : string {
-        return $this->password;
-    }
-
-    /**
-     * Hashes password.
-     * @param string $password
-     */
-    public function setPassword(string $password) {
-        $this->password = $password;
-    }
 }

@@ -4,7 +4,7 @@
 
   © - Jitesoft 2016
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Web\App\Extensions\Doctrine;
+namespace App\Extensions\Doctrine;
 
 use Carbon\Carbon;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

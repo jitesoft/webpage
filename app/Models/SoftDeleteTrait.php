@@ -4,7 +4,7 @@
 
   © - Jitesoft 2016
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Web\App\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping\Column;
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\Column;
 trait SoftDeleteTrait {
 
     /**
-     * @var int
+     * @var Carbon
      * @Column(type="carbon", name="deleted_at", nullable=true)
      */
     private $deletedAt;

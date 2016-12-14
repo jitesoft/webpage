@@ -4,7 +4,7 @@
 
   © - Jitesoft 2016
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Web\App\Models;
+namespace App\Models;
 
 /**
  * NewsItem model.

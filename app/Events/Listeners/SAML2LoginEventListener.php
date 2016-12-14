@@ -8,19 +8,21 @@ namespace App\Events\Listeners;
 
 use Aacotroneo\Saml2\Events\Saml2LoginEvent;
 use Aacotroneo\Saml2\Saml2User;
+use App\Contracts\UserRepositoryInterface;
 use Auth;
-use Session;
 
-class SAML2LoginEventListener
-{
+class SAML2LoginEventListener {
+    /** @var UserRepositoryInterface */
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository) {
+        $this->userRepository = $userRepository;
+    }
 
     public function handle(Saml2LoginEvent $event) {
         /** @var Saml2User $user */
-        $user = $event->getSaml2User();
-
-        logger(sprintf('User %s logged out.', $user->getUserId()));
-
-        Auth::logout();
-        Session::save();
+        $user        = $event->getSaml2User();
+        $laravelUser = $this->userRepository->getById($user->getUserId());
+        Auth::login($laravelUser);
     }
 }

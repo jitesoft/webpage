@@ -8,25 +8,20 @@ namespace App\Events\Listeners;
 
 use Aacotroneo\Saml2\Events\Saml2LoginEvent;
 use Aacotroneo\Saml2\Saml2User;
+use Auth;
+use Session;
 
 class SAML2LogoutEventListener {
 
     public function handle(Saml2LoginEvent $event) {
 
         /** @var Saml2User $user */
-        $user     = $event->getSaml2User();
-        $userData = [
-            'id'         => $user->getUserId(),
-            'attributes' => $user->getAttributes(),
-            'assertion'  => $user->getRawSamlAssertion()
-        ];
+        $user = $event->getSaml2User();
 
+        logger(sprintf('User %s logged out.', $user->getUserId()));
 
-
-        //$laravelUser = //find user by ID or attribute
-            //if it does not exist create it and go on  or show an error message
-        //Auth::login($laravelUser);
-
+        Auth::logout();
+        Session::save();
     }
 
 

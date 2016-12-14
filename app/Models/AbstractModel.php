@@ -4,7 +4,7 @@
 
   © - Johannes Tegnér 2016
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-namespace Jitesoft\Web\App\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping\Column;

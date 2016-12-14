@@ -111,7 +111,7 @@ return [
     */
     'custom_types'               => [
         'json' => LaravelDoctrine\ORM\Types\Json::class,
-        'carbon' => Jitesoft\Web\App\Extensions\Doctrine\CarbonType::class
+        'carbon' => App\Extensions\Doctrine\CarbonType::class
     ],
     /*
     |--------------------------------------------------------------------------
