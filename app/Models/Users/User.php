@@ -26,24 +26,10 @@ class User extends AbstractModel implements Authenticatable {
      */
     private $name;
 
-    /**
-     * @var string
-     * @ORM\Column(name="saml_id", type="string", length=255)
-     */
-    private $samlId;
-
-    public function __construct (string $samlId, string $name) {
+    public function __construct (string $name) {
         parent::__construct();
 
-        $this->samlId = $samlId;
-        $this->name   = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSamlId() : string {
-        return $this->samlId;
+        $this->name = $name;
     }
 
     /**

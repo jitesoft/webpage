@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Providers;
-
-use App\Http\Middleware\SAML2Authentication;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -22,8 +20,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         //
 
         parent::boot();
@@ -45,7 +42,8 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapAdminRoutes() {
         Route::group([
-            'middleware' => SAML2Authentication::class
+            "prefix" => 'admin',
+            'middleware' => 'web'
         ], function($router) {
             require base_path('routes/admin.php');
         });

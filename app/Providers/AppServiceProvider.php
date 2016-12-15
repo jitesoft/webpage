@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register() {
+
+
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
 
 
 

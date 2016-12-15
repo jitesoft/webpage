@@ -1,7 +1,11 @@
 <?php
+use Illuminate\Routing\Router;
 
-use Illuminate\Http\Request;
+Route::get('/', \App\Http\Controllers\Admin\AdminController::class . "@getIndex");
 
-Route::get('/admin', function (Request $request) {
-    echo "Hej";
+Route::group(['alias' => 'google'], function(Router $router) {
+
+    $router->get('/google', \App\Http\Controllers\Admin\AuthController::class . "@getGoogleAuthRedirection");
+    $router->get('/google/callback', \App\Http\Controllers\Admin\AuthController::class . "@getHandleGoogleProviderCallback");
+
 });

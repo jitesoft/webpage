@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.26 on 2016-12-13.
+ * Generated for Laravel 5.3.26 on 2016-12-15.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13636,77 +13636,87 @@ if (! function_exists('with')) {
     }
 
 
-    class Saml2 extends \Aacotroneo\Saml2\Facades\Saml2Auth{
+    class Socialite extends \Laravel\Socialite\Facades\Socialite{
         
         /**
-         * 
+         * Get a driver instance.
          *
-         * @return bool if a valid user was fetched from the saml assertion this request.
+         * @param string $driver
+         * @return mixed 
          * @static 
          */
-        public static function isAuthenticated(){
-            return \Aacotroneo\Saml2\Saml2Auth::isAuthenticated();
+        public static function with($driver){
+            return \Laravel\Socialite\SocialiteManager::with($driver);
         }
         
         /**
-         * The user info from the assertion
+         * Build an OAuth 2 provider instance.
          *
-         * @return \Aacotroneo\Saml2\Saml2User 
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
          * @static 
          */
-        public static function getSaml2User(){
-            return \Aacotroneo\Saml2\Saml2Auth::getSaml2User();
+        public static function buildProvider($provider, $config){
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
         }
         
         /**
-         * Initiate a saml2 login flow. It will redirect! Before calling this, check if user is
-         * authenticated (here in saml2). That would be true when the assertion was received this request.
+         * Format the server configuration.
          *
+         * @param array $config
+         * @return array 
          * @static 
          */
-        public static function login($returnTo = null){
-            return \Aacotroneo\Saml2\Saml2Auth::login($returnTo);
+        public static function formatConfig($config){
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
         }
         
         /**
-         * Initiate a saml2 logout flow. It will close session on all other SSO services. You should close
-         * local session if applicable.
+         * Get the default driver name.
          *
+         * @throws \InvalidArgumentException
+         * @return string 
          * @static 
          */
-        public static function logout($returnTo = null, $nameId = null, $sessionIndex = null){
-            return \Aacotroneo\Saml2\Saml2Auth::logout($returnTo, $nameId, $sessionIndex);
+        public static function getDefaultDriver(){
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
         }
         
         /**
-         * Process a Saml response (assertion consumer service)
-         * When errors are encountered, it returns an array with proper description
+         * Get a driver instance.
          *
+         * @param string $driver
+         * @return mixed 
          * @static 
          */
-        public static function acs(){
-            return \Aacotroneo\Saml2\Saml2Auth::acs();
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
         }
         
         /**
-         * Process a Saml response (assertion consumer service)
-         * returns an array with errors if it can not logout
+         * Register a custom driver creator Closure.
          *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
          * @static 
          */
-        public static function sls($retrieveParametersFromServer = false){
-            return \Aacotroneo\Saml2\Saml2Auth::sls($retrieveParametersFromServer);
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
         }
         
         /**
-         * Show metadata about the local sp. Use this to configure your saml2 IDP
+         * Get all of the created "drivers".
          *
-         * @return mixed xml string representing metadata
-         * @throws \InvalidArgumentException if metadata is not correctly set
+         * @return array 
          * @static 
          */
-        public static function getMetadata(){
-            return \Aacotroneo\Saml2\Saml2Auth::getMetadata();
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
         }
         
     }
