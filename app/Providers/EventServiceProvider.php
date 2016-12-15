@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use Aacotroneo\Saml2\Events\Saml2LoginEvent;
-use Aacotroneo\Saml2\Events\Saml2LogoutEvent;
-use App\Events\Listeners\SAML2LoginEventListener;
-use App\Events\Listeners\SAML2LogoutEventListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use SocialiteProviders\Google\GoogleExtendSocialite;
+use SocialiteProviders\Manager\SocialiteWasCalled;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,11 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Saml2LoginEvent::class => [
-            SAML2LoginEventListener::class
-        ],
-        Saml2LogoutEvent::class => [
-            SAML2LogoutEventListener::class
+        SocialiteWasCalled::class => [
+            GoogleExtendSocialite::class . "@handle"
         ]
     ];
 }

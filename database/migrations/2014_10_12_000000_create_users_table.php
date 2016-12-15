@@ -13,9 +13,11 @@ class CreateUsersTable extends Migration {
     public function up() {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('saml_id', 255);
             $table->string('name');
+            $table->string('email');
+            $table->string('user_level')->default('guest');
 
+            $table->boolean('active')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
