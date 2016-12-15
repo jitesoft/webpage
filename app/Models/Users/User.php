@@ -8,7 +8,6 @@ namespace App\Models\Users;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Models\AbstractModel;
@@ -17,6 +16,7 @@ use App\Models\SoftDeleteTrait;
 /**
  * User model.
  * @ORM\Entity
+ * @ORM\Table(name="users")
  */
 class User extends AbstractModel implements Authenticatable {
     use \Illuminate\Auth\Authenticatable;
@@ -24,7 +24,6 @@ class User extends AbstractModel implements Authenticatable {
 
     const USER_LEVEL_ADMIN        = "administrator";
     const USER_LEVEL_UNAUTHORIZED = "unauthorized";
-
 
     /**
      * @var string
@@ -46,7 +45,7 @@ class User extends AbstractModel implements Authenticatable {
 
     /**
      * @var UserOauthToken[]|Collection
-     * @ORM\OneToMany(targetEntity="UserOauthToken", mappedBy="user", cascade={delete, update})
+     * @ORM\OneToMany(targetEntity="UserOauthToken", mappedBy="user", cascade={"persist", "remove", "refresh"})
      */
     private $tokens;
 
@@ -57,6 +56,9 @@ class User extends AbstractModel implements Authenticatable {
      */
     private $name;
 
+    /**
+     * @param string $email
+     */
     public function __construct (string $email) {
         parent::__construct();
 

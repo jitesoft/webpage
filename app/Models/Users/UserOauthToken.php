@@ -6,12 +6,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Models\Users;
 
+use App\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="user_oauth_tokens")
  */
-class UserOauthToken {
+class UserOauthToken extends AbstractModel {
 
     const OAUTH_PROVIDER_GOOGLE = "google";
 
@@ -40,6 +42,8 @@ class UserOauthToken {
     private $oauthId;
 
     public function __construct(User $user, string $provider, string $token, string $id) {
+        parent::__construct();
+
         $this->provider = $provider;
         $this->token    = $token;
         $this->oauthId  = $id;

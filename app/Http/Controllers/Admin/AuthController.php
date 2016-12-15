@@ -6,8 +6,12 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\UserOauthTokenRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Users\User;
+use App\Models\Users\UserOauthToken;
+use Auth;
 use Socialite;
 
 class AuthController extends Controller
@@ -15,9 +19,13 @@ class AuthController extends Controller
     /** @var UserRepositoryInterface */
     private $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository) {
-        $this->userRepository = $userRepository;
+    /** @var UserOauthTokenRepositoryInterface */
+    private $oauthTokenRepository;
 
+    public function __construct(UserRepositoryInterface $userRepository,
+                                UserOauthTokenRepositoryInterface $oauthTokenRepository) {
+        $this->userRepository       = $userRepository;
+        $this->oauthTokenRepository = $oauthTokenRepository;
     }
 
     public function getGoogleAuthRedirection() {
@@ -25,25 +33,33 @@ class AuthController extends Controller
     }
 
     public function getHandleGoogleProviderCallback() {
+        /** @var \SocialiteProviders\Manager\OAuth2\User $user */
         $user = Socialite::driver('google')->user();
 
-        // Get user by id.
+        // Check email domain.
+        $email = $user->getEmail();
+        if (explode('@', $email)[1] !== 'jitesoft.com') {
+            return redirect()->action(AdminController::class . "@getIndex")
+                ->withErrors(['login' => 'You are unauthorized to access the admin area.']);
+        }
 
+        $token = $this->oauthTokenRepository->findByOauthId($user->getId());
+        if ($token === null) {
+            $newUser = new User($user->getEmail());
+            $newUser->createToken(UserOauthToken::OAUTH_PROVIDER_GOOGLE, $user->token, $user->getId());
+            $this->userRepository->persist($newUser);
+            $message = "Could not find a user with given credentials. 
+            A new user has been created but not yet activated. Contact administrator.";
+            return redirect()->action(AdminController::class . "@getIndex")
+                ->withErrors(["login" => $message]);
+        }
 
+        if (!$token->getUser()->isActive()) {
+            return redirect()->action(AdminController::class . "@getIndex")
+                ->withErrors(["login" => "User with given credentials is not yet activated. Contact administrator."]);
+        }
 
-        $token = $user->token;
-        $refreshToken = $user->refreshToken; // not always provided
-        $expiresIn = $user->expiresIn;
-
-
-
-
-        return [
-            'email' => $user->getEmail(),
-            'token' => $token,
-            'refresh' => $refreshToken,
-            'expires' => $expiresIn,
-            'id' => $user->getId()
-        ];
+        Auth::login($token->getUser());
+        return redirect()->action(AdminController::class . "@getDashboard");
     }
 }

@@ -25,7 +25,7 @@ class UserOauthTokenRepository extends AbstractRepository implements UserOauthTo
      */
     public function findByOauthId(string $id) {
         return $this->entityManager
-            ->createQuery("SELECT t FROM App\Models\Users\UserOauthToke AS c WHERE c.oauth_id:=oauth_id")
+            ->createQuery("SELECT t FROM App\Models\Users\UserOauthToken AS t WHERE t.oauthId=:oauth_id")
             ->setParameter("oauth_id", $id)
             ->getOneOrNullResult();
     }

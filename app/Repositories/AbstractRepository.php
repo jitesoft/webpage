@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Repositories;
 
+use App\Models\AbstractModel;
 use Doctrine\ORM\EntityManagerInterface;
 
 class AbstractRepository {
@@ -15,5 +16,14 @@ class AbstractRepository {
 
     public function __construct(EntityManagerInterface $entityManager) {
         $this->entityManager = $entityManager;
+    }
+
+    /**
+     * Persist a model.
+     * @param AbstractModel $model
+     */
+    public function persist(AbstractModel $model) {
+        $this->entityManager->persist($model);
+        $this->entityManager->flush();
     }
 }

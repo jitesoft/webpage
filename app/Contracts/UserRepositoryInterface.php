@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Contracts;
 
+use App\Models\AbstractModel;
 use App\Models\Users\User;
 
 interface UserRepositoryInterface {
@@ -17,4 +18,5 @@ interface UserRepositoryInterface {
      */
     public function getById($id);
 
+    public function persist(AbstractModel $model);
 }
