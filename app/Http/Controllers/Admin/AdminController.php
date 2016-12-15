@@ -14,7 +14,7 @@ class AdminController extends Controller {
 
     public function getIndex() {
         if (Auth::user() !== null) {
-            return redirect(AdminController::class . "@getDashboard");
+            return redirect()->action(AdminController::class . "@getDashboard");
         }
 
         return View::make('admin.login');

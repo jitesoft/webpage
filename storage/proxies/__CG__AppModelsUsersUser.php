@@ -286,54 +286,6 @@ class User extends \App\Models\Users\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function onUpdate()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'onUpdate', []);
-
-        return parent::onUpdate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCreatedAt()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', []);
-
-        return parent::getCreatedAt();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUpdatedAt()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', []);
-
-        return parent::getUpdatedAt();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getId()
-    {
-        if ($this->__isInitialized__ === false) {
-            return (int)  parent::getId();
-        }
-
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
-
-        return parent::getId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getAuthIdentifierName()
     {
 
@@ -395,6 +347,54 @@ class User extends \App\Models\Users\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRememberTokenName', []);
 
         return parent::getRememberTokenName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function onUpdate()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'onUpdate', []);
+
+        return parent::onUpdate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', []);
+
+        return parent::getCreatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUpdatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', []);
+
+        return parent::getUpdatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
+
+        return parent::getId();
     }
 
     /**

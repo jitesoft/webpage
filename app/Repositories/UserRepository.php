@@ -17,6 +17,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      * @return User|null
      */
     public function getById($id) {
-        return $this->entityManager->find(User::class, $id);
+        return $this->entityManager
+            ->createQuery("SELECT u FROM \App\Models\Users\User u WHERE u.id=:id")
+            ->setParameter('id', $id)
+            ->getOneOrNullResult();
     }
 }

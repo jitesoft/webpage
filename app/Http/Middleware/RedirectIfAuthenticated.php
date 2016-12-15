@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null) {
         if (Auth::guard($guard)->check()) {
-            return redirect(AdminController::class . "@getIndex");
+            return redirect()->action(AdminController::class . "@getIndex");
         }
 
         return $next($request);
