@@ -6,13 +6,12 @@ services:
        image: busybox
        volumes:
            - "./nginx/dev:/etc/nginx/conf.d"
+           - "./certs:/certs"
 
 
     database:
         ports:
             - "10810:3306"
-
-
 
     fpm:
         ports:
@@ -24,4 +23,4 @@ services:
 
     jitesoft-nginx:
         ports:
-            - "10813:80"
+            - "80:80"

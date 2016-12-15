@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Contracts;
 
-use Jitesoft\Web\App\Models\Users\User;
+use App\Models\Users\User;
 
 interface UserRepositoryInterface {
 

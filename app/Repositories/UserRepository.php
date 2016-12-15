@@ -7,7 +7,7 @@
 namespace App\Repositories;
 
 use App\Contracts\UserRepositoryInterface;
-use Jitesoft\Web\App\Models\Users\User;
+use App\Models\Users\User;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {

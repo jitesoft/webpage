@@ -179,7 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
-        Aacotroneo\Saml2\Saml2ServiceProvider::class
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
 
     ],
 
@@ -232,7 +233,7 @@ return [
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
-        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
