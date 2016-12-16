@@ -12,11 +12,24 @@ use App\Models\Users\User;
 interface UserRepositoryInterface {
 
     /**
-     * Get a user by id.
-     * @param $id
+     * Fetch all users.
+     *
+     * @return User[]
+     */
+    public function getAll();
+
+    /**
+     * Find a user by its id.
+     *
+     * @param int $id
      * @return User|null
      */
-    public function getById($id);
+    public function findById(int $id) : ?User;
 
+    /**
+     * Persist model.
+     *
+     * @param AbstractModel $model
+     */
     public function persist(AbstractModel $model);
 }

@@ -11,6 +11,9 @@ use App\Models\Users\User;
 use App\Models\Users\UserOauthToken;
 use Tests\AbstractTestCase;
 
+/**
+ * @group RepositoryTest
+ */
 class UserOauthRepositoryTest extends AbstractTestCase {
 
     /** @var UserOauthTokenRepositoryInterface */
