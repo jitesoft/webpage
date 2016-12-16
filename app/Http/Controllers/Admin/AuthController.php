@@ -14,8 +14,7 @@ use App\Models\Users\UserOauthToken;
 use Auth;
 use Socialite;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     /** @var UserRepositoryInterface */
     private $userRepository;
 

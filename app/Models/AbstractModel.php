@@ -7,12 +7,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
-use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\MappedSuperclass;
-use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @MappedSuperclass
@@ -23,22 +20,22 @@ abstract class AbstractModel {
     const TIMEZONE = 'UTC';
 
     /**
-     * @Column(type="carbon", name="created_at", nullable=false)
+     * @ORM\Column(type="carbon", name="created_at", nullable=false)
      * @var Carbon
      */
     private $createdAt;
 
     /**
-     * @Column(type="carbon", name="updated_at", nullable=false)
+     * @ORM\Column(type="carbon", name="updated_at", nullable=false)
      * @var Carbon
      */
     private $updatedAt;
 
     /**
      * @var int
-     * @Id
-     * @Column(type="integer", name="id")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
+     * @ORM\GeneratedValue
      */
     protected $id;
 
@@ -51,7 +48,7 @@ abstract class AbstractModel {
     }
 
     /**
-     * @PreUpdate
+     * @ORM\PreUpdate
      */
     public function onUpdate() {
         $this->updatedAt = Carbon::now(self::TIMEZONE);

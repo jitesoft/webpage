@@ -7,6 +7,7 @@
 namespace App\Models\Users;
 
 use App\Models\AbstractModel;
+use App\Models\SoftDeleteTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user_oauth_tokens")
  */
 class UserOauthToken extends AbstractModel {
+    use SoftDeleteTrait;
 
     const OAUTH_PROVIDER_GOOGLE = "google";
 

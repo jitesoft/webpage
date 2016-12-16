@@ -6,10 +6,9 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Tests\Controllers;
 
-use TestCase;
+use Tests\AbstractTestCase;
 
-class IndexControllerTest extends TestCase
-{
+class IndexControllerTest extends AbstractTestCase {
 
     public function testGetWelcome() {
         $this->visit('/')->type('Welcome.', '#text-welcome > h2');
