@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Http\Middleware;
 
-
 use App\Contracts\UserOauthTokenRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Admin\AdminController;
@@ -33,11 +32,11 @@ class AuthenticationMiddleware {
 
         if ($user !== null) {
             // Fetch the real user.
-            $u = $this->userRepository->getById($user->getAuthIdentifier());
-            if ($u->getUserLevel() === User::USER_LEVEL_ADMIN) {
+            $u = $this->userRepository->findById($user->getAuthIdentifier());
+            if ($u !== null && $u->getUserLevel() === User::USER_LEVEL_ADMIN) {
                 return $next($request);
             }
-            return $next($request);
+            Auth::logout();
         }
 
         return redirect()->action(AdminController::class . "@getIndex")

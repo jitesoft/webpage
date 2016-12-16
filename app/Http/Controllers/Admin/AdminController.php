@@ -22,6 +22,6 @@ class AdminController extends Controller {
     }
 
     public function getDashboard() {
-        echo "Dashboard!";
+        return View::make('admin.dashboard');
     }
 }

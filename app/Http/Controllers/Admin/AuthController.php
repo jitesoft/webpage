@@ -58,7 +58,7 @@ class AuthController extends Controller {
                 ->withErrors(["login" => "User with given credentials is not yet activated. Contact administrator."]);
         }
 
-        Auth::loginUsingId($token->getUser());
+        Auth::login($token->getUser(), false);
         return redirect()->action(AdminController::class . "@getDashboard");
     }
 }
