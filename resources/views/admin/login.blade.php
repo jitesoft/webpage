@@ -29,6 +29,10 @@
                 <a id="google" class="button" href="{{action(\App\Http\Controllers\Admin\AuthController::class . "@getGoogleAuthRedirection")}}">Login with google</a>
             </div>
 
+            <div class="login">
+                <a id="jb-hub" class="button" href="{{action(\App\Http\Controllers\Admin\AuthController::class . "@getJbHubAuthRedirection")}}">Login with Jetbrains Hub</a>
+            </div>
+
         </div>
     </body>
 </html>

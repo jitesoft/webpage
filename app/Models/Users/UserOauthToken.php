@@ -19,6 +19,8 @@ class UserOauthToken extends AbstractModel {
 
     const OAUTH_PROVIDER_GOOGLE = "google";
 
+    const OAUTH_PROVIDER_JB_HUB = "jetbrains-hub";
+
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tokens")
@@ -43,6 +45,14 @@ class UserOauthToken extends AbstractModel {
      */
     private $oauthId;
 
+    /**
+     * @param User   $user
+     * @param string $provider
+     * @param string $token
+     * @param string $id
+     *
+     * @internal Used only from User::createToken
+     */
     public function __construct(User $user, string $provider, string $token, string $id) {
         parent::__construct();
 
