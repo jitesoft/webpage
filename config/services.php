@@ -20,6 +20,13 @@ return [
         'redirect' => env('APP_URL', 'http://localhost') . "/admin/google/callback"
     ],
 
+    'jetbrains-hub' => [
+        'client_id' => env('JB_HUB_CLIENT_ID', ''),
+        'client_secret' => env('JB_HUB_CLIENT_SECRET', ''),
+        'base_url' => env('JB_HUB_URL', 'https://hub.jitesoft.com'),
+        'redirect' => env('APP_URL', 'http://localhost') . "/admin/jb-hub/callback"
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-12-15.
+    * Generated on 2017-01-09.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -38,7 +38,6 @@ namespace PHPSTORM_META {
             'view.engine.resolver' instanceof \Illuminate\View\Engines\EngineResolver,
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
-            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -50,6 +49,8 @@ namespace PHPSTORM_META {
             'Doctrine\ORM\Mapping\ClassMetadataFactory' instanceof \Doctrine\ORM\Mapping\ClassMetadataFactory,
             'LaravelDoctrine\ORM\Extensions\ExtensionManager' instanceof \LaravelDoctrine\ORM\Extensions\ExtensionManager,
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
+            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
+            'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -132,6 +133,7 @@ namespace PHPSTORM_META {
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'SocialiteProviders\Manager\Contracts\Helpers\ConfigRetrieverInterface' instanceof \SocialiteProviders\Manager\Helpers\ConfigRetriever,
         ],
         \Illuminate\Contracts\Container\Container::make('') => [
             '' == '@',
@@ -162,7 +164,6 @@ namespace PHPSTORM_META {
             'view.engine.resolver' instanceof \Illuminate\View\Engines\EngineResolver,
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
-            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -174,6 +175,8 @@ namespace PHPSTORM_META {
             'Doctrine\ORM\Mapping\ClassMetadataFactory' instanceof \Doctrine\ORM\Mapping\ClassMetadataFactory,
             'LaravelDoctrine\ORM\Extensions\ExtensionManager' instanceof \LaravelDoctrine\ORM\Extensions\ExtensionManager,
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
+            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
+            'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -256,6 +259,7 @@ namespace PHPSTORM_META {
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'SocialiteProviders\Manager\Contracts\Helpers\ConfigRetrieverInterface' instanceof \SocialiteProviders\Manager\Helpers\ConfigRetriever,
         ],
         \App::make('') => [
             '' == '@',
@@ -286,7 +290,6 @@ namespace PHPSTORM_META {
             'view.engine.resolver' instanceof \Illuminate\View\Engines\EngineResolver,
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
-            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -298,6 +301,8 @@ namespace PHPSTORM_META {
             'Doctrine\ORM\Mapping\ClassMetadataFactory' instanceof \Doctrine\ORM\Mapping\ClassMetadataFactory,
             'LaravelDoctrine\ORM\Extensions\ExtensionManager' instanceof \LaravelDoctrine\ORM\Extensions\ExtensionManager,
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
+            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
+            'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -380,6 +385,7 @@ namespace PHPSTORM_META {
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'SocialiteProviders\Manager\Contracts\Helpers\ConfigRetrieverInterface' instanceof \SocialiteProviders\Manager\Helpers\ConfigRetriever,
         ],
         \app('') => [
             '' == '@',
@@ -410,7 +416,6 @@ namespace PHPSTORM_META {
             'view.engine.resolver' instanceof \Illuminate\View\Engines\EngineResolver,
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
-            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
@@ -422,6 +427,8 @@ namespace PHPSTORM_META {
             'Doctrine\ORM\Mapping\ClassMetadataFactory' instanceof \Doctrine\ORM\Mapping\ClassMetadataFactory,
             'LaravelDoctrine\ORM\Extensions\ExtensionManager' instanceof \LaravelDoctrine\ORM\Extensions\ExtensionManager,
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
+            'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
+            'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -504,6 +511,7 @@ namespace PHPSTORM_META {
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'SocialiteProviders\Manager\Contracts\Helpers\ConfigRetrieverInterface' instanceof \SocialiteProviders\Manager\Helpers\ConfigRetriever,
         ],
     ];
 }

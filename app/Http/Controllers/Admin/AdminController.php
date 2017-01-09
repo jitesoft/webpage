@@ -18,7 +18,6 @@ class AdminController extends Controller {
         }
 
         return View::make('admin.login');
-
     }
 
     public function getDashboard() {

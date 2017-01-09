@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Jitesoft\Socialite\JetbrainsHub\JetbrainsHubExtendSocialite;
 use SocialiteProviders\Google\GoogleExtendSocialite;
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
@@ -15,7 +16,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         SocialiteWasCalled::class => [
-            GoogleExtendSocialite::class . "@handle"
+            GoogleExtendSocialite::class . "@handle",
+            JetbrainsHubExtendSocialite::class . "@handle"
         ]
     ];
 }

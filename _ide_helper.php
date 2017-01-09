@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.26 on 2016-12-15.
+ * Generated for Laravel 5.3.29 on 2017-01-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2582,6 +2582,17 @@ if (! function_exists('with')) {
         /**
          * Determine if the current user is authenticated.
          *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */
+        public static function authenticate(){
+            return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
          * @return bool 
          * @static 
          */
@@ -2597,17 +2608,6 @@ if (! function_exists('with')) {
          */
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */
-        public static function authenticate(){
-            return \Illuminate\Auth\SessionGuard::authenticate();
         }
         
     }
@@ -3604,7 +3604,7 @@ if (! function_exists('with')) {
         /**
          * Encrypt the given value.
          *
-         * @param string $value
+         * @param mixed $value
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\EncryptException
          * @static 
@@ -3616,7 +3616,7 @@ if (! function_exists('with')) {
         /**
          * Decrypt the given value.
          *
-         * @param string $payload
+         * @param mixed $payload
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
@@ -3842,12 +3842,13 @@ if (! function_exists('with')) {
          *
          * @param string $query
          * @param array $bindings
+         * @param bool $useReadPdo
          * @return mixed 
          * @static 
          */
-        public static function selectOne($query, $bindings = array()){
+        public static function selectOne($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -7456,6 +7457,18 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Set the global reply-to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysReplyTo($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
+        }
+        
+        /**
          * Set the global to address and name.
          *
          * @param string $address
@@ -9848,6 +9861,8 @@ if (! function_exists('with')) {
         /**
          * Checks whether the method is safe or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */
@@ -9859,6 +9874,7 @@ if (! function_exists('with')) {
         /**
          * Checks whether the method is cacheable or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
          * @return bool 
          * @static 
          */
@@ -10325,6 +10341,17 @@ if (! function_exists('with')) {
          */
         public static function resourceParameters($parameters = array()){
             \Illuminate\Routing\Router::resourceParameters($parameters);
+        }
+        
+        /**
+         * Get or set the verbs used in the resource URIs.
+         *
+         * @param array $verbs
+         * @return array|null 
+         * @static 
+         */
+        public static function resourceVerbs($verbs = array()){
+            return \Illuminate\Routing\Router::resourceVerbs($verbs);
         }
         
         /**

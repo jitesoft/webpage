@@ -6,7 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace App\Http\Middleware;
 
-use App\Contracts\UserOauthTokenRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Admin\AdminController;
 use App\Models\Users\User;
@@ -15,16 +14,11 @@ use Closure;
 
 class AuthenticationMiddleware {
 
-    /** @var UserOauthTokenRepositoryInterface */
-    private $ouathTokenRepository;
-
     /** @var UserRepositoryInterface */
     private $userRepository;
 
-    public function __construct(UserOauthTokenRepositoryInterface $oauthTokenRepository,
-                                UserRepositoryInterface $userRepository) {
-        $this->ouathTokenRepository = $oauthTokenRepository;
-        $this->userRepository       = $userRepository;
+    public function __construct(UserRepositoryInterface $userRepository) {
+        $this->userRepository = $userRepository;
     }
 
     public function handle($request, Closure $next) {
