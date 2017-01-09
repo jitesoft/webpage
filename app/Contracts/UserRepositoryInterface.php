@@ -27,6 +27,14 @@ interface UserRepositoryInterface {
     public function findById(int $id) : ?User;
 
     /**
+     * Find a user by its email.
+     *
+     * @param string $email
+     * @return User|null
+     */
+    public function findByEmail(string $email) : ?User;
+
+    /**
      * Persist model.
      *
      * @param AbstractModel $model

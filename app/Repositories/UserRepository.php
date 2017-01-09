@@ -34,4 +34,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->setParameter('id', $id)
             ->getOneOrNullResult();
     }
+
+    /**
+     * Find a user by its email.
+     *
+     * @param string $email
+     * @return User|null
+     */
+    public function findByEmail(string $email) : ?User {
+        return $this->entityManager
+            ->createQuery("SELECT u FROM \App\Models\Users\User u WHERE u.email=:email")
+            ->setParameter('email', $email)
+            ->getOneOrNullResult();
+    }
 }

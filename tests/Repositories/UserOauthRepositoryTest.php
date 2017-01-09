@@ -54,11 +54,11 @@ class UserOauthRepositoryTest extends AbstractTestCase {
         $this->assertEquals($this->valid[2], $third);
     }
 
-    public function testFindByOauthId() {
-        $first       = $this->repository->findByOauthId($this->valid[0]->getOauthId());
-        $second      = $this->repository->findByOauthId($this->valid[1]->getOauthId());
-        $third       = $this->repository->findByOauthId($this->valid[2]->getOauthId());
-        $notExisting = $this->repository->findByOauthId("12345");
+    public function testFindByOauthIdAndProvider() {
+        $first       = $this->repository->findByOauthIdAndProvider($this->valid[0]->getOauthId(), $this->valid[0]->getProvider());
+        $second      = $this->repository->findByOauthIdAndProvider($this->valid[1]->getOauthId(), $this->valid[1]->getProvider());
+        $third       = $this->repository->findByOauthIdAndProvider($this->valid[2]->getOauthId(), $this->valid[2]->getProvider());
+        $notExisting = $this->repository->findByOauthIdAndProvider("12345", "blergh");
 
         $this->assertNotNull($first);
         $this->assertNotNull($second);

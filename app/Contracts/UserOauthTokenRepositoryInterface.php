@@ -21,7 +21,8 @@ interface UserOauthTokenRepositoryInterface {
      * Fetch a User OAuth token by its OAuthID.
      *
      * @param string $id
+     * @param string $provider
      * @return UserOauthToken|null
      */
-    public function findByOauthId(string $id) : ?UserOauthToken;
+    public function findByOauthIdAndProvider(string $id, string $provider) : ?UserOauthToken;
 }
