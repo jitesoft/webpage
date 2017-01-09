@@ -31,6 +31,10 @@ class AuthController extends Controller {
         return Socialite::driver('google')->redirect();
     }
 
+    public function getJbHubAuthRedirection() {
+        return Socialite::driver('jetbrains-hub')->redirect();
+    }
+
     public function getHandleGoogleProviderCallback() {
         /** @var \SocialiteProviders\Manager\OAuth2\User $user */
         $user = Socialite::driver('google')->user();
@@ -42,15 +46,23 @@ class AuthController extends Controller {
                 ->withErrors(['login' => 'You are unauthorized to access the admin area.']);
         }
 
-        $token = $this->oauthTokenRepository->findByOauthId($user->getId());
+        $token = $this->oauthTokenRepository->findByOauthIdAndProvider($user->getId(), 'google');
         if ($token === null) {
-            $newUser = new User($user->getEmail());
-            $newUser->createToken(UserOauthToken::OAUTH_PROVIDER_GOOGLE, $user->token, $user->getId());
-            $this->userRepository->persist($newUser);
-            $message = "Could not find a user with given credentials. 
-            A new user has been created but not yet activated. Contact administrator.";
-            return redirect()->action(AdminController::class . "@getIndex")
-                ->withErrors(["login" => $message]);
+
+            $existingUser = $this->userRepository->findByEmail($email);
+            if ($user != null) {
+                // User exists. Add a new token.
+                $token = $existingUser->createToken(UserOauthToken::OAUTH_PROVIDER_JB_HUB, $user->token, $user->id);
+            } else {
+                $newUser = new User($user->getEmail());
+                $newUser->createToken(UserOauthToken::OAUTH_PROVIDER_GOOGLE, $user->token, $user->getId());
+                $this->userRepository->persist($newUser);
+                $message = "Could not find a user with given credentials. 
+                            A new user has been created but not yet activated. Contact administrator.";
+
+                return redirect()->action(AdminController::class . "@getIndex")
+                    ->withErrors(["login" => $message]);
+            }
         }
 
         if (!$token->getUser()->isActive()) {
@@ -61,4 +73,42 @@ class AuthController extends Controller {
         Auth::login($token->getUser(), false);
         return redirect()->action(AdminController::class . "@getDashboard");
     }
+
+    public function getHandleJbHubProviderCallback() {
+        /** @var \SocialiteProviders\Manager\OAuth2\User $user */
+        $user = Socialite::driver('jetbrains-hub')->user();
+
+        // Check email domain.
+        $email = $user->getEmail();
+        if (explode('@', $email)[1] !== 'jitesoft.com') {
+            return redirect()->action(AdminController::class . "@getIndex")
+                ->withErrors(['login' => 'You are unauthorized to access the admin area.']);
+        }
+
+        $token = $this->oauthTokenRepository->findByOauthIdAndProvider($user->getId(), 'jetbrains-hub');
+        if ($token === null) {
+            $existingUser = $this->userRepository->findByEmail($email);
+            if ($user != null) {
+                // User exists. Add a new token.
+                $token = $existingUser->createToken(UserOauthToken::OAUTH_PROVIDER_JB_HUB, $user->token, $user->id);
+            } else {
+                $newUser = new User($user->getEmail());
+                $newUser->createToken(UserOauthToken::OAUTH_PROVIDER_JB_HUB, $user->token, $user->getId());
+                $this->userRepository->persist($newUser);
+                $message = "Could not find a user with given credentials. 
+                A new user has been created but not yet activated. Contact administrator.";
+                return redirect()->action(AdminController::class . "@getIndex")
+                    ->withErrors(["login" => $message]);
+            }
+        }
+
+        if (!$token->getUser()->isActive()) {
+            return redirect()->action(AdminController::class . "@getIndex")
+                ->withErrors(["login" => "User with given credentials is not yet activated. Contact administrator."]);
+        }
+
+        Auth::login($token->getUser(), false);
+        return redirect()->action(AdminController::class . "@getDashboard");
+    }
+
 }
