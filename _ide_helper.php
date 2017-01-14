@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.26 on 2016-12-11.
+ * Generated for Laravel 5.3.29 on 2017-01-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -9,6 +9,898 @@
 
 namespace {
     exit("This file should not be included, only analyzed by your IDE");
+
+
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Debug\Dumper;
+use Illuminate\Contracts\Support\Htmlable;
+
+if (! function_exists('append_config')) {
+    /**
+     * Assign high numeric IDs to a config item to force appending.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function append_config(array $array)
+    {
+        $start = 9999;
+
+        foreach ($array as $key => $value) {
+            if (is_numeric($key)) {
+                $start++;
+
+                $array[$start] = Arr::pull($array, $key);
+            }
+        }
+
+        return $array;
+    }
+}
+
+if (! function_exists('array_add')) {
+    /**
+     * Add an element to an array using "dot" notation if it doesn't exist.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    function array_add($array, $key, $value)
+    {
+        return Arr::add($array, $key, $value);
+    }
+}
+
+if (! function_exists('array_collapse')) {
+    /**
+     * Collapse an array of arrays into a single array.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_collapse($array)
+    {
+        return Arr::collapse($array);
+    }
+}
+
+if (! function_exists('array_divide')) {
+    /**
+     * Divide an array into two arrays. One with keys and the other with values.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_divide($array)
+    {
+        return Arr::divide($array);
+    }
+}
+
+if (! function_exists('array_dot')) {
+    /**
+     * Flatten a multi-dimensional associative array with dots.
+     *
+     * @param  array   $array
+     * @param  string  $prepend
+     * @return array
+     */
+    function array_dot($array, $prepend = '')
+    {
+        return Arr::dot($array, $prepend);
+    }
+}
+
+if (! function_exists('array_except')) {
+    /**
+     * Get all of the given array except for a specified array of items.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    function array_except($array, $keys)
+    {
+        return Arr::except($array, $keys);
+    }
+}
+
+if (! function_exists('array_first')) {
+    /**
+     * Return the first element in an array passing a given truth test.
+     *
+     * @param  array  $array
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function array_first($array, callable $callback = null, $default = null)
+    {
+        return Arr::first($array, $callback, $default);
+    }
+}
+
+if (! function_exists('array_flatten')) {
+    /**
+     * Flatten a multi-dimensional array into a single level.
+     *
+     * @param  array  $array
+     * @param  int  $depth
+     * @return array
+     */
+    function array_flatten($array, $depth = INF)
+    {
+        return Arr::flatten($array, $depth);
+    }
+}
+
+if (! function_exists('array_forget')) {
+    /**
+     * Remove one or many array items from a given array using "dot" notation.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return void
+     */
+    function array_forget(&$array, $keys)
+    {
+        return Arr::forget($array, $keys);
+    }
+}
+
+if (! function_exists('array_get')) {
+    /**
+     * Get an item from an array using "dot" notation.
+     *
+     * @param  \ArrayAccess|array  $array
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function array_get($array, $key, $default = null)
+    {
+        return Arr::get($array, $key, $default);
+    }
+}
+
+if (! function_exists('array_has')) {
+    /**
+     * Check if an item or items exist in an array using "dot" notation.
+     *
+     * @param  \ArrayAccess|array  $array
+     * @param  string|array  $keys
+     * @return bool
+     */
+    function array_has($array, $keys)
+    {
+        return Arr::has($array, $keys);
+    }
+}
+
+if (! function_exists('array_last')) {
+    /**
+     * Return the last element in an array passing a given truth test.
+     *
+     * @param  array  $array
+     * @param  callable|null  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function array_last($array, callable $callback = null, $default = null)
+    {
+        return Arr::last($array, $callback, $default);
+    }
+}
+
+if (! function_exists('array_only')) {
+    /**
+     * Get a subset of the items from the given array.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    function array_only($array, $keys)
+    {
+        return Arr::only($array, $keys);
+    }
+}
+
+if (! function_exists('array_pluck')) {
+    /**
+     * Pluck an array of values from an array.
+     *
+     * @param  array   $array
+     * @param  string|array  $value
+     * @param  string|array|null  $key
+     * @return array
+     */
+    function array_pluck($array, $value, $key = null)
+    {
+        return Arr::pluck($array, $value, $key);
+    }
+}
+
+if (! function_exists('array_prepend')) {
+    /**
+     * Push an item onto the beginning of an array.
+     *
+     * @param  array  $array
+     * @param  mixed  $value
+     * @param  mixed  $key
+     * @return array
+     */
+    function array_prepend($array, $value, $key = null)
+    {
+        return Arr::prepend($array, $value, $key);
+    }
+}
+
+if (! function_exists('array_pull')) {
+    /**
+     * Get a value from the array, and remove it.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function array_pull(&$array, $key, $default = null)
+    {
+        return Arr::pull($array, $key, $default);
+    }
+}
+
+if (! function_exists('array_set')) {
+    /**
+     * Set an array item to a given value using "dot" notation.
+     *
+     * If no key is given to the method, the entire array will be replaced.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    function array_set(&$array, $key, $value)
+    {
+        return Arr::set($array, $key, $value);
+    }
+}
+
+if (! function_exists('array_sort')) {
+    /**
+     * Sort the array using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return array
+     */
+    function array_sort($array, callable $callback)
+    {
+        return Arr::sort($array, $callback);
+    }
+}
+
+if (! function_exists('array_sort_recursive')) {
+    /**
+     * Recursively sort an array by keys and values.
+     *
+     * @param  array  $array
+     * @return array
+     */
+    function array_sort_recursive($array)
+    {
+        return Arr::sortRecursive($array);
+    }
+}
+
+if (! function_exists('array_where')) {
+    /**
+     * Filter the array using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return array
+     */
+    function array_where($array, callable $callback)
+    {
+        return Arr::where($array, $callback);
+    }
+}
+
+if (! function_exists('camel_case')) {
+    /**
+     * Convert a value to camel case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function camel_case($value)
+    {
+        return Str::camel($value);
+    }
+}
+
+if (! function_exists('class_basename')) {
+    /**
+     * Get the class "basename" of the given object / class.
+     *
+     * @param  string|object  $class
+     * @return string
+     */
+    function class_basename($class)
+    {
+        $class = is_object($class) ? get_class($class) : $class;
+
+        return basename(str_replace('\\', '/', $class));
+    }
+}
+
+if (! function_exists('class_uses_recursive')) {
+    /**
+     * Returns all traits used by a class, its subclasses and trait of their traits.
+     *
+     * @param  object|string  $class
+     * @return array
+     */
+    function class_uses_recursive($class)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        $results = [];
+
+        foreach (array_merge([$class => $class], class_parents($class)) as $class) {
+            $results += trait_uses_recursive($class);
+        }
+
+        return array_unique($results);
+    }
+}
+
+if (! function_exists('collect')) {
+    /**
+     * Create a collection from the given value.
+     *
+     * @param  mixed  $value
+     * @return \Illuminate\Support\Collection
+     */
+    function collect($value = null)
+    {
+        return new Collection($value);
+    }
+}
+
+if (! function_exists('data_fill')) {
+    /**
+     * Fill in data where it's missing.
+     *
+     * @param  mixed   $target
+     * @param  string|array  $key
+     * @param  mixed  $value
+     * @return mixed
+     */
+    function data_fill(&$target, $key, $value)
+    {
+        return data_set($target, $key, $value, false);
+    }
+}
+
+if (! function_exists('data_get')) {
+    /**
+     * Get an item from an array or object using "dot" notation.
+     *
+     * @param  mixed   $target
+     * @param  string|array  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function data_get($target, $key, $default = null)
+    {
+        if (is_null($key)) {
+            return $target;
+        }
+
+        $key = is_array($key) ? $key : explode('.', $key);
+
+        while (! is_null($segment = array_shift($key))) {
+            if ($segment === '*') {
+                if ($target instanceof Collection) {
+                    $target = $target->all();
+                } elseif (! is_array($target)) {
+                    return value($default);
+                }
+
+                $result = Arr::pluck($target, $key);
+
+                return in_array('*', $key) ? Arr::collapse($result) : $result;
+            }
+
+            if (Arr::accessible($target) && Arr::exists($target, $segment)) {
+                $target = $target[$segment];
+            } elseif (is_object($target) && isset($target->{$segment})) {
+                $target = $target->{$segment};
+            } else {
+                return value($default);
+            }
+        }
+
+        return $target;
+    }
+}
+
+if (! function_exists('data_set')) {
+    /**
+     * Set an item on an array or object using dot notation.
+     *
+     * @param  mixed  $target
+     * @param  string|array  $key
+     * @param  mixed  $value
+     * @param  bool  $overwrite
+     * @return mixed
+     */
+    function data_set(&$target, $key, $value, $overwrite = true)
+    {
+        $segments = is_array($key) ? $key : explode('.', $key);
+
+        if (($segment = array_shift($segments)) === '*') {
+            if (! Arr::accessible($target)) {
+                $target = [];
+            }
+
+            if ($segments) {
+                foreach ($target as &$inner) {
+                    data_set($inner, $segments, $value, $overwrite);
+                }
+            } elseif ($overwrite) {
+                foreach ($target as &$inner) {
+                    $inner = $value;
+                }
+            }
+        } elseif (Arr::accessible($target)) {
+            if ($segments) {
+                if (! Arr::exists($target, $segment)) {
+                    $target[$segment] = [];
+                }
+
+                data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite || ! Arr::exists($target, $segment)) {
+                $target[$segment] = $value;
+            }
+        } elseif (is_object($target)) {
+            if ($segments) {
+                if (! isset($target->{$segment})) {
+                    $target->{$segment} = [];
+                }
+
+                data_set($target->{$segment}, $segments, $value, $overwrite);
+            } elseif ($overwrite || ! isset($target->{$segment})) {
+                $target->{$segment} = $value;
+            }
+        } else {
+            $target = [];
+
+            if ($segments) {
+                data_set($target[$segment], $segments, $value, $overwrite);
+            } elseif ($overwrite) {
+                $target[$segment] = $value;
+            }
+        }
+
+        return $target;
+    }
+}
+
+if (! function_exists('dd')) {
+    /**
+     * Dump the passed variables and end the script.
+     *
+     * @param  mixed
+     * @return void
+     */
+    function dd()
+    {
+        array_map(function ($x) {
+            (new Dumper)->dump($x);
+        }, func_get_args());
+
+        die(1);
+    }
+}
+
+if (! function_exists('e')) {
+    /**
+     * Escape HTML special characters in a string.
+     *
+     * @param  \Illuminate\Contracts\Support\Htmlable|string  $value
+     * @return string
+     */
+    function e($value)
+    {
+        if ($value instanceof Htmlable) {
+            return $value->toHtml();
+        }
+
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
+    }
+}
+
+if (! function_exists('ends_with')) {
+    /**
+     * Determine if a given string ends with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function ends_with($haystack, $needles)
+    {
+        return Str::endsWith($haystack, $needles);
+    }
+}
+
+if (! function_exists('head')) {
+    /**
+     * Get the first element of an array. Useful for method chaining.
+     *
+     * @param  array  $array
+     * @return mixed
+     */
+    function head($array)
+    {
+        return reset($array);
+    }
+}
+
+if (! function_exists('last')) {
+    /**
+     * Get the last element from an array.
+     *
+     * @param  array  $array
+     * @return mixed
+     */
+    function last($array)
+    {
+        return end($array);
+    }
+}
+
+if (! function_exists('object_get')) {
+    /**
+     * Get an item from an object using "dot" notation.
+     *
+     * @param  object  $object
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function object_get($object, $key, $default = null)
+    {
+        if (is_null($key) || trim($key) == '') {
+            return $object;
+        }
+
+        foreach (explode('.', $key) as $segment) {
+            if (! is_object($object) || ! isset($object->{$segment})) {
+                return value($default);
+            }
+
+            $object = $object->{$segment};
+        }
+
+        return $object;
+    }
+}
+
+if (! function_exists('preg_replace_array')) {
+    /**
+     * Replace a given pattern with each value in the array in sequentially.
+     *
+     * @param  string  $pattern
+     * @param  array   $replacements
+     * @param  string  $subject
+     * @return string
+     */
+    function preg_replace_array($pattern, array $replacements, $subject)
+    {
+        return preg_replace_callback($pattern, function () use (&$replacements) {
+            foreach ($replacements as $key => $value) {
+                return array_shift($replacements);
+            }
+        }, $subject);
+    }
+}
+
+if (! function_exists('snake_case')) {
+    /**
+     * Convert a string to snake case.
+     *
+     * @param  string  $value
+     * @param  string  $delimiter
+     * @return string
+     */
+    function snake_case($value, $delimiter = '_')
+    {
+        return Str::snake($value, $delimiter);
+    }
+}
+
+if (! function_exists('starts_with')) {
+    /**
+     * Determine if a given string starts with a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function starts_with($haystack, $needles)
+    {
+        return Str::startsWith($haystack, $needles);
+    }
+}
+
+if (! function_exists('str_contains')) {
+    /**
+     * Determine if a given string contains a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|array  $needles
+     * @return bool
+     */
+    function str_contains($haystack, $needles)
+    {
+        return Str::contains($haystack, $needles);
+    }
+}
+
+if (! function_exists('str_finish')) {
+    /**
+     * Cap a string with a single instance of a given value.
+     *
+     * @param  string  $value
+     * @param  string  $cap
+     * @return string
+     */
+    function str_finish($value, $cap)
+    {
+        return Str::finish($value, $cap);
+    }
+}
+
+if (! function_exists('str_is')) {
+    /**
+     * Determine if a given string matches a given pattern.
+     *
+     * @param  string  $pattern
+     * @param  string  $value
+     * @return bool
+     */
+    function str_is($pattern, $value)
+    {
+        return Str::is($pattern, $value);
+    }
+}
+
+if (! function_exists('str_limit')) {
+    /**
+     * Limit the number of characters in a string.
+     *
+     * @param  string  $value
+     * @param  int     $limit
+     * @param  string  $end
+     * @return string
+     */
+    function str_limit($value, $limit = 100, $end = '...')
+    {
+        return Str::limit($value, $limit, $end);
+    }
+}
+
+if (! function_exists('str_plural')) {
+    /**
+     * Get the plural form of an English word.
+     *
+     * @param  string  $value
+     * @param  int     $count
+     * @return string
+     */
+    function str_plural($value, $count = 2)
+    {
+        return Str::plural($value, $count);
+    }
+}
+
+if (! function_exists('str_random')) {
+    /**
+     * Generate a more truly "random" alpha-numeric string.
+     *
+     * @param  int  $length
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    function str_random($length = 16)
+    {
+        return Str::random($length);
+    }
+}
+
+if (! function_exists('str_replace_array')) {
+    /**
+     * Replace a given value in the string sequentially with an array.
+     *
+     * @param  string  $search
+     * @param  array   $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_array($search, array $replace, $subject)
+    {
+        return Str::replaceArray($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_replace_first')) {
+    /**
+     * Replace the first occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_first($search, $replace, $subject)
+    {
+        return Str::replaceFirst($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_replace_last')) {
+    /**
+     * Replace the last occurrence of a given value in the string.
+     *
+     * @param  string  $search
+     * @param  string  $replace
+     * @param  string  $subject
+     * @return string
+     */
+    function str_replace_last($search, $replace, $subject)
+    {
+        return Str::replaceLast($search, $replace, $subject);
+    }
+}
+
+if (! function_exists('str_singular')) {
+    /**
+     * Get the singular form of an English word.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function str_singular($value)
+    {
+        return Str::singular($value);
+    }
+}
+
+if (! function_exists('str_slug')) {
+    /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param  string  $title
+     * @param  string  $separator
+     * @return string
+     */
+    function str_slug($title, $separator = '-')
+    {
+        return Str::slug($title, $separator);
+    }
+}
+
+if (! function_exists('studly_case')) {
+    /**
+     * Convert a value to studly caps case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function studly_case($value)
+    {
+        return Str::studly($value);
+    }
+}
+
+if (! function_exists('tap')) {
+    /**
+     * Call the given Closure with the given value then return the value.
+     *
+     * @param  mixed  $value
+     * @param  callable  $callback
+     * @return mixed
+     */
+    function tap($value, $callback)
+    {
+        $callback($value);
+
+        return $value;
+    }
+}
+
+if (! function_exists('title_case')) {
+    /**
+     * Convert a value to title case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    function title_case($value)
+    {
+        return Str::title($value);
+    }
+}
+
+if (! function_exists('trait_uses_recursive')) {
+    /**
+     * Returns all traits used by a trait and its traits.
+     *
+     * @param  string  $trait
+     * @return array
+     */
+    function trait_uses_recursive($trait)
+    {
+        $traits = class_uses($trait);
+
+        foreach ($traits as $trait) {
+            $traits += trait_uses_recursive($trait);
+        }
+
+        return $traits;
+    }
+}
+
+if (! function_exists('value')) {
+    /**
+     * Return the default value of the given value.
+     *
+     * @param  mixed  $value
+     * @return mixed
+     */
+    function value($value)
+    {
+        return $value instanceof Closure ? $value() : $value;
+    }
+}
+
+if (! function_exists('windows_os')) {
+    /**
+     * Determine whether the current environment is Windows based.
+     *
+     * @return bool
+     */
+    function windows_os()
+    {
+        return strtolower(substr(PHP_OS, 0, 3)) === 'win';
+    }
+}
+
+if (! function_exists('with')) {
+    /**
+     * Return the given object. Useful for chaining.
+     *
+     * @param  mixed  $object
+     * @return mixed
+     */
+    function with($object)
+    {
+        return $object;
+    }
+}
 
     class App extends \Illuminate\Support\Facades\App{
         
@@ -1690,6 +2582,17 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */
+        public static function authenticate(){
+            return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
          * @return bool 
          * @static 
          */
@@ -1705,17 +2608,6 @@ namespace {
          */
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */
-        public static function authenticate(){
-            return \Illuminate\Auth\SessionGuard::authenticate();
         }
         
     }
@@ -2400,27 +3292,38 @@ namespace {
          * @static 
          */
         public static function flush(){
-            \Illuminate\Cache\FileStore::flush();
+            \Illuminate\Cache\RedisStore::flush();
         }
         
         /**
-         * Get the Filesystem instance.
+         * Get the Redis connection instance.
          *
-         * @return \Illuminate\Filesystem\Filesystem 
+         * @return \Predis\ClientInterface 
          * @static 
          */
-        public static function getFilesystem(){
-            return \Illuminate\Cache\FileStore::getFilesystem();
+        public static function connection(){
+            return \Illuminate\Cache\RedisStore::connection();
         }
         
         /**
-         * Get the working directory of the cache.
+         * Set the connection name to be used.
          *
-         * @return string 
+         * @param string $connection
+         * @return void 
          * @static 
          */
-        public static function getDirectory(){
-            return \Illuminate\Cache\FileStore::getDirectory();
+        public static function setConnection($connection){
+            \Illuminate\Cache\RedisStore::setConnection($connection);
+        }
+        
+        /**
+         * Get the Redis database instance.
+         *
+         * @return \Illuminate\Redis\Database 
+         * @static 
+         */
+        public static function getRedis(){
+            return \Illuminate\Cache\RedisStore::getRedis();
         }
         
         /**
@@ -2430,7 +3333,18 @@ namespace {
          * @static 
          */
         public static function getPrefix(){
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\RedisStore::getPrefix();
+        }
+        
+        /**
+         * Set the cache key prefix.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */
+        public static function setPrefix($prefix){
+            \Illuminate\Cache\RedisStore::setPrefix($prefix);
         }
         
     }
@@ -2690,7 +3604,7 @@ namespace {
         /**
          * Encrypt the given value.
          *
-         * @param string $value
+         * @param mixed $value
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\EncryptException
          * @static 
@@ -2702,7 +3616,7 @@ namespace {
         /**
          * Decrypt the given value.
          *
-         * @param string $payload
+         * @param mixed $payload
          * @return string 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
@@ -2928,12 +3842,13 @@ namespace {
          *
          * @param string $query
          * @param array $bindings
+         * @param bool $useReadPdo
          * @return mixed 
          * @static 
          */
-        public static function selectOne($query, $bindings = array()){
+        public static function selectOne($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -6542,6 +7457,18 @@ namespace {
         }
         
         /**
+         * Set the global reply-to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysReplyTo($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
+        }
+        
+        /**
          * Set the global to address and name.
          *
          * @param string $address
@@ -7061,7 +7988,7 @@ namespace {
          * @static 
          */
         public static function size($queue = null){
-            return \Illuminate\Queue\SyncQueue::size($queue);
+            return \Illuminate\Queue\RedisQueue::size($queue);
         }
         
         /**
@@ -7071,11 +7998,10 @@ namespace {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
-         * @throws \Exception|\Throwable
          * @static 
          */
         public static function push($job, $data = '', $queue = null){
-            return \Illuminate\Queue\SyncQueue::push($job, $data, $queue);
+            return \Illuminate\Queue\RedisQueue::push($job, $data, $queue);
         }
         
         /**
@@ -7088,7 +8014,7 @@ namespace {
          * @static 
          */
         public static function pushRaw($payload, $queue = null, $options = array()){
-            return \Illuminate\Queue\SyncQueue::pushRaw($payload, $queue, $options);
+            return \Illuminate\Queue\RedisQueue::pushRaw($payload, $queue, $options);
         }
         
         /**
@@ -7102,7 +8028,7 @@ namespace {
          * @static 
          */
         public static function later($delay, $job, $data = '', $queue = null){
-            return \Illuminate\Queue\SyncQueue::later($delay, $job, $data, $queue);
+            return \Illuminate\Queue\RedisQueue::later($delay, $job, $data, $queue);
         }
         
         /**
@@ -7113,7 +8039,54 @@ namespace {
          * @static 
          */
         public static function pop($queue = null){
-            return \Illuminate\Queue\SyncQueue::pop($queue);
+            return \Illuminate\Queue\RedisQueue::pop($queue);
+        }
+        
+        /**
+         * Delete a reserved job from the queue.
+         *
+         * @param string $queue
+         * @param string $job
+         * @return void 
+         * @static 
+         */
+        public static function deleteReserved($queue, $job){
+            \Illuminate\Queue\RedisQueue::deleteReserved($queue, $job);
+        }
+        
+        /**
+         * Delete a reserved job from the reserved queue and release it.
+         *
+         * @param string $queue
+         * @param string $job
+         * @param int $delay
+         * @return void 
+         * @static 
+         */
+        public static function deleteAndRelease($queue, $job, $delay){
+            \Illuminate\Queue\RedisQueue::deleteAndRelease($queue, $job, $delay);
+        }
+        
+        /**
+         * Migrate the delayed jobs that are ready to the regular queue.
+         *
+         * @param string $from
+         * @param string $to
+         * @return void 
+         * @static 
+         */
+        public static function migrateExpiredJobs($from, $to){
+            \Illuminate\Queue\RedisQueue::migrateExpiredJobs($from, $to);
+        }
+        
+        /**
+         * Get the underlying Redis instance.
+         *
+         * @return \Illuminate\Redis\Database 
+         * @static 
+         */
+        public static function getRedis(){
+            return \Illuminate\Queue\RedisQueue::getRedis();
         }
         
         /**
@@ -7127,7 +8100,7 @@ namespace {
          */
         public static function pushOn($queue, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::pushOn($queue, $job, $data);
+            return \Illuminate\Queue\RedisQueue::pushOn($queue, $job, $data);
         }
         
         /**
@@ -7142,7 +8115,7 @@ namespace {
          */
         public static function laterOn($queue, $delay, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::laterOn($queue, $delay, $job, $data);
+            return \Illuminate\Queue\RedisQueue::laterOn($queue, $delay, $job, $data);
         }
         
         /**
@@ -7156,7 +8129,7 @@ namespace {
          */
         public static function bulk($jobs, $data = '', $queue = null){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
+            return \Illuminate\Queue\RedisQueue::bulk($jobs, $data, $queue);
         }
         
         /**
@@ -7168,7 +8141,7 @@ namespace {
          */
         public static function setContainer($container){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\SyncQueue::setContainer($container);
+            \Illuminate\Queue\RedisQueue::setContainer($container);
         }
         
     }
@@ -7327,6 +8300,61 @@ namespace {
          */
         public static function setSession($session){
             \Illuminate\Routing\Redirector::setSession($session);
+        }
+        
+    }
+
+
+    class Redis extends \Illuminate\Support\Facades\Redis{
+        
+        /**
+         * Get a specific Redis connection instance.
+         *
+         * @param string $name
+         * @return \Predis\ClientInterface|null 
+         * @static 
+         */
+        public static function connection($name = 'default'){
+            return \Illuminate\Redis\Database::connection($name);
+        }
+        
+        /**
+         * Run a command against the Redis database.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @static 
+         */
+        public static function command($method, $parameters = array()){
+            return \Illuminate\Redis\Database::command($method, $parameters);
+        }
+        
+        /**
+         * Subscribe to a set of given channels for messages.
+         *
+         * @param array|string $channels
+         * @param \Closure $callback
+         * @param string $connection
+         * @param string $method
+         * @return void 
+         * @static 
+         */
+        public static function subscribe($channels, $callback, $connection = null, $method = 'subscribe'){
+            \Illuminate\Redis\Database::subscribe($channels, $callback, $connection, $method);
+        }
+        
+        /**
+         * Subscribe to a set of given channels with wildcards.
+         *
+         * @param array|string $channels
+         * @param \Closure $callback
+         * @param string $connection
+         * @return void 
+         * @static 
+         */
+        public static function psubscribe($channels, $callback, $connection = null){
+            \Illuminate\Redis\Database::psubscribe($channels, $callback, $connection);
         }
         
     }
@@ -8833,6 +9861,8 @@ namespace {
         /**
          * Checks whether the method is safe or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
+         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */
@@ -8844,6 +9874,7 @@ namespace {
         /**
          * Checks whether the method is cacheable or not.
          *
+         * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
          * @return bool 
          * @static 
          */
@@ -9310,6 +10341,17 @@ namespace {
          */
         public static function resourceParameters($parameters = array()){
             \Illuminate\Routing\Router::resourceParameters($parameters);
+        }
+        
+        /**
+         * Get or set the verbs used in the resource URIs.
+         *
+         * @param array $verbs
+         * @return array|null 
+         * @static 
+         */
+        public static function resourceVerbs($verbs = array()){
+            return \Illuminate\Routing\Router::resourceVerbs($verbs);
         }
         
         /**
@@ -12616,6 +13658,92 @@ namespace {
          */
         public static function getMetaDataDriver($connection, $registry){
             return \LaravelDoctrine\ORM\DoctrineManager::getMetaDataDriver($connection, $registry);
+        }
+        
+    }
+
+
+    class Socialite extends \Laravel\Socialite\Facades\Socialite{
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function with($driver){
+            return \Laravel\Socialite\SocialiteManager::with($driver);
+        }
+        
+        /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */
+        public static function buildProvider($provider, $config){
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
+        }
+        
+        /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */
+        public static function formatConfig($config){
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @throws \InvalidArgumentException
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
         }
         
     }

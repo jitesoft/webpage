@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,8 +14,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         //
     }
 
@@ -23,11 +24,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register() {
-
-
-
         // Development packages:
-        if($this->app->environment() !== "production") {
+        if ($this->app->environment() !== "production") {
             $this->app->register(IdeHelperServiceProvider::class);
         }
     }

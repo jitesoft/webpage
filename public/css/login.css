@@ -1,0 +1,71 @@
+html, body {
+  background-color: #d9edf7;
+  color: #636b6f;
+  font-family: 'Source Code Pro', monospace;
+  margin: 0;
+  line-height: 120%;
+  font-size: 100%;
+  text-align: center;
+}
+
+html .content h1, body .content h1 {
+  font-size: 2vw;
+}
+
+html .content .login, body .content .login {
+  width: 100%;
+  max-width: 220px;
+  line-height: 200%;
+  padding-bottom: 20px;
+  padding-top: 80px;
+  font-family: monospace;
+  margin: auto;
+  text-align: center;
+}
+
+html .content h1, body .content h1 {
+  font-size: 2vw;
+}
+
+html footer, body footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  background-color: dodgerblue;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 2px 6px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+}
+
+.button:hover {
+  text-decoration: none;
+  background: -webkit-gradient(linear, left top, left bottom, from(dodgerblue), to(#0000e6));
+  background: -moz-linear-gradient(top, dodgerblue, #0000e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='dodgerblue', endColorstr='#0000e6');
+}
+
+.button:active {
+  position: relative;
+  top: 1px;
+  background: -webkit-gradient(linear, left top, left bottom, from(dodgerblue), to(#4d4dff));
+  background: -moz-linear-gradient(top, dodgerblue, #4d4dff);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='dodgerblue', endColorstr='#4d4dff');
+}
+
+/*# sourceMappingURL=login.css.map */

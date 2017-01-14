@@ -1,12 +1,9 @@
 <?php
-namespace Jitesoft\Web\App\Migrations;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Schema;
 
 class CreateUsersTable extends Migration {
-
 
     /**
      * Run the migrations.
@@ -17,10 +14,10 @@ class CreateUsersTable extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('email');
+            $table->string('user_level')->default('guest');
 
+            $table->boolean('active')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

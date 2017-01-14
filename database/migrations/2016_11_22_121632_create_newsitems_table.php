@@ -1,9 +1,7 @@
 <?php
-namespace Jitesoft\Web\App\Migrations;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Schema;
 
 class CreateNewsItemsTable extends Migration
 {

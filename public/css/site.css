@@ -1,0 +1,47 @@
+html, body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: 'Source Code Pro', monospace;
+  margin: 0;
+  line-height: 120%;
+  font-size: 100%;
+  text-align: center;
+}
+
+html a, body a {
+  color: #636b6f;
+}
+
+html .content h1, body .content h1 {
+  font-size: 10vw;
+}
+
+html .content h2, body .content h2 {
+  font-size: 1.7em;
+}
+
+html .content p, body .content p {
+  padding: 20px;
+  margin: auto;
+  font-size: 1.2em;
+  font-family: monospace;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+html footer, body footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.hidden {
+  display: none;
+}
+
+/*# sourceMappingURL=site.css.map */

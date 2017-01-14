@@ -178,7 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        LaravelDoctrine\ORM\DoctrineServiceProvider::class
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
+        \App\Providers\RepositoryServiceProvider::class,
 
     ],
 
@@ -230,7 +233,8 @@ return [
 
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
-        'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class
+        'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
