@@ -20,7 +20,6 @@
             @include('admin._admin-footer')
         @endif
     </footer>
-    </body>
     @if(config("APP_ENV", "production") !== "local" && config("APP_ENV", "production") !== "test")
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -33,4 +32,5 @@
         </script>
     @endif
     <script type="application/javascript" src="{{asset('js/admin.js', env('SECURE', false))}}"></script>
+    </body>
 </html>
