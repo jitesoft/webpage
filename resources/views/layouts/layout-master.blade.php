@@ -11,7 +11,7 @@
         <meta name="robots" content="nofollow">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:600" rel="stylesheet">
         <link rel="shortcut icon" href="favicon.ico" />
-        <link rel="stylesheet" href="{{asset('css/site.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/site.css', env('SECURE', false))}}" />
     </head>
     <body>
         @yield('content')
