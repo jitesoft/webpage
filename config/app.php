@@ -182,6 +182,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
         \App\Providers\RepositoryServiceProvider::class,
+        Spatie\CookieConsent\CookieConsentServiceProvider::class,
 
     ],
 

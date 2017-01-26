@@ -16,7 +16,8 @@
         "predis/predis": "^1.1",
         "laravel/socialite": "^2.0",
         "socialiteproviders/google": "^2.0",
-        "jitesoft/jb-hub-socialite-provider": "dev-master"
+        "jitesoft/jb-hub-socialite-provider": "dev-master",
+        "spatie/laravel-cookie-consent": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

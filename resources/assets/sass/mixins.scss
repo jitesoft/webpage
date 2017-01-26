@@ -22,3 +22,11 @@
 	background: -moz-linear-gradient(top,  $from, $to);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
 }
+
+@mixin border-round($radius: 5px) {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	@include rounded($radius);
+}

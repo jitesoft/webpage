@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8a6f12d157c858950a59601365596e5d",
-    "content-hash": "1e428e9fd2e10d68941a224757265c41",
+    "hash": "f30c3896436daf1670648a3c3b1d6486",
+    "content-hash": "5056eb4c4ca8af981c3279d86e917ef4",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2140,6 +2140,68 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2016-12-04 07:11:20"
+        },
+        {
+            "name": "spatie/laravel-cookie-consent",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-cookie-consent.git",
+                "reference": "82593c91b5851ec444f507482206905677e8599f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-cookie-consent/zipball/82593c91b5851ec444f507482206905677e8599f",
+                "reference": "82593c91b5851ec444f507482206905677e8599f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cookie": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/view": "~5.1.0|~5.2.0|~5.3.0|~5.4.0",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "orchestra/database": "~3.1.0|~3.2.0|~3.3.0|~3.4.0@dev",
+                "orchestra/testbench": "~3.1.0|~3.2.0|~3.3.0|~3.4.0@dev",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\CookieConsent\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Willem Van Bockstal",
+                    "email": "willem@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Make your Laravel app comply with the crazy EU cookie law",
+            "homepage": "https://github.com/spatie/laravel-cookie-consent",
+            "keywords": [
+                "comply",
+                "cookie",
+                "eu",
+                "laravel-cookie-consent",
+                "law",
+                "spatie"
+            ],
+            "time": "2017-01-24 21:08:15"
         },
         {
             "name": "swiftmailer/swiftmailer",
