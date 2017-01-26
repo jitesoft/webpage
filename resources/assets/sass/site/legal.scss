@@ -1,0 +1,34 @@
+@import '../mixins';
+
+#legal-cookies {
+
+	@include border-round();
+
+	background: #edeff5;
+	bottom: 0;
+	right: 0;
+	max-width: 350px;
+	width: 100%;
+	color: #838391;
+	padding: 1em;
+	position: fixed;
+	font-family: Helvetica,Calibri,Arial,sans-serif;
+	font-size:12px;
+	line-height: 1.5em;
+	display: block;
+	flex-wrap: nowrap;
+	z-index: 9999;
+	margin-bottom: 1em;
+
+	button {
+		background: #5bc0de;
+		color: #2e3436;
+		padding-left: 1em;
+		padding-right: 1em;
+		height: 2.5em;
+		float: right;
+
+		@include border-round();
+
+	}
+}

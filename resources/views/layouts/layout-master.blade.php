@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{asset('css/site.css', env('SECURE', false))}}" />
     </head>
     <body>
+        @include('cookieConsent::index')
         @yield('content')
         <footer>
             <a href="https://github.com/jitesoft" target="_blank">Github</a>
