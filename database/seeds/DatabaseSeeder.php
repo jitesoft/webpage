@@ -2,18 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run() {
-
-        $user = new \App\Models\Users\User("johannes@jitesoft.com", "Johannes");
-        EntityManager::persist($user);
-        EntityManager::flush();
-
+        $this->call(\Jitesoft\Seeders\PageSeeder::class);
+        $this->call(\Jitesoft\Seeders\UserSeeder::class);
     }
 }
+$user = new \App\Models\Users\User("johannes@jitesoft.com", "Johannes");

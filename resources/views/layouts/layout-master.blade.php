@@ -15,12 +15,21 @@
     </head>
     <body>
         @include('cookieConsent::index')
-        @yield('content')
+        <div class="position-ref full-height">
+            <div class="content">
+                <h1 class="link welcome">
+                    Jitesoft
+                </h1>
+                @yield('content')
+            </div>
+        </div>
         <footer>
             <a href="https://github.com/jitesoft" target="_blank">Github</a>
             <a href="https://bitbucket.org/jitesoft" target="_blank">Bitbucket</a>
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getContact')}}" class="link contact">Contact</a>
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getAbout')}}" class="link about">About</a>
+
+            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "contact"])}}" class="link contact">Contact</a>
+            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "about"])}}" class="link about">About</a>
+            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage')}}" class="link welcome">Home</a>
         </footer>
         @if(config("APP_ENV", "production") !== "local" && config("APP_ENV", "production") !== "test")
             <script>

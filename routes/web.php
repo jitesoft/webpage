@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', App\Http\Controllers\Web\IndexController::class . "@getWelcome");
-Route::get('/contact', App\Http\Controllers\Web\IndexController::class . "@getContact");
-Route::get('/about', App\Http\Controllers\Web\IndexController::class . "@getAbout");
+Route::get('/{page?}', App\Http\Controllers\Web\IndexController::class . "@getPage");
