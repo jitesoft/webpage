@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-01-26.
+    * Generated on 2017-01-31.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -51,6 +51,7 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
             'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
+            'App\Contracts\PageRepositoryInterface' instanceof \App\Repositories\PageRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -177,6 +178,7 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
             'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
+            'App\Contracts\PageRepositoryInterface' instanceof \App\Repositories\PageRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -303,6 +305,7 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
             'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
+            'App\Contracts\PageRepositoryInterface' instanceof \App\Repositories\PageRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,
@@ -429,6 +432,7 @@ namespace PHPSTORM_META {
             'validation.presence' instanceof \LaravelDoctrine\ORM\Validation\DoctrinePresenceVerifier,
             'App\Contracts\UserRepositoryInterface' instanceof \App\Repositories\UserRepository,
             'App\Contracts\UserOauthTokenRepositoryInterface' instanceof \App\Repositories\UserOauthTokenRepository,
+            'App\Contracts\PageRepositoryInterface' instanceof \App\Repositories\PageRepository,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\RedisBroadcaster,

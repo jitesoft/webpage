@@ -18,6 +18,12 @@ class Page extends AbstractModel {
 
     /**
      * @var string
+     * @ORM\Column(name="identifier", length=255, unique=true)
+     */
+    private $identifier;
+
+    /**
+     * @var string
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -34,12 +40,20 @@ class Page extends AbstractModel {
      */
     private $active;
 
-    public function __construct(string $title, string $body, bool $active) {
+    public function __construct(string $identifier, string $title, string $body, bool $active) {
         parent::__construct();
 
-        $this->title  = $title;
-        $this->body   = $body;
-        $this->active = $active;
+        $this->identifier = $identifier;
+        $this->title      = $title;
+        $this->body       = $body;
+        $this->active     = $active;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier() : string {
+        return $this->identifier;
     }
 
     /**
