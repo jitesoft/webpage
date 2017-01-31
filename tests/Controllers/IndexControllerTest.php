@@ -6,19 +6,31 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Tests\Controllers;
 
+use Jitesoft\Seeders\PageSeeder;
 use Tests\AbstractTestCase;
 
 class IndexControllerTest extends AbstractTestCase {
 
+    public function setUp() {
+        parent::setUp();
+        $this->seed(PageSeeder::class);
+    }
+
     public function testGetWelcome() {
-        $this->visit('/')->type('Welcome.', '#text-welcome > h2');
+        $this->visit('/')
+            ->type('Welcome', '#content-welcome > h2')
+            ->assertViewHas("current", "welcome");
     }
     public function testGetAbout() {
-        $this->visit('/about')->type('About.', '#text-about > h2');
+        $this->visit('/about')
+            ->type('About.', '#content-about > h2')
+            ->assertViewHas("current", "about");
     }
 
     public function testGetContact() {
-        $this->visit('/contact')->type('Contact.', '#text-contact > h2');
+        $this->visit('/contact')
+            ->type('Contact.', '#content-contact > h2')
+            ->assertViewHas("current", "contact");
     }
 
 }
