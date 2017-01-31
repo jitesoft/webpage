@@ -29,7 +29,7 @@
 
             <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "contact"])}}" class="link contact">Contact</a>
             <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "about"])}}" class="link about">About</a>
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage')}}" class="link welcome">Home</a>
+            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "welcome"])}}" class="link welcome">Home</a>
         </footer>
         @if(config("APP_ENV", "production") !== "local" && config("APP_ENV", "production") !== "test")
             <script>
