@@ -16,19 +16,25 @@ class IndexControllerTest extends AbstractTestCase {
         $this->seed(PageSeeder::class);
     }
 
+    public function testGetRoot() {
+        $this->visit('/page/welcome')
+            ->type('Welcome', '#content-welcome > h2')
+            ->assertViewHas("current", "welcome");
+    }
+
     public function testGetWelcome() {
         $this->visit('/')
             ->type('Welcome', '#content-welcome > h2')
             ->assertViewHas("current", "welcome");
     }
     public function testGetAbout() {
-        $this->visit('/about')
+        $this->visit('/page/about')
             ->type('About.', '#content-about > h2')
             ->assertViewHas("current", "about");
     }
 
     public function testGetContact() {
-        $this->visit('/contact')
+        $this->visit('/page/contact')
             ->type('Contact.', '#content-contact > h2')
             ->assertViewHas("current", "contact");
     }
