@@ -17,7 +17,7 @@ class CarbonType extends DateTimeType {
     /**
      * {@inheritdoc}
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform) {
+    public function convertToPhpValue($value, AbstractPlatform $platform) {
         if ($value === null || $value instanceof Carbon) {
             return $value;
         }
@@ -29,7 +29,7 @@ class CarbonType extends DateTimeType {
      * {@inheritdoc}
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform) {
-        if($value === null) {
+        if ($value === null) {
             return $value;
         }
 
