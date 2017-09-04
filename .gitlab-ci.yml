@@ -5,8 +5,10 @@ cache:
   - vendor/
 
 before_script:
-  - composer install
+  - composer install --prefer-source --no-interaction
+  - composer dump-autoload
 
 test:
   script:
-  - composer test
+  - vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+  - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml
