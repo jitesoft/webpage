@@ -1,8 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "prod": "gulp --production",
-    "dev": "gulp watch"
+    "test": "echo \"No tests yet, so success!\""
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",

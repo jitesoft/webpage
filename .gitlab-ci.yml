@@ -4,7 +4,7 @@ cache:
 
 variables:
   GIT_STRATEGY: "clone"
-  GIT_CHECKOUT: "false"
+  GIT_CHECKOUT: "true"
   GIT_DEPTH: "1"
 
 
@@ -19,7 +19,9 @@ build-js:
   image: jitesoft/gulp-bower
   stage: build
   script:
-    - composer install --prefer-source --no-interaction --no-progress
+    - npm install
+    - gulp all
+    - npm test
 
 test-php:
   image: jitesoft/composer:latest
@@ -29,3 +31,8 @@ test-php:
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
 
 
+test-js:
+  image: jitesoft/gulp-bower
+  stage: test
+  script:
+    - npm test
