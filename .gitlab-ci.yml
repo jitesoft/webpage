@@ -3,7 +3,7 @@ cache:
     - vendor/
 
 variables:
-  GIT_STRATEGY: "fetch"
+  GIT_STRATEGY: "clone"
   GIT_CHECKOUT: "false"
   GIT_DEPTH: "1"
 
