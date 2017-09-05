@@ -16,6 +16,8 @@ build-php:
 
 
 build-js:
+  before_script:
+    - apk add --no-cache git
   image: jitesoft/gulp-bower
   stage: build
   script:
