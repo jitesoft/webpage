@@ -1,13 +1,31 @@
-image: jitesoft/composer:latest
-
 cache:
   paths:
     - vendor/
 
-test:
+variables:
+  GIT_STRATEGY: "fetch"
+  GIT_CHECKOUT: "false"
+  GIT_DEPTH: "1"
+
+
+build-php:
+  image: jitesoft/composer:latest
+  stage: build
   script:
     - composer install --prefer-source --no-interaction
-    - composer dump-autoload
-    - vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+
+
+build-js:
+  image: jitesoft/gulp-bower
+  stage: build
+  script:
+    - composer install --prefer-source --no-interaction --no-progress
+
+test-php:
+  image: jitesoft/composer:latest
+  stage: test
+  script:
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
+
 
