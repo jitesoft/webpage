@@ -37,10 +37,7 @@ services:
 
     fpm:
         restart: unless-stopped
-        build:
-            context: .
-            dockerfile: dockerfiles/php7fpm.docker
-        image: php7-fpm:latest
+        image: jitesoft/php-fpm:latest
         expose:
             - "9000"
         networks:

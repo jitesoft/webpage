@@ -1,7 +1,7 @@
 cache:
   paths:
     - vendor/
-    - node_modules
+    - node_modules/
 
 variables:
   GIT_STRATEGY: "clone"
