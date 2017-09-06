@@ -21,7 +21,7 @@ build-js:
   stage: build
   script:
     - npm install
-    - gulp all
+    - gulp default
     - npm test
 
 test-php:
