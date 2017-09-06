@@ -1,11 +1,44 @@
-const elixir = require('laravel-elixir');
+const gulp    = require('gulp');
+const sass    = require('gulp-sass');
+const webPack = require('webpack-stream');
+const rename  = require('gulp-rename');
 
-elixir(function(mix) {
+const stylesDirectory  = 'resources/assets/sass/';
+const scriptsDirectory = 'resources/assets/js/';
 
-    mix.sass(['site/*.scss'], 'public/css/site.css');
-    mix.sass(['admin/*.scss'], 'public/css/admin.css');
-    mix.sass(['login/*.scss'], 'public/css/login.css');
+gulp.task('css', () => {
 
-    mix.webpack(['site/*.js'], 'public/js/site.js');
-    mix.webpack(['admin/*.js'], 'public/js/admin.js');
+
+    let styles = {
+        "admin.css": stylesDirectory + "admin/admin.scss",
+        "login.css": stylesDirectory + "login/main.scss",
+        "site.css": stylesDirectory  + "site/main.scss"
+    };
+
+    for (let style in styles) {
+        gulp.src(styles[style])
+            .pipe(sass({ outputStyle: "compressed" }))
+            .pipe(rename(style))
+            .pipe(gulp.dest('public/css'));
+    }
 });
+
+gulp.task('js', () => {
+    let scripts = {
+        "site.js": [
+            scriptsDirectory + "/site/app.js"
+        ],
+        "admin.js": [
+            scriptsDirectory + "/admin/main.js"
+        ]
+    };
+
+    for (let script in scripts) {
+        gulp.src(scripts[script])
+            .pipe(webPack())
+            .pipe(rename(script))
+            .pipe(gulp.dest('public/js'));
+    }
+});
+
+gulp.task('default', ["css", "js"]);

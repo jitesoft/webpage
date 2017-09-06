@@ -4,9 +4,9 @@
     "test": "echo \"No tests yet, so success!\""
   },
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
     "gulp": "^3.9.1",
-    "laravel-elixir": "^6.0.0-15",
-    "laravel-elixir-webpack-official": "^1.0.10"
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "webpack-stream": "^4.0.0"
   }
 }

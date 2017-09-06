@@ -25,7 +25,10 @@
         </div>
         <footer>
             <a href="https://github.com/jitesoft" target="_blank">Github</a>
+            <a href="https://gitlab.com/jitesoft" target="_blank">GitLab</a>
             <a href="https://bitbucket.org/jitesoft" target="_blank">Bitbucket</a>
+            <a href="https://twitter.com/jitesoft" target="_blank">Twitter</a>
+            <a href="https://facebook.com/jitesoft" target="_blank">Facebook</a>
 
             <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "contact"])}}" class="link contact">Contact</a>
             <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "about"])}}" class="link about">About</a>
