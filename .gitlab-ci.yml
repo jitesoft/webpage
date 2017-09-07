@@ -17,23 +17,22 @@ build-php:
 
 
 build-js:
-  image: jitesoft/gulp-bower
+  image: jitesoft/gulp-bower:latest
   stage: build
   script:
     - npm install
     - gulp default
-    - npm test
 
 test-php:
   image: jitesoft/composer:latest
   stage: test
   script:
-    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
 
 
 test-js:
-  image: jitesoft/gulp-bower
+  image: jitesoft/gulp-bower:latest
   stage: test
   script:
     - npm test

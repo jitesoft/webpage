@@ -3,7 +3,7 @@
   "scripts": {
     "test": "echo \"No tests yet, so success!\""
   },
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
