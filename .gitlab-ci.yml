@@ -37,3 +37,13 @@ test-js:
   stage: test
   script:
     - npm test
+
+
+#deploy:
+#  stage: deploy
+#  script:
+#    - ""
+#  environment:
+#    name: Production
+#  only:
+#    - master
