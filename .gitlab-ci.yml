@@ -1,19 +1,16 @@
-cache:
-  paths:
-    - vendor/
-    - node_modules/
-
 variables:
   GIT_STRATEGY: "clone"
   GIT_CHECKOUT: "true"
   GIT_DEPTH: "1"
-
 
 build-php:
   image: jitesoft/composer:latest
   stage: build
   script:
     - composer install --prefer-source --no-interaction
+  cache:
+    paths:
+      - vendor/
 
 
 build-js:
@@ -22,13 +19,16 @@ build-js:
   script:
     - npm install
     - gulp default
+  cache:
+    paths:
+      - vendor/
 
 test-php:
   image: jitesoft/composer:latest
   stage: test
   script:
-    - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
     - vendor/bin/phpunit --configuration phpunit.xml --colors=never
+    - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
 
 
 test-js:
