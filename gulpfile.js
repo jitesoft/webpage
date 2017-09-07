@@ -1,44 +1,49 @@
-const gulp    = require('gulp');
-const sass    = require('gulp-sass');
-const webPack = require('webpack-stream');
-const rename  = require('gulp-rename');
+const gulp     = require('gulp');
+const sass     = require('gulp-sass');
+const webPack  = require('webpack-stream');
+const rename   = require('gulp-rename');
+const util     = require('gulp-util');
+const manifest = require('./resources/assets/manifest.json');
 
-const stylesDirectory  = 'resources/assets/sass/';
-const scriptsDirectory = 'resources/assets/js/';
+
+
+require('dotenv').config();
+
 
 gulp.task('css', () => {
 
+    let outFile, inFiles;
+    manifest.styles.build.forEach((style) => {
+        outFile = style.out;
+        inFiles = style.in.map((f) => { return manifest.styles.path + f; });
 
-    let styles = {
-        "admin.css": stylesDirectory + "admin/admin.scss",
-        "login.css": stylesDirectory + "login/main.scss",
-        "site.css": stylesDirectory  + "site/main.scss"
-    };
+        let gulpCall = gulp.src(inFiles);
+        if (process.env.APP_DEBUG === true) {
+            util.log("Production build, will compress the css files.");
+            gulpCall.pipe(sass({outputStyle: "compressed" }));
+        }
+        gulpCall
+            .pipe(rename(outFile))
+            .pipe(gulp.dest("public/css"));
 
-    for (let style in styles) {
-        gulp.src(styles[style])
-            .pipe(sass({ outputStyle: "compressed" }))
-            .pipe(rename(style))
-            .pipe(gulp.dest('public/css'));
-    }
+        util.log("Built style '%s'.", outFile);
+    });
 });
 
 gulp.task('js', () => {
-    let scripts = {
-        "site.js": [
-            scriptsDirectory + "/site/app.js"
-        ],
-        "admin.js": [
-            scriptsDirectory + "/admin/main.js"
-        ]
-    };
 
-    for (let script in scripts) {
-        gulp.src(scripts[script])
+    let outFile, inFiles;
+    manifest.scripts.build.forEach((script) => {
+        outFile = script.out;
+        inFiles = script.in.map((f) => { return manifest.scripts.path + f; });
+
+        gulp.src(inFiles)
             .pipe(webPack())
-            .pipe(rename(script))
-            .pipe(gulp.dest('public/js'));
-    }
+            .pipe(rename(script.out))
+            .pipe(gulp.dest("public/js"));
+
+        util.log("Built script '%s'.", outFile);
+    });
 });
 
 gulp.task('default', ["css", "js"]);
