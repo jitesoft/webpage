@@ -5,24 +5,20 @@ const rename   = require('gulp-rename');
 const util     = require('gulp-util');
 const manifest = require('./resources/assets/manifest.json');
 
-
-
-require('dotenv').config();
-
-
 gulp.task('css', () => {
-
     let outFile, inFiles;
     manifest.styles.build.forEach((style) => {
         outFile = style.out;
         inFiles = style.in.map((f) => { return manifest.styles.path + f; });
 
-        let gulpCall = gulp.src(inFiles);
-        if (process.env.APP_DEBUG === true) {
+        let config = {};
+        if (process.env.ENV === "production") {
             util.log("Production build, will compress the css files.");
-            gulpCall.pipe(sass({outputStyle: "compressed" }));
+            config.outputStyle = "compressed";
         }
-        gulpCall
+
+        gulp.src(inFiles)
+            .pipe(sass(config))
             .pipe(rename(outFile))
             .pipe(gulp.dest("public/css"));
 
