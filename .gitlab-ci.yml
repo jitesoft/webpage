@@ -8,10 +8,6 @@ build-php:
   stage: build
   script:
     - composer install --prefer-source --no-interaction
-  cache:
-    paths:
-      - vendor/
-
 
 build-js:
   image: jitesoft/gulp-bower:latest
@@ -19,9 +15,6 @@ build-js:
   script:
     - npm install
     - gulp default
-  cache:
-    paths:
-      - vendor/
 
 test-php:
   image: jitesoft/composer:latest
@@ -29,7 +22,6 @@ test-php:
   script:
     - vendor/bin/phpunit --configuration phpunit.xml --colors=never
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
-
 
 test-js:
   image: jitesoft/gulp-bower:latest
