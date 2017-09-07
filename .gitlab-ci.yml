@@ -8,6 +8,11 @@ build-php:
   stage: build
   script:
     - composer install --prefer-source --no-interaction
+  artifacts:
+    paths:
+      - vendor/
+    expire_in: 2 hrs
+
 
 build-js:
   image: jitesoft/gulp-bower:latest
@@ -15,23 +20,36 @@ build-js:
   script:
     - npm install
     - gulp default
+  artifacts:
+    paths:
+      - node_modules/
+      - public/css/
+      - public/js/
+    expire_in: 2 hrs
 
 test-php:
   image: jitesoft/composer:latest
   stage: test
+  dependencies:
+    - build-php
   script:
-    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
 
 test-js:
   image: jitesoft/gulp-bower:latest
   stage: test
+  dependencies:
+    - build-js
   script:
     - npm test
 
 
 #deploy:
 #  stage: deploy
+#  dependencies:
+#    - build-php
+#    - build-js
 #  script:
 #    - ""
 #  environment:
