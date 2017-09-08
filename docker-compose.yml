@@ -8,7 +8,7 @@ services:
   web-data:
     image: busybox
     volumes:
-      - "./:/usr/share/nginx/html"
+      - "./:/app"
 
   nginx-data:
     image: busybox
@@ -26,7 +26,6 @@ services:
       - "./storage/redis:/data"
 
   database:
-    restart: unless-stopped
     env_file: .env
     image: mysql:5.7
     expose:
@@ -34,19 +33,16 @@ services:
     volumes_from:
       - mysql-data
     ports:
-      - "10810:3306"
+      - "3306:3306"
     networks:
       default:
         aliases:
           - mysql
 
   fpm:
-    restart: unless-stopped
     image: jitesoft/php-fpm:latest
     expose:
       - "9000"
-    ports:
-      - "10811:9000"
     networks:
       default:
         aliases:
@@ -56,7 +52,6 @@ services:
       - web-data
 
   nginx:
-    restart: unless-stopped
     depends_on:
       - fpm
     image: nginx
@@ -66,10 +61,9 @@ services:
     networks:
       - default
     ports:
-      - "801:80"
+      - "80:80"
 
   redis:
-    restart: unless-stopped
     image: redis:alpine
     expose:
       - "6379"
@@ -81,7 +75,3 @@ services:
       - "10812:6379"
     command: redis-server --port 6379 --appendonly yes
 
-networks:
-  proxy-tier:
-    external:
-      name: nginx-proxy

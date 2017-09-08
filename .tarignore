@@ -13,8 +13,8 @@ yarn.lock
 .env.example
 tests
 nginx
-database
-redis
+storage/database
+storage/redis
 docker-compose.yml
 _ide_helper.php
 .gitignore
