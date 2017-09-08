@@ -4,6 +4,10 @@ variables:
   GIT_DEPTH: "1"
 
 build-php:
+  cache:
+    key: build-cache:composer
+    paths:
+      - vendor/
   image: jitesoft/composer:latest
   stage: build
   script:
@@ -14,6 +18,10 @@ build-php:
     expire_in: 2 hrs
 
 build-js:
+  cache:
+    key: build-cache:node
+    paths:
+      - node_modules/
   image: jitesoft/gulp-bower:latest
   stage: build
   script:
@@ -52,10 +60,10 @@ deploy:
     - build-js
   before_script:
     - apk add -no-cache openssh-client tar
-      - eval $(ssh-agent -s)
-      - echo "$DEPLOY_KEY" | ssh-add -
-      - mkdir -p ~/.ssh
-      - echo "$SERVER_KEY" > ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo "$SERVER_KEY" > ~/.ssh/known_hosts
   script:
     - echo "$ENV_FILE" > .env
     - cd ../ && tar -zcf web.tar.gz -X ./web/.tarignore web && cd web
