@@ -1,86 +1,87 @@
+##########################################
+## Development docker-compose file.
+##########################################
 version: '2'
 
 services:
 
-    web-data:
-        image: busybox
-        volumes:
-            - "./:/usr/share/nginx/html"
+  web-data:
+    image: busybox
+    volumes:
+      - "./:/usr/share/nginx/html"
 
-    nginx-data:
-       image: busybox
-       volumes:
-           - "./nginx/prod:/etc/nginx/conf.d"
+  nginx-data:
+    image: busybox
+    volumes:
+      - "./nginx/:/etc/nginx/conf.d"
 
-    mysql-data:
-        image: busybox
-        volumes:
-            - "./storage/database:/var/lib/mysql"
+  mysql-data:
+    image: busybox
+    volumes:
+      - "./storage/database:/var/lib/mysql"
 
-    redis-data:
-        image: busybox
-        volumes:
-            - "./storage/redis:/data"
+  redis-data:
+    image: busybox
+    volumes:
+      - "./storage/redis:/data"
 
-    database:
-        restart: unless-stopped
-        env_file: .env
-        image: mysql:5.7
-        expose:
-            - "3306"
-        volumes_from:
-            - mysql-data
-        networks:
-            default:
-                aliases:
-                    - mysql
+  database:
+    restart: unless-stopped
+    env_file: .env
+    image: mysql:5.7
+    expose:
+      - "3306"
+    volumes_from:
+      - mysql-data
+    ports:
+      - "10810:3306"
+    networks:
+      default:
+        aliases:
+          - mysql
 
-    fpm:
-        restart: unless-stopped
-        image: jitesoft/php-fpm:latest
-        expose:
-            - "9000"
-        networks:
-            default:
-                aliases:
-                    - fpm
-                    - php
-        volumes_from:
-            - web-data
+  fpm:
+    restart: unless-stopped
+    image: jitesoft/php-fpm:latest
+    expose:
+      - "9000"
+    ports:
+      - "10811:9000"
+    networks:
+      default:
+        aliases:
+          - fpm
+          - php
+    volumes_from:
+      - web-data
 
-    jitesoft-nginx:
-        restart: unless-stopped
-        depends_on:
-            - fpm
-        image: nginx
-        expose:
-            - "80"
-            - "443"
-        environment:
-            - VIRTUAL_HOST=jitesoft.com,www.jitesoft.com,jitesoft.se,www.jitesoft.se,jitesoft.eu,www.jitesoft.eu
-            - VIRTUAL_NETWORK=nginx-proxy
-            - VIRTUAL_PORT=80
-            - LETSENCRYPT_HOST=jitesoft.com,www.jitesoft.com,jitesoft.se,www.jitesoft.se,jitesoft.eu,www.jitesoft.eu
-            - LETSENCRYPT_EMAIL=johannes@jitesoft.com
-        volumes_from:
-            - nginx-data
-            - web-data
-        networks:
-            - proxy-tier
-            - default
+  nginx:
+    restart: unless-stopped
+    depends_on:
+      - fpm
+    image: nginx
+    volumes_from:
+      - nginx-data
+      - web-data
+    networks:
+      - default
+    ports:
+      - "801:80"
 
-    redis:
-        restart: unless-stopped
-        image: redis:alpine
-        expose:
-            - "6379"
-        volumes_from:
-            - redis-data
-        networks:
-            - default
-        command: redis-server --port 6379 --appendonly yes
+  redis:
+    restart: unless-stopped
+    image: redis:alpine
+    expose:
+      - "6379"
+    volumes_from:
+      - redis-data
+    networks:
+      - default
+    ports:
+      - "10812:6379"
+    command: redis-server --port 6379 --appendonly yes
 
 networks:
-    proxy-tier:
-        external:
-            name: nginx-proxy
+  proxy-tier:
+    external:
+      name: nginx-proxy
