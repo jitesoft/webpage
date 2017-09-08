@@ -63,8 +63,8 @@ deploy:
   script:
     - echo "$ENV_FILE" > .env
     - cd ../ && tar -zcf web.tar.gz -X ./web/.tarignore web
-    - scp web.tar.gz ${DEPLOY_USER}@jitesoft.com:/services/web/
-    - ssh ${DEPLOY_USER}@jitesoft.com 'tar -xzf /services/web/web.tar.gz -C /services/web/source --strip-components=1 && rm /services/web/web.tar.gz'
+    - scp web.tar.gz ${DEPLOY_USER}@jitesoft.com:/services/webpage/
+    - ssh ${DEPLOY_USER}@jitesoft.com 'tar -xzf /services/webpage/web.tar.gz -C /services/webpage/source --strip-components=1 && rm /services/webpage/web.tar.gz'
   environment:
     name: Production
   only:
