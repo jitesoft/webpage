@@ -18,10 +18,6 @@ build-php:
     expire_in: 2 hrs
 
 build-js:
-  cache:
-    key: build-cache:node
-    paths:
-      - node_modules/
   image: jitesoft/gulp-bower:latest
   stage: build
   script:
