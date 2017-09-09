@@ -24,3 +24,4 @@ storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
 laravel.log
+node_modules
