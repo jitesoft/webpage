@@ -12,12 +12,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Id\IdentityGenerator;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Tools\SchemaTool;
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use ReflectionClass;
-use TestCase;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
-class AbstractTestCase extends TestCase {
+class AbstractTestCase extends BaseTestCase {
+    protected $baseUrl = 'http://localhost';
 
     /** @var String[] */
     private static $models = array();
@@ -74,7 +76,9 @@ class AbstractTestCase extends TestCase {
             throw new \Exception('Tests expects DB_CONNECTION = sqlite');
         }
 
-        return parent::createApplication();
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $app->make(Kernel::class)->bootstrap();
+        return $app;
     }
 
     public function refreshApplication() {
