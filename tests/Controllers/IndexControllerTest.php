@@ -17,25 +17,21 @@ class IndexControllerTest extends AbstractTestCase {
     }
 
     public function testGetRoot() {
-        $this->visit('/page/welcome')
-            ->type('Welcome', '#content-welcome > h2')
+        $this->get('/page/welcome')
             ->assertViewHas("current", "welcome");
     }
 
     public function testGetWelcome() {
-        $this->visit('/')
-            ->type('Welcome', '#content-welcome > h2')
+        $this->get('/')
             ->assertViewHas("current", "welcome");
     }
     public function testGetAbout() {
-        $this->visit('/page/about')
-            ->type('About.', '#content-about > h2')
+        $this->get('/page/about')
             ->assertViewHas("current", "about");
     }
 
     public function testGetContact() {
-        $this->visit('/page/contact')
-            ->type('Contact.', '#content-contact > h2')
+        $this->get('/page/contact')
             ->assertViewHas("current", "contact");
     }
 
