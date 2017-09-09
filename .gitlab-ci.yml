@@ -58,6 +58,7 @@ deploy:
     - cd ../ && tar -zcf web.tar.gz -X ./web/.tarignore web
     - scp web.tar.gz ${DEPLOY_USER}@jitesoft.com:/services/webpage/
     - ssh ${DEPLOY_USER}@jitesoft.com 'tar -xzf /services/webpage/web.tar.gz -C /services/webpage/source --strip-components=1 && rm /services/webpage/web.tar.gz'
+    - ssh ${DEPLOY_USER}@jitesoft.com 'docker exec webpage_fpm_1 php artisan deploy:cleanup'
   environment:
     name: Production
   only:
