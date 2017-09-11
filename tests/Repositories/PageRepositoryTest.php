@@ -21,9 +21,9 @@ class PageRepositoryTest extends AbstractTestCase {
         $this->repository = $this->app->make(PageRepositoryInterface::class);
 
         $pages = [
-            new Page("test1", "test1", "abc", true),
-            new Page("test2","test2", "def", true),
-            new Page("test3","test3", "ghi", true)
+            new Page("test1", "test1", "abc", "123", true),
+            new Page("test2","test2", "def", "abcd", true),
+            new Page("test3","test3", "ghi", "abc", true)
         ];
 
         foreach ($pages as $page) {
@@ -33,7 +33,7 @@ class PageRepositoryTest extends AbstractTestCase {
     }
 
     public function testFindById() {
-        $page = new Page("abxac", "abxac", "asdasd", true);
+        $page = new Page("abxac", "abxac", "asdasd", "123",true);
         $this->entityManager->persist($page);
         $this->entityManager->flush();
         $this->assertNotNull($page->getId());
@@ -44,7 +44,7 @@ class PageRepositoryTest extends AbstractTestCase {
     }
 
     public function testFindByTitle() {
-        $page = new Page("abxac", "abxac", "asdasd", true);
+        $page = new Page("abxac", "abxac", "asdasd", "123",true);
         $this->entityManager->persist($page);
         $this->entityManager->flush();
         $this->assertNotNull($page->getId());

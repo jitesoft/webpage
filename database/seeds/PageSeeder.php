@@ -11,9 +11,10 @@ use App\Models\Page;
 use Symfony\Component\Yaml\Yaml;
 
 class PageSeeder extends AbstractSeeder {
+
+    protected $ignore = [ ".", "..", "Thumbs.db", ".gitignore", ".DS_Store" ];
+
     protected function seed() : array {
-
-
         $path       = resource_path("texts");
         $dirContent = scandir($path);
         $pages      = [];
