@@ -13,7 +13,7 @@ use Tests\AbstractTestCase;
 /**
  * @group RepositoryTest
  */
-class UserRepositoryTest extends AbstractTestCase {
+class UserDoctrineRepositoryTest extends AbstractTestCase {
 
     /** @var UserRepositoryInterface */
     private $repository;

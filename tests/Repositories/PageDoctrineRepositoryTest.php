@@ -10,7 +10,7 @@ use App\Contracts\PageRepositoryInterface;
 use App\Models\Page;
 use Tests\AbstractTestCase;
 
-class PageRepositoryTest extends AbstractTestCase {
+class PageDoctrineRepositoryTest extends AbstractTestCase {
 
     /** @var PageRepositoryInterface */
     private $repository;
