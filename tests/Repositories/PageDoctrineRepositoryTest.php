@@ -10,7 +10,7 @@ use App\Contracts\PageRepositoryInterface;
 use App\Models\Page;
 use Tests\AbstractTestCase;
 
-class PageRepositoryTest extends AbstractTestCase {
+class PageDoctrineRepositoryTest extends AbstractTestCase {
 
     /** @var PageRepositoryInterface */
     private $repository;
@@ -21,9 +21,9 @@ class PageRepositoryTest extends AbstractTestCase {
         $this->repository = $this->app->make(PageRepositoryInterface::class);
 
         $pages = [
-            new Page("test1", "test1", "abc", true),
-            new Page("test2","test2", "def", true),
-            new Page("test3","test3", "ghi", true)
+            new Page("test1", "test1", "abc",true, "asadasdasdasd"),
+            new Page("test2","test2", "def",true, "asdasd"),
+            new Page("test3","test3", "ghi",true, "asdasdasdasd")
         ];
 
         foreach ($pages as $page) {
@@ -33,7 +33,7 @@ class PageRepositoryTest extends AbstractTestCase {
     }
 
     public function testFindById() {
-        $page = new Page("abxac", "abxac", "asdasd", true);
+        $page = new Page("abxac", "abxac", "asdasd",true, "123");
         $this->entityManager->persist($page);
         $this->entityManager->flush();
         $this->assertNotNull($page->getId());
@@ -44,7 +44,7 @@ class PageRepositoryTest extends AbstractTestCase {
     }
 
     public function testFindByTitle() {
-        $page = new Page("abxac", "abxac", "asdasd", true);
+        $page = new Page("ggccc", "abxac", "asdasd",true, "123");
         $this->entityManager->persist($page);
         $this->entityManager->flush();
         $this->assertNotNull($page->getId());
@@ -52,6 +52,17 @@ class PageRepositoryTest extends AbstractTestCase {
 
         $out = $this->repository->findByTitle("abxac");
         $this->assertSame($page, $out);
+    }
+
+    public function testFindByIdentifier() {
+        $page = new Page("abxac", "asdasd", "asdasd",true, "123");
+        $this->entityManager->persist($page);
+        $this->entityManager->flush();
+        $this->assertNotNull($page->getId());
+        $this->assertCount(4, $this->repository->getAll());
+
+        $out = $this->repository->findByIdentifier("abxac");
+        $this->assertEquals($page, $out);
     }
 
 }

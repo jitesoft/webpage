@@ -14,7 +14,7 @@ use Tests\AbstractTestCase;
 /**
  * @group RepositoryTest
  */
-class UserOauthRepositoryTest extends AbstractTestCase {
+class UserOauthDoctrineRepositoryTest extends AbstractTestCase {
 
     /** @var UserOauthTokenRepositoryInterface */
     private $repository;
