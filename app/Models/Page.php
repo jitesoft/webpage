@@ -40,13 +40,34 @@ class Page extends AbstractModel {
      */
     private $active;
 
-    public function __construct(string $identifier, string $title, string $body, bool $active) {
+    /**
+     * @var string
+     * @ORM\Column(name="text_hash", type="string")
+     */
+    private $textHash;
+
+    public function __construct(string $identifier, string $title, string $body, bool $active, string $textHash) {
         parent::__construct();
 
         $this->identifier = $identifier;
         $this->title      = $title;
         $this->body       = $body;
         $this->active     = $active;
+        $this->textHash   = $textHash;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHash() : string {
+        return $this->textHash;
+    }
+
+    /**
+     * @param string $hash
+     */
+    public function setHash(string $hash) {
+        $this->textHash = $hash;
     }
 
     /**

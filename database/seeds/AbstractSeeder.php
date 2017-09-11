@@ -10,6 +10,7 @@ use App\Models\AbstractModel;
 use Doctrine\ORM\EntityManagerInterface;
 use Generator;
 use Illuminate\Database\Seeder;
+use Jitesoft\Utilities\DataStructures\StaticArrayMethods;
 
 abstract class AbstractSeeder extends Seeder {
 

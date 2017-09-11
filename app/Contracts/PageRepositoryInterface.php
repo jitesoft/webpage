@@ -35,6 +35,14 @@ interface PageRepositoryInterface {
     public function findByTitle(string $title) : ?Page;
 
     /**
+     * Fetch a page by its identifier.
+     *
+     * @param string $identifier
+     * @return Page|null
+     */
+    public function findByIdentifier(string $identifier) : ?Page;
+
+    /**
      * Persist model.
      *
      * @param AbstractModel $model

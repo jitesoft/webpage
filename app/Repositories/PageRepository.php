@@ -47,4 +47,18 @@ class PageRepository extends AbstractRepository implements PageRepositoryInterfa
             ->setParameter("title", $title)
             ->getOneOrNullResult();
     }
+
+
+    /**
+     * Fetch a page by its identifier.
+     *
+     * @param string $identifier
+     * @return Page|null
+     */
+    public function findByIdentifier(string $identifier): ?Page {
+        return $this->entityManager
+            ->createQuery("SELECT p FROM \App\Models\Page p WHERE p.identifier=:identifier")
+            ->setParameter("identifier", $identifier)
+            ->getOneOrNullResult();
+    }
 }

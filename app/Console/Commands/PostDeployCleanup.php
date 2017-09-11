@@ -37,5 +37,7 @@ class PostDeployCleanup extends Command
         $this->info("Seeding database.");
         $this->call('db:seed', ['--force' => true]);
         $this->call("doctrine:generate:proxies");
+        $this->info("Rebuilding pages.");
+        $this->call("pages:rebuild");
     }
 }
