@@ -24,15 +24,20 @@
             </div>
         </div>
         <footer>
-            <a href="https://github.com/jitesoft" target="_blank">Github</a>
-            <a href="https://gitlab.com/jitesoft" target="_blank">GitLab</a>
-            <a href="https://bitbucket.org/jitesoft" target="_blank">Bitbucket</a>
-            <a href="https://twitter.com/jitesoft" target="_blank">Twitter</a>
-            <a href="https://facebook.com/jitesoft" target="_blank">Facebook</a>
 
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "contact"])}}" class="link contact">Contact</a>
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "about"])}}" class="link about">About</a>
-            <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "welcome"])}}" class="link welcome">Home</a>
+            <div class="link-container">
+                <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "contact"])}}" data-href="contact" class="link link-internal">Contact</a>
+                <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "about"])}}" data-href="about" class="link link-internal">About</a>
+                <a href="{{action(\App\Http\Controllers\Web\IndexController::class . '@getPage', ["page" => "welcome"])}}" data-href="welcome" class="link link-internal">Home</a>
+            </div>
+
+            <div class="link-container">
+                <a href="https://github.com/jitesoft" class="link-external link" target="_blank">Github</a>
+                <a href="https://gitlab.com/jitesoft" target="_blank">GitLab</a>
+                <a href="https://bitbucket.org/jitesoft" target="_blank">Bitbucket</a>
+                <a href="https://twitter.com/jitesoft" target="_blank">Twitter</a>
+                <a href="https://facebook.com/jitesoft" target="_blank">Facebook</a>
+            </div>
         </footer>
         @if(config("APP_ENV", "production") !== "local" && config("APP_ENV", "production") !== "test")
             <script>

@@ -43,6 +43,23 @@ html, body {
     padding: 20px;
     text-align: center;
     font-size: 11px;
+
+    .link-container {
+
+      display: block;
+
+      .link-internal {
+        font-size: 12px;
+      }
+
+      .link-external {
+        font-size: 11px;
+      }
+    }
+
+
+
+
   }
 }
 
