@@ -43,3 +43,10 @@ gulp.task('js', () => {
 });
 
 gulp.task('default', ["css", "js"]);
+gulp.task('watch', () => {
+    "use strict";
+    gulp.watch(manifest.styles.path + "**/*", ['css']);
+    gulp.watch(manifest.scripts.path + "**/*", ['js']);
+});
+
+

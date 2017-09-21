@@ -5,33 +5,13 @@ version: '2'
 
 services:
 
-  web-data:
-    image: busybox
-    volumes:
-      - "./:/app"
-
-  nginx-data:
-    image: busybox
-    volumes:
-      - "./nginx/:/etc/nginx/conf.d"
-
-  mysql-data:
-    image: busybox
-    volumes:
-      - "./storage/database:/var/lib/mysql"
-
-  redis-data:
-    image: busybox
-    volumes:
-      - "./storage/redis:/data"
-
   database:
     env_file: .env
     image: mysql:5.7
     expose:
       - "3306"
-    volumes_from:
-      - mysql-data
+    volumes:
+      - db-data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -48,16 +28,16 @@ services:
         aliases:
           - fpm
           - php
-    volumes_from:
-      - web-data
+    volumes:
+      - "./:/app"
 
   nginx:
     depends_on:
       - fpm
     image: nginx
-    volumes_from:
-      - nginx-data
-      - web-data
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+      - ./:/app
     networks:
       - default
     ports:
@@ -67,11 +47,14 @@ services:
     image: redis:alpine
     expose:
       - "6379"
-    volumes_from:
-      - redis-data
+    volumes:
+     - redis-data:/data
     networks:
       - default
     ports:
       - "10812:6379"
     command: redis-server --port 6379 --appendonly yes
 
+volumes:
+  db-data:
+  redis-data:
