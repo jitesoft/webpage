@@ -33,6 +33,7 @@ services:
     volumes:
       - ./nginx/:/etc/nginx/conf.d
     networks:
+      - web-proxy
       - default
     ports:
       - "80:80"
