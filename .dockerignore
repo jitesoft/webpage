@@ -1,0 +1,10 @@
+.gitlab-ci.yml
+docker-compose.yml
+Dockerfile
+.dockerignore
+nginx/
+.gitignore
+.tarignore
+readme.md
+phpunit.xml
+ruleset.xml
