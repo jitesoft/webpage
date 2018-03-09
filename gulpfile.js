@@ -34,7 +34,7 @@ gulp.task('js', () => {
         inFiles = script.in.map((f) => { return manifest.scripts.path + f; });
 
         gulp.src(inFiles)
-            .pipe(webPack())
+            //.pipe(webPack())
             .pipe(rename(script.out))
             .pipe(gulp.dest("public/js"));
 
