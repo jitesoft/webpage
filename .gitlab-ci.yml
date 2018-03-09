@@ -9,17 +9,19 @@ Test backend:
     paths:
       - vendor/
   image: jitesoft/composer:latest
-  stage: build
+  stage: test
   script:
     - composer install --prefer-source --no-interaction
     - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
     - vendor/bin/phpunit --configuration phpunit.xml --colors=never
 
 Test Frontend:
-  image: jitesoft/gulp-bower:latest
-  stage: build
+  image: jitesoft/node-base:latest
+  stage: test
+  before_script:
+    - npm install -g yarn gulp gulp-cli
   script:
-    - npm install
+    - yarn install
     - gulp default
     - yarn test
 
