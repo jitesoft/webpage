@@ -17,4 +17,4 @@ COPY . /app
 COPY --from=php /app/vendor /app/vendor
 COPY --from=php /app/public/ /app/public
 
-CMD [ 'setup.sh' ]
+CMD [ 'bin/ash', '-C', 'setup.sh' ]

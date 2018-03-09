@@ -5,8 +5,6 @@ services:
   database:
     env_file: .env
     image: mysql:5.7
-    expose:
-      - "3306"
     volumes:
       - db-data:/var/lib/mysql
     networks:
@@ -16,15 +14,11 @@ services:
 
   fpm:
     image: registry.gitlab.com/jitesoft/web:latest
-    expose:
-      - "9000"
     networks:
       default:
         aliases:
           - fpm
           - php
-    volumes:
-      - "./:/app"
 
   nginx:
     depends_on:
@@ -35,8 +29,6 @@ services:
     networks:
       - web-proxy
       - default
-    ports:
-      - "80:80"
     deploy:
       labels:
         - "traefik.port=80"
@@ -46,8 +38,6 @@ services:
 
   redis:
     image: redis:alpine
-    expose:
-      - "6379"
     volumes:
      - redis-data:/data
     networks:
