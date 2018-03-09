@@ -26,6 +26,7 @@ services:
     image: nginx
     volumes:
       - ./nginx/:/etc/nginx/conf.d
+      - ./:/app
     networks:
       - web-proxy
       - default
