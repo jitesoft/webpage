@@ -35,7 +35,7 @@ Build:
   after_script:
     - docker logout registry.gitlab.com
   only:
-    master
+    - master
 
 deploy:
   variables:
