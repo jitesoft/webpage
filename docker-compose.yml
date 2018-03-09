@@ -1,7 +1,4 @@
-##########################################
-## Development docker-compose file.
-##########################################
-version: '2'
+version: '3.5'
 
 services:
 
@@ -12,15 +9,13 @@ services:
       - "3306"
     volumes:
       - db-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       default:
         aliases:
           - mysql
 
   fpm:
-    image: jitesoft/php-fpm:latest
+    image: registry.gitlab.com/jitesoft/web:latest
     expose:
       - "9000"
     networks:
@@ -37,11 +32,16 @@ services:
     image: nginx
     volumes:
       - ./nginx/:/etc/nginx/conf.d
-      - ./:/app
     networks:
       - default
     ports:
       - "80:80"
+    deploy:
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:jitesoft.com,jitesoft.eu,jitesoft.se,www.jitesoft.com,www.jitesoft.se,www.jitesoft.eu"
+        - "traefik.docker.network=web-proxy"
+        - "traefik.enable=true"
 
   redis:
     image: redis:alpine
@@ -51,9 +51,12 @@ services:
      - redis-data:/data
     networks:
       - default
-    ports:
-      - "10812:6379"
     command: redis-server --port 6379 --appendonly yes
+
+networks:
+  web-proxy:
+    external: true
+    name: web-proxy
 
 volumes:
   db-data:
