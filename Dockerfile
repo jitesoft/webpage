@@ -20,5 +20,5 @@ ENV APP_ENV="production"
 WORKDIR /app
 COPY . /app
 COPY --from=php /app/vendor /app/vendor
-COPY --from=php /app/public/ /app/public
+COPY --from=js /app/public/ /app/public
 CMD sleep 15 && php artisan deploy:cleanup && php-fpm
