@@ -1,34 +1,6 @@
-variables:
-  GIT_STRATEGY: "clone"
-  GIT_CHECKOUT: "true"
-  GIT_DEPTH: "1"
-
 stages:
-  - test
   - build
   - deploy
-
-Test backend:
-  cache:
-    key: build-cache:composer
-    paths:
-      - vendor/
-  image: jitesoft/composer:latest
-  stage: test
-  script:
-    - composer install --prefer-dist --no-interaction --no-progress --no-suggest
-    - vendor/bin/phpcs -p --report=summary --standard=ruleset.xml app
-    - vendor/bin/phpunit --configuration phpunit.xml --colors=never
-
-Test Frontend:
-  image: jitesoft/node-base:latest
-  stage: test
-  before_script:
-    - npm install -g yarn gulp gulp-cli
-  script:
-    - yarn install
-    - gulp default
-    - yarn test
 
 Build:
   stage: build
@@ -36,14 +8,10 @@ Build:
   before_script:
       - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
-    - echo "${ENV_FILE}" > .env
     - docker build -t ${CI_REGISTRY_IMAGE}:latest --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}:latest
   after_script:
-    - rm -f .env
     - docker logout registry.gitlab.com
-  only:
-    - master
 
 #### Ignore.
 #deploy:
