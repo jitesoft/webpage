@@ -12,6 +12,8 @@ Build:
     - docker push ${CI_REGISTRY_IMAGE}:latest
   after_script:
     - docker logout registry.gitlab.com
+  only:
+    - master
 
 Deploy:
   variables:
@@ -25,7 +27,7 @@ Deploy:
     - mkdir -p ~/.ssh
     - echo "${JITESOFT_SERVER_KEY}" > ~/.ssh/known_hosts
   script:
-    - scp ${DEPLOY_USER}@jitesoft.com:${HOME_DIR} ./docker-compose.yml
+    - scp  ./docker-compose.yml ${DEPLOY_USER}@jitesoft.com:${HOME_DIR}
     - ssh ${DEPLOY_USER}@jitesoft.com 'docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com && cd ${HOME_DIR} && docker pull ${CI_REGISTRY_IMAGE}:latest && docker stack deploy -c docker-compose.yml jitesoft'
   only:
     - master
