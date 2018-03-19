@@ -1,10 +1,13 @@
 <template>
-    $END$
+    
 </template>
 
 <script>
   export default {
-    name: 'menu'
+    name: 'menu',
+    props: {
+
+    }
   };
 </script>
 

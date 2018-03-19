@@ -56,16 +56,11 @@ html, body {
         font-size: 11px;
       }
     }
-
-
-
-
   }
 }
 
 .hidden {
-  display:none;
+  display:none !important;
 }
 
-@import "legal";
 
