@@ -2,34 +2,12 @@ version: '3.5'
 
 services:
 
-  database:
-    env_file: .env
-    image: mysql:5.7
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      default:
-        aliases:
-          - mysql
-
-  fpm:
+  web:
     image: registry.gitlab.com/jitesoft/web:latest
     networks:
-      default:
+      webproxy:
         aliases:
-          - fpm
-          - php
-
-  nginx:
-    depends_on:
-      - fpm
-    image: nginx
-    volumes:
-      - ./nginx/:/etc/nginx/conf.d
-      - ./:/app
-    networks:
-      - web-proxy
-      - default
+          - jitesoft
     deploy:
       labels:
         - "traefik.port=80"
@@ -37,19 +15,7 @@ services:
         - "traefik.docker.network=web-proxy"
         - "traefik.enable=true"
 
-  redis:
-    image: redis:alpine
-    volumes:
-     - redis-data:/data
-    networks:
-      - default
-    command: redis-server --port 6379 --appendonly yes
-
 networks:
   web-proxy:
     external: true
     name: web-proxy
-
-volumes:
-  db-data:
-  redis-data:
