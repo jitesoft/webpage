@@ -5,3 +5,4 @@
 .env
 composer.phar
 dist/
+/yarn-error.log
