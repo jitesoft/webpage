@@ -26,7 +26,7 @@ Deploy:
     - echo "${JITESOFT_SERVER_KEY}" > ~/.ssh/known_hosts
   script:
     - scp  ./docker-compose.yml ${DEPLOY_USER}@jitesoft.com:${HOME_DIR}
-    - ssh ${DEPLOY_USER}@jitesoft.com 'docker service update jitesoft_web --with-registry-auth --image=${CI_REGISTRY_IMAGE}:latest'
+    - ssh ${DEPLOY_USER}@jitesoft.com "docker service update jitesoft_web --with-registry-auth --image=${CI_REGISTRY_IMAGE}:latest"
   only:
     - master
 
