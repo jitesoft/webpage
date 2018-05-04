@@ -1,4 +1,4 @@
-FROM jitesoft/node-base as js
+FROM jitesoft/node-base:9 as js
 ENV NODE_ENV="production"
 WORKDIR /app
 COPY . /app
