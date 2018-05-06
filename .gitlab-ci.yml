@@ -32,7 +32,7 @@ page:
   script:
     - rm dist/index-labs.html
     - mv dist/index-page.html index.html
-    - sed i -e "/s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
+    - sed -i -e "/s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
     - docker build -t ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA} --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA}
 
@@ -48,7 +48,7 @@ labs:
   script:
     - rm dist/index-page.html
     - mv dist/index-labs.html index.html
-    - sed i -e "/s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
+    - sed -i -e "/s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
     - docker build -t ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA} --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA}
 
@@ -62,6 +62,6 @@ deploy:
     - echo "${DEPLOY_KEY}" | ssh-add -
     - echo "${JITESOFT_SERVER_KEY}" > ~/.ssh/known_hosts
   script:
-    - sed i -e "s/latest/${CI_COMMIT_SHA}/g" docker-compose.yml
+    - sed -i -e "s/latest/${CI_COMMIT_SHA}/g" docker-compose.yml
     - scp  ./docker-compose.yml ${DEPLOY_USER}@jitesoft.com:${HOME_DIR}
     - ssh ${DEPLOY_USER}@jitesoft.com "docker stack deploy -c ${HOME_DIR}/docker-compose.yml --with-registry-auth jitesoft"
