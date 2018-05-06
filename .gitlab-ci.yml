@@ -14,7 +14,7 @@ build:
     - yarn install
     - yarn prod
   artifacts:
-    path:
+    paths:
       - dist
     when: on_success
     expire_in: 1 week
