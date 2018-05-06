@@ -31,7 +31,7 @@ page:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
     - rm dist/index-labs.html
-    - mv dist/index-page.html index.html
+    - mv dist/index-page.html dist/index.html
     - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
     - docker build -t ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA} --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA}
@@ -47,7 +47,7 @@ labs:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
     - rm dist/index-page.html
-    - mv dist/index-labs.html index.html
+    - mv dist/index-labs.html dist/index.html
     - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
     - docker build -t ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA} --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA}
