@@ -16,6 +16,7 @@ build:
   artifacts:
     paths:
       - dist
+      - Dockerfile
     when: on_success
     expire_in: 1 week
 
@@ -27,8 +28,8 @@ page:
   before_script:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
-    - rm index-labs.html
-    - mv index-page index.html
+    - rm dist/index-labs.html
+    - mv dist/index-page.html index.html
     - docker build -t ${CI_REGISTRY_IMAGE}-page:latest --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}-page:latest
 
@@ -40,8 +41,8 @@ labs:
   before_script:
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
-    - rm index-page.html
-    - mv index-labs index.html
+    - rm dist/index-page.html
+    - mv dist/index-labs.html index.html
     - docker build -t ${CI_REGISTRY_IMAGE}-labs:latest --no-cache .
     - docker push ${CI_REGISTRY_IMAGE}-labs:latest
 
