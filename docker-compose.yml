@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
   page:
-    image: registry.gitlab.com/jitesoft/web-page:latest
+    image: registry.gitlab.com/jitesoft/web/page:latest
     networks:
       - web-proxy
     deploy:
@@ -15,7 +15,7 @@ services:
 
 
   labs:
-    image: registry.gitlab.com/jitesoft/web-labs:latest
+    image: registry.gitlab.com/jitesoft/web/labs:latest
     networks:
       - web-proxy
     deploy:

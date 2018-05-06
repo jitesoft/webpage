@@ -30,8 +30,8 @@ page:
   script:
     - rm dist/index-labs.html
     - mv dist/index-page.html index.html
-    - docker build -t ${CI_REGISTRY_IMAGE}-page:latest --no-cache .
-    - docker push ${CI_REGISTRY_IMAGE}-page:latest
+    - docker build -t ${CI_REGISTRY_IMAGE}/page:latest --no-cache .
+    - docker push ${CI_REGISTRY_IMAGE}/page:latest
 
 labs:
   stage: image
@@ -43,8 +43,8 @@ labs:
   script:
     - rm dist/index-page.html
     - mv dist/index-labs.html index.html
-    - docker build -t ${CI_REGISTRY_IMAGE}-labs:latest --no-cache .
-    - docker push ${CI_REGISTRY_IMAGE}-labs:latest
+    - docker build -t ${CI_REGISTRY_IMAGE}/labs:latest --no-cache .
+    - docker push ${CI_REGISTRY_IMAGE}/labs:latest
 
 deploy:
   variables:
