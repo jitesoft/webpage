@@ -1,21 +1,51 @@
 stages:
   - build
+  - image
   - deploy
 
-Build:
+build:
   stage: build
+  image: jitesoft/node-base
+  variables:
+    NODE_ENV: production
+  before_script:
+    - npm install -g yarn
+  script:
+    - yarn install
+    - yarn prod
+  artifacts:
+    path:
+      - dist
+    when: on_success
+    expire_in: 1 week
+
+page:
+  stage: image
+  dependencies:
+    - build
   image: docker:latest
   before_script:
-      - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
   script:
-    - docker build -t ${CI_REGISTRY_IMAGE}:latest --no-cache .
-    - docker push ${CI_REGISTRY_IMAGE}:latest
-  after_script:
-    - docker logout registry.gitlab.com
-  only:
-    - master
+    - rm index-labs.html
+    - mv index-page index.html
+    - docker build -t ${CI_REGISTRY_IMAGE}-page:latest --no-cache .
+    - docker push ${CI_REGISTRY_IMAGE}-page:latest
 
-Deploy:
+labs:
+  stage: image
+  dependencies:
+    - build
+  image: docker:latest
+  before_script:
+    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
+  script:
+    - rm index-page.html
+    - mv index-labs index.html
+    - docker build -t ${CI_REGISTRY_IMAGE}-labs:latest --no-cache .
+    - docker push ${CI_REGISTRY_IMAGE}-labs:latest
+
+deploy:
   variables:
     HOME_DIR: /home/johannes/docker/services/jitesoft.web
   stage: deploy
@@ -26,7 +56,4 @@ Deploy:
     - echo "${JITESOFT_SERVER_KEY}" > ~/.ssh/known_hosts
   script:
     - scp  ./docker-compose.yml ${DEPLOY_USER}@jitesoft.com:${HOME_DIR}
-    - ssh ${DEPLOY_USER}@jitesoft.com "docker service update jitesoft_web --with-registry-auth --image=${CI_REGISTRY_IMAGE}:latest"
-  only:
-    - master
-
+    - ssh ${DEPLOY_USER}@jitesoft.com "docker service update jitesoft_web --with-registry-auth && chown --recursive deployer:docker ${HOME_DIR}"

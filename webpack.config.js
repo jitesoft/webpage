@@ -3,6 +3,13 @@ const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const Webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { ImageminWebpackPlugin } = require('imagemin-webpack');
+const GifSicle = require('imagemin-gifsicle');
+const JpegTran = require('imagemin-jpegtran');
+const OptiPng = require('imagemin-optipng');
+const SvGo = require('imagemin-svgo');
+
 
 let plugs = [];
 if (env === 'production') {
@@ -11,13 +18,20 @@ if (env === 'production') {
 
 let conf = {
   mode: env,
-  entry: [
-    'babel-polyfill',
-    './src/js/main.js',
-    './src/sass/index.scss'
-  ],
+  entry: {
+    "page": [
+      'babel-polyfill',
+      './src/page/js/main.js',
+      './src/page/sass/index.scss'
+    ],
+    "labs": [
+      'babel-polyfill',
+      './src/labs/js/main.js',
+      './src/labs/sass/index.scss'
+    ]
+  },
   output: {
-    filename: 'js/[name].js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -27,13 +41,29 @@ let conf = {
   },
   plugins: plugs.concat([
     new CopyWebpackPlugin([
-      { from: 'src/index.html', to: 'index.html' },
-      { from: 'src/img', to: 'img' }
+      { from: 'src/page/index.html', to: 'index-page.html' },
+      { from: 'src/labs/index.html', to: 'index-labs.html' },
+      { from: 'src/img', to: 'img' },
+      { from: 'src/robots.txt', to: 'robots.txt' }
     ]),
     new Webpack.ProvidePlugin({
       Vue: 'vue/dist/vue.common.js',
       'window.Vue': 'vue/dist/vue.common.js'
-    })
+    }),
+    new VueLoaderPlugin(),
+    new ImageminWebpackPlugin(
+      {
+        name: 'img/[name].[ext]',
+        imageminOptions: {
+          plugins: [
+            SvGo (),
+            GifSicle (),
+            JpegTran (),
+            OptiPng ()
+          ]
+        }
+      }
+    )
   ]),
   module: {
     rules: [
@@ -66,6 +96,10 @@ let conf = {
             ]
           ]
         }
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader',
       }
     ]
   }

@@ -2,7 +2,7 @@
     <div>
         <div class="position-ref full-height">
             <div class="content">
-                <h1 class="link welcome">Jitesoft</h1>
+                <Title/>
                 <PageEntry :current="current" />
             </div>
         </div>
@@ -15,11 +15,13 @@
 <script>
   import PageEntry from './PageEntry';
   import MainMenu from './Menu';
+  import Title from './Title';
   export default Vue.component('page', {
     name: 'page',
     components: {
       PageEntry,
-      MainMenu
+      MainMenu,
+      Title
     },
     data: function () {
       return {

@@ -2,16 +2,26 @@ version: '3.5'
 
 services:
 
-  web:
-    image: registry.gitlab.com/jitesoft/web:latest
+  page:
+    image: registry.gitlab.com/jitesoft/web-page:latest
     networks:
-      web-proxy:
-        aliases:
-          - jitesoft
+      - web-proxy
     deploy:
       labels:
         - "traefik.port=80"
         - "traefik.frontend.rule=Host:jitesoft.com,jitesoft.eu,jitesoft.se,www.jitesoft.com,www.jitesoft.se,www.jitesoft.eu"
+        - "traefik.docker.network=web-proxy"
+        - "traefik.enable=true"
+
+
+  labs:
+    image: registry.gitlab.com/jitesoft/web-labs:latest
+    networks:
+      - web-proxy
+    deploy:
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:labs.jitesoft.com,www.labs.jitesoft.com"
         - "traefik.docker.network=web-proxy"
         - "traefik.enable=true"
 
