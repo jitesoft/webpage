@@ -1,2 +1,2 @@
 FROM jitesoft/lighttpd
-COPY dist /app
+COPY dist /var/www/html
