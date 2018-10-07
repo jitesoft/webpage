@@ -30,7 +30,6 @@
       togglePage: function (page) {
         console.log(page);
           this.current = page;
-          console.log('Now: ' + this.current);
       }
     }
   });

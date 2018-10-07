@@ -3,6 +3,7 @@ const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const Webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 let plugs = [];
 if (env === 'production') {
@@ -12,7 +13,6 @@ if (env === 'production') {
 let conf = {
   mode: env,
   entry: [
-    'babel-polyfill',
     './src/js/main.js',
     './src/sass/index.scss'
   ],
@@ -33,7 +33,8 @@ let conf = {
     new Webpack.ProvidePlugin({
       Vue: 'vue/dist/vue.common.js',
       'window.Vue': 'vue/dist/vue.common.js'
-    })
+    }),
+    new VueLoaderPlugin()
   ]),
   module: {
     rules: [
@@ -58,10 +59,11 @@ let conf = {
         options: {
           presets: [
             [
-              'env', {
+              '@babel/preset-env', {
                 targets: {
                   browsers: [ 'since 2015' ]
-                }
+                },
+                useBuiltIns: 'entry'
               }
             ]
           ]
