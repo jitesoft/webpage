@@ -1,6 +1,7 @@
 import { CookieConsent } from 'cookie-sanction';
 import Vue from 'vue';
 import Page from './Components/Page';
+import '@babel/polyfill';
 
 window.onload = () => {
 
