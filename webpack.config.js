@@ -1,108 +1,114 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-const Webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const { ImageminWebpackPlugin } = require('imagemin-webpack');
-const GifSicle = require('imagemin-gifsicle');
-const JpegTran = require('imagemin-jpegtran');
-const OptiPng = require('imagemin-optipng');
-const SvGo = require('imagemin-svgo');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Path = require('path');
 
-
-let plugs = [];
-if (env === 'production') {
-  plugs = [new UglifyJsPlugin(), new CleanWebpackPlugin(['dist'])];
-}
+const src = Path.resolve(__dirname, 'src');
+const dist = Path.resolve(__dirname, 'dist');
+const meta = require('./package').meta;
 
 let conf = {
   mode: env,
-  entry: {
-    "page": [
-      'babel-polyfill',
-      './src/page/js/main.js',
-      './src/page/sass/index.scss'
-    ],
-    "labs": [
-      'babel-polyfill',
-      './src/labs/js/main.js',
-      './src/labs/sass/index.scss'
-    ]
+  target: 'web',
+  node: {
+    fs: 'empty'
   },
+  entry: [
+    `${src}/index.js`
+  ],
   output: {
-    filename: '[name].js'
+    filename: 'index.js',
+    chunkFilename: 'js/[chunkhash:16].js',
+    path: Path.resolve(__dirname, 'dist', 'assets')
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    aliasFields: ['browser'],
+    extensions: ['.js', '.vue', '.json', '.css', '.scss'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      '@': `${src}/Components`,
+      '~': `${src}/Styles`,
+      'src': `${src}`,
+      'vue$': 'vue/dist/vue.esm.js',
+      'img': `${src}/img`
     }
   },
-  plugins: plugs.concat([
-    new CopyWebpackPlugin([
-      { from: 'src/page/index.html', to: 'index-page.html' },
-      { from: 'src/labs/index.html', to: 'index-labs.html' },
-      { from: 'src/img', to: 'img' },
-      { from: 'src/robots.txt', to: 'robots.txt' }
-    ]),
-    new Webpack.ProvidePlugin({
-      Vue: 'vue/dist/vue.common.js',
-      'window.Vue': 'vue/dist/vue.common.js'
-    }),
+  plugins: [
     new VueLoaderPlugin(),
-    new ImageminWebpackPlugin(
-      {
-        name: 'img/[name].[ext]',
-        imageminOptions: {
-          plugins: [
-            SvGo (),
-            GifSicle (),
-            JpegTran (),
-            OptiPng ()
-          ]
-        }
-      }
-    )
-  ]),
+    new HtmlWebpackPlugin(meta)
+  ],
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(eot|ttf|woff|woff2|otf)$/,
         use: [
-          'style-loader', 'css-loader', 'sass-loader'
+          'file-loader'
         ]
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: [
-            { loader: 'css-loader', extract: false }
-          ]
-        }
+        use: [
+          'vue-loader'
+        ]
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              'env', {
-                targets: {
-                  browsers: [ 'since 2015' ]
-                }
-              }
-            ]
-          ]
-        }
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader', {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              fallback: 'file-loader',
+              outputPath: 'img'
+            }
+          }
+        ]
       }
     ]
   }
 };
+
+if (env === 'development') {
+  conf.devServer = {
+    contentBase: dist,
+    compress: true,
+    port: 9000,
+    hot: true,
+    open: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/$/, to: 'index.html' }
+      ]
+    },
+    overlay: {
+      warnings: true,
+      errors: true
+    }
+  };
+}
 
 module.exports = conf;
