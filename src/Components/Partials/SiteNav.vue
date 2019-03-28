@@ -12,12 +12,12 @@
                 Core Values
             </span>
         </router-link>
-        <router-link class="item" to="/projects">
+        <!--router-link class="item" to="/projects">
             <img alt="Projects" title="Projects" :src="icons.Project"/>
             <span>
                 Projects
             </span>
-        </router-link>
+        </router-link-->
         <router-link class="item" to="/contact">
             <img alt="Contact" title="Contact" :src="icons.Contact"/>
             <span>
@@ -65,11 +65,15 @@ export default Vue.component('SiteNav', {
 
         img {
             height: 2em;
-            width: auto;
+            width: 100%;
             display: none;
             @media($small) {
                 display: block;
                 padding-bottom: 1em;
+                @media($small) {
+                    width: 1.4em;
+                    height: 1.4em;
+                }
             }
         }
 

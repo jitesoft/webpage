@@ -11,8 +11,14 @@ import Contact from './address-book-regular.svg';
 import Heart from './heart-regular.svg';
 import Home from './home-solid.svg';
 import Project from './tasks-solid.svg';
+import Email from './at-solid.svg';
+import EnvelopeOpen from './envelope-open-regular.svg';
+import Phone from './phone-square-solid.svg';
 
 export {
+  Email,
+  EnvelopeOpen,
+  Phone,
   Docker,
   Envelope,
   Facebook,

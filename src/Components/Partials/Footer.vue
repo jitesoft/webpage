@@ -28,14 +28,8 @@ export default Vue.component('footer', {
 
 <style lang="scss" scoped>
 
-div {
-    position: relative;
-    bottom: 0;
-    margin: 0 auto;
-}
 
 address {
-    width: 50%;
     margin: 0 auto;
     align-items: center;
 
@@ -43,11 +37,11 @@ address {
     flex-direction: column;
 
     font-family: 'Dejavu Sans Mono', Lucida Console, Consolas, monospace;
-    font-size: 0.9em;
+    font-size: 0.8em;
 
     span {
         text-align: center;
-        width: 30%;
+        min-width: 30%;
     }
 }
 

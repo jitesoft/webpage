@@ -51,6 +51,7 @@ export default {
 
   .spacer {
     width: 15%;
+    min-width: 3.5em;
   }
 
   .row {

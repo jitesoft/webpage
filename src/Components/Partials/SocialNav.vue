@@ -56,12 +56,6 @@ export default Vue.component('SocialNav', {
           desc: 'Jitesoft @ Twitter.',
           icon: Icon.Twitter,
           uri: 'https://twitter.com/@jitesoft'
-        },
-        {
-          name: 'Contact',
-          desc: 'Email to Jitesoft.',
-          icon: Icon.Envelope,
-          uri: 'mailto:johannes@jitesoft.com'
         }
       ]
     };
