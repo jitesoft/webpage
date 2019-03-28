@@ -1,6 +1,5 @@
 <template>
   <component :is="layout">
-    Hi!
     <router-view></router-view>
   </component>
 </template>

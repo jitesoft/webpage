@@ -27,10 +27,10 @@ let conf = {
     extensions: ['.js', '.vue', '.json', '.css', '.scss'],
     alias: {
       '@': `${src}/Components`,
-      '~': `${src}/Styles`,
       'src': `${src}`,
       'vue$': 'vue/dist/vue.esm.js',
-      'img': `${src}/img`
+      'img': `${src}/img`,
+      'styles': `${src}/styles`
     }
   },
   plugins: [
@@ -42,7 +42,12 @@ let conf = {
       {
         test: /\.(eot|ttf|woff|woff2|otf)$/,
         use: [
-          'file-loader'
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'fonts'
+            }
+          }
         ]
       },
       {
