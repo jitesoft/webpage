@@ -6,6 +6,13 @@ import App from '@/App';
 import DefaultLayout from '@/Layouts/Default';
 import 'styles/global.scss';
 
+// Favicons and OG image.
+import 'img/favicon-16x16.png';
+import 'img/favicon-32x32.png';
+import 'img/favicon-64x64.png';
+import 'img/favicon-96x96.png';
+import 'img/favicon.ico';
+
 Vue.use(VueRouter);
 Vue.component('default-layout', DefaultLayout);
 

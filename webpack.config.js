@@ -20,7 +20,7 @@ let conf = {
   output: {
     filename: 'index.js',
     chunkFilename: 'js/[chunkhash:16].js',
-    path: Path.resolve(__dirname, 'dist', 'assets')
+    path: Path.resolve(__dirname, 'dist')
   },
   resolve: {
     aliasFields: ['browser'],
@@ -74,6 +74,17 @@ let conf = {
         ]
       },
       {
+        test: `${src}/_redirects`,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]'
+            }
+          }
+        ]
+      },
+      {
         test: /\.css$/,
         use: [
           'vue-style-loader',
@@ -81,7 +92,19 @@ let conf = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(ico|png)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'img',
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(jpe?g|gif|svg)$/i,
         use: [
           {
             loader: 'url-loader',
