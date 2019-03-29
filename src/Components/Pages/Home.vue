@@ -26,7 +26,7 @@ export default Promise.resolve({});
     }
 
     .info {
-        margin-top: 10vh;
+        margin: 3rem 0;
         position: relative;
         transform: translate(-50%, 0);
         left: 50%;
@@ -35,7 +35,7 @@ export default Promise.resolve({});
         width: 60%;
         background-color: lightgray;
         padding: 2em;
-        border-radius: 5% 5% 5% 5%;
+        border-radius: 35px;
         box-shadow: 1px 1px gray;
     }
 

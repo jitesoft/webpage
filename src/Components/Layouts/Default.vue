@@ -58,4 +58,5 @@ export default {
   .row {
     width: 95%;
   }
+
 </style>
