@@ -43,6 +43,7 @@ export default {
     width: 98%;
     flex-direction: row;
     min-height: 75vh;
+    justify-content: space-between;
   }
 
   .content {
