@@ -16,7 +16,7 @@
                 Jitesoft<br>
                 c/o Johannes Tegnér<br>
                 Juryvägen 10<br>
-                226 55<br>
+                226 57<br>
                 Lund - Sweden
             </span>
         </address>

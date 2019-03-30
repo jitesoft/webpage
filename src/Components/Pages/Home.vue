@@ -2,8 +2,8 @@
     <div>
         <h2>Welcome!</h2>
         <p>
-            Jitesoft is a private company (sole proprietorship) based in Sweden. Our main focus is backend development
-            within web, application and game development.
+            Jitesoft is a private company (sole proprietorship) based in Sweden. Our main focus is backend development, containerization
+            and operations within web, application and game development.
         </p>
         <p>
             If you wish to take a look at what we do, take a look at our open source projects on

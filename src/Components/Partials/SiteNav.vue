@@ -53,7 +53,6 @@ export default Vue.component('SiteNav', {
         @media($small) {
             flex-direction: column;
         }
-
     }
 
     .item {
@@ -63,6 +62,10 @@ export default Vue.component('SiteNav', {
         color: black;
         font-size: 0.9em;
 
+        &:hover {
+            color: gray;
+        }
+
         img {
             height: 2em;
             width: 100%;
@@ -70,10 +73,11 @@ export default Vue.component('SiteNav', {
             @media($small) {
                 display: block;
                 padding-bottom: 1em;
-                @media($small) {
-                    width: 1.4em;
-                    height: 1.4em;
-                }
+                width: 1.4em;
+                height: 1.4em;
+            }
+            &:hover {
+                opacity: 0.6;
             }
         }
 
