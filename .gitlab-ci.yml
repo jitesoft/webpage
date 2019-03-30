@@ -31,7 +31,7 @@ build:docker:
   services:
     - docker:dind
   dependencies:
-    - build
+    - build:project
   image: docker:latest
   before_script:
     - echo ${CI_REGISTRY_PASSWORD} | docker login registry.gitlab.com -u ${CI_REGISTRY_USER} --password-stdin
