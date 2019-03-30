@@ -12,6 +12,9 @@ import 'img/favicon-32x32.png';
 import 'img/favicon-64x64.png';
 import 'img/favicon-96x96.png';
 import 'img/favicon.ico';
+import 'img/og-image.png';
+import 'img/Jitesoft.png';
+import 'img/Jitesoft-scaled.png';
 
 Vue.use(VueRouter);
 Vue.component('default-layout', DefaultLayout);
