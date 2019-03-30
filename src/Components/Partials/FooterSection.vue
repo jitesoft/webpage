@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer>
         <address>
             <span v-for="(item, index) in addressLines" :key="index">
                 {{ item }}
@@ -11,7 +11,7 @@
 <script>
 import Vue from 'vue';
 
-export default Vue.component('footer', {
+export default Vue.component('FooterSection', {
   data () {
     return {
       addressLines:

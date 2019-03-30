@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <HeaderSection />
     <div class="grid">
       <div class="spacer">
           <SiteNav class=".site-nav" />
@@ -10,17 +10,17 @@
       </div>
       <div class="spacer"></div>
     </div>
-    <Footer />
+    <FooterSection />
   </div>
 </template>
 <script>
-import Footer from '@/Partials/Footer';
-import Header from '@/Partials/Header';
+import FooterSection from '@/Partials/FooterSection';
+import HeaderSection from '@/Partials/HeaderSection';
 
 export default {
   components: {
-    Header,
-    Footer
+    HeaderSection,
+    FooterSection
   }
 };
 </script>

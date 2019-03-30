@@ -19,7 +19,7 @@ import Logo from 'src/img/Jitesoft.svg';
 import SocialNav from '@/Partials/SocialNav';
 import SiteNav from '@/Partials/SiteNav';
 
-export default Vue.component('Header', {
+export default Vue.component('HeaderSection', {
   components: {
     SocialNav,
     SiteNav

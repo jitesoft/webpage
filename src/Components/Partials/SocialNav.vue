@@ -1,6 +1,6 @@
 <template>
     <div class="nav">
-        <div class="nav-item" :key="link.name" v-for="link in links">
+        <div :key="link.name" v-for="link in links">
             <a :title="link.desc" :href="link.uri" target="_blank">
                 <img :alt="link.name" :src="link.icon">
             </a>
@@ -80,7 +80,6 @@ export default Vue.component('SocialNav', {
             height: calc(1.4em * 12);
             flex-flow: column;
             justify-content: space-between;
-            justify-items: flex-end;
             position: absolute;
             right: 1em;
         }
@@ -90,29 +89,28 @@ export default Vue.component('SocialNav', {
         justify-content: space-between;
         height: $height;
         width: calc(#{$height} * 12);
-    }
 
-    .nav-item {
-        @media($small) {
-            width: 1.4em;
-            height: 1.4em;
+        div {
+            @media($small) {
+                width: 1.4em;
+                height: 1.4em;
+            }
+
+            width: $height;
+            height: $height;
+
+            &:hover {
+                opacity: 0.4;
+            }
+
+            :active {
+                opacity: 0.2;
+            }
+
+            img {
+                height: 100%;
+            }
         }
-
-        width: $height;
-        height: $height;
-
-        &:hover {
-            opacity: 0.4;
-        }
-
-        :active {
-            opacity: 0.2;
-        }
-
-    }
-
-    img {
-        height: 100%;
     }
 
 </style>
