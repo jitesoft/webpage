@@ -63,54 +63,51 @@ export default Vue.component('SocialNav', {
 });
 </script>
 <style lang="scss">
-    $small: "(width <= 767px)";
-    $medium: "(width >= 768px) and (width <= 960px)";
-    $large: "(width >= 1200px)";
-    $height: 2.3em;
+@import 'src/styles/vars.scss';
+$height: 2.3em;
 
-    .nav {
-        @media($medium) {
-            height: 2em;
-            width: calc(2em * 12);
-            justify-content: space-between;
-        }
-
-        @media($small) {
-            width: 1.4em;
-            height: calc(1.4em * 12);
-            flex-flow: column;
-            justify-content: space-between;
-            position: absolute;
-            right: 1em;
-        }
-
-        display: flex;
-        flex-flow: row;
+.nav {
+    @media($medium) {
+        height: 2em;
+        width: calc(2em * 12);
         justify-content: space-between;
-        height: $height;
-        width: calc(#{$height} * 12);
-
-        div {
-            @media($small) {
-                width: 1.4em;
-                height: 1.4em;
-            }
-
-            width: $height;
-            height: $height;
-
-            &:hover {
-                opacity: 0.4;
-            }
-
-            :active {
-                opacity: 0.2;
-            }
-
-            img {
-                height: 100%;
-            }
-        }
     }
 
+    @media($small) {
+        width: 1.4em;
+        height: calc(1.4em * 12);
+        flex-flow: column;
+        justify-content: space-between;
+        position: absolute;
+        right: 1em;
+    }
+
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    height: $height;
+    width: calc(#{$height} * 12);
+
+    div {
+        @media($small) {
+            width: 1.4em;
+            height: 1.4em;
+        }
+
+        width: $height;
+        height: $height;
+
+        &:hover {
+            opacity: 0.4;
+        }
+
+        :active {
+            opacity: 0.2;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+}
 </style>

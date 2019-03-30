@@ -41,60 +41,57 @@ export default Vue.component('SiteNav', {
 </script>
 
 <style scoped lang="scss">
-    $small: "(width <= 767px)";
-    $medium: "(width >= 768px) and (width <= 960px)";
-    $large: "(width >= 1200px)";
+@import 'src/styles/vars.scss';
 
-    .site-nav {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+.site-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-        @media($small) {
-            flex-direction: column;
-        }
+    @media($small) {
+        flex-direction: column;
     }
+}
 
-    .item {
-        font-family: 'Dejavu Sans Mono', Lucida Console, Consolas, monospace;
-        padding-left: 1em;
-        text-decoration: none;
-        color: black;
-        font-size: 0.9em;
+.item {
+    font-family: 'Dejavu Sans Mono', Lucida Console, Consolas, monospace;
+    padding-left: 1em;
+    text-decoration: none;
+    color: black;
+    font-size: 0.9em;
 
-        &:hover {
-            color: gray;
-        }
-
-        img {
-            height: 2em;
-            width: 100%;
-            display: none;
-            @media($small) {
-                display: block;
-                padding-bottom: 1em;
-                width: 1.4em;
-                height: 1.4em;
-            }
-            &:hover {
-                opacity: 0.6;
-            }
-        }
-
-        span {
-            @media($small) {
-                display: none;
-            }
-        }
-
-    }
-
-    .router-link-exact-active {
+    &:hover {
         color: gray;
+    }
 
-        img {
+    img {
+        height: 2em;
+        width: 100%;
+        display: none;
+        @media($small) {
+            display: block;
+            padding-bottom: 1em;
+            width: 1.4em;
+            height: 1.4em;
+        }
+        &:hover {
             opacity: 0.6;
         }
     }
 
+    span {
+        @media($small) {
+            display: none;
+        }
+    }
+
+}
+
+.router-link-exact-active {
+    color: gray;
+
+    img {
+        opacity: 0.6;
+    }
+}
 </style>

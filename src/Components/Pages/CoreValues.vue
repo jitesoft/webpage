@@ -22,7 +22,7 @@ export default Promise.resolve({
 </script>
 
 <style scoped>
-    a {
-        color: black;
-    }
+a {
+    color: black;
+}
 </style>

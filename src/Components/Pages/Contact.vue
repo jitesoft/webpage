@@ -35,11 +35,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-    img {
-        &:nth-child(1) {
-            padding-top: 0;
-        }
-        padding-top: 2em;
-        max-height: 2vh;
+img {
+    &:nth-child(1) {
+        padding-top: 0;
     }
+    padding-top: 2em;
+    max-height: 2vh;
+}
 </style>

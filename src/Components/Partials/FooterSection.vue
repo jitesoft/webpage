@@ -27,7 +27,6 @@ export default Vue.component('FooterSection', {
 </script>
 
 <style lang="scss" scoped>
-
 footer {
   position: relative;
   padding: 2rem;
@@ -43,7 +42,6 @@ footer {
     border-radius: 20px;
   }
 }
-
 
 address {
     margin: 0 auto;

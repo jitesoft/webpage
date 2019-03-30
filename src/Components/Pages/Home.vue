@@ -21,22 +21,21 @@
 export default Promise.resolve({});
 </script>
 <style lang="scss" scoped>
-    a {
-        color: black;
-    }
+a {
+    color: black;
+}
 
-    .info {
-        margin: 3rem 0;
-        position: relative;
-        transform: translate(-50%, 0);
-        left: 50%;
-        text-align: center;
-        min-width: 60%;
-        width: 60%;
-        background-color: lightgray;
-        padding: 2em;
-        border-radius: 35px;
-        box-shadow: 1px 1px gray;
-    }
-
+.info {
+    margin: 3rem 0;
+    position: relative;
+    transform: translate(-50%, 0);
+    left: 50%;
+    text-align: center;
+    min-width: 60%;
+    width: 60%;
+    background-color: lightgray;
+    padding: 2em;
+    border-radius: 35px;
+    box-shadow: 1px 1px gray;
+}
 </style>

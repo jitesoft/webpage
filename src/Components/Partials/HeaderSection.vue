@@ -33,46 +33,44 @@ export default Vue.component('HeaderSection', {
 </script>
 
 <style scoped lang="scss">
-    $small: "(width <= 767px)";
-    $medium: "(width >= 768px) and (width <= 960px)";
-    $large: "(width >= 1200px)";
+@import 'src/styles/vars.scss';
 
-    .row {
-        width: 95vw;
+.row {
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .title {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-
-        .title {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-        }
+        justify-content: flex-start;
     }
+}
 
-    .site-nav-row {
-        @media($small) {
-            display: none;
-        }
+.site-nav-row {
+    @media($small) {
+        display: none;
     }
+}
 
-    img {
-        width: 6vw;
-        height: 6vw;
-        min-height: 3em;
-        min-width: 3em;
-        @media($small) {
-            width: 4em;
-            height: 4em;
-        }
+img {
+    width: 6vw;
+    height: 6vw;
+    min-height: 3em;
+    min-width: 3em;
+    @media($small) {
+        width: 4em;
+        height: 4em;
     }
+}
 
-    h1 {
-        font-family: 'Dejavu Sans Mono', Lucida Console, Consolas, monospace;
-        font-size: 3vw;
+h1 {
+    font-family: 'Dejavu Sans Mono', Lucida Console, Consolas, monospace;
+    font-size: 3vw;
 
-        @media($small) {
-            font-size: 2em;
-        }
+    @media($small) {
+        font-size: 2em;
     }
+}
 </style>
