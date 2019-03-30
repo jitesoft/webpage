@@ -1,8 +1,3 @@
 /node_modules
-/storage/*.key
-/vendor
-/.idea
-.env
-composer.phar
+.idea/
 dist/
-/yarn-error.log

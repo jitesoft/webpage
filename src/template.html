@@ -1,0 +1,59 @@
+<% const twitter = htmlWebpackPlugin.options.twitter %>
+<% const og      = htmlWebpackPlugin.options.og %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+    <% if (og) { %>
+    <meta property="og:title" content="<%=        og.title %>">
+    <meta property="og:description" content="<%=  og.description %>">
+    <meta property="og:image" content="<%=        og.url %>/<%= og.image %>">
+    <meta property="og:url" content="<%=          og.url %>">
+    <% } if (twitter) { %>
+    <meta name="twitter:title" content="<%=       twitter.title %>">
+    <meta name="twitter:description" content="<%= twitter.description %>">
+    <meta name="twitter:image" content="<%=       twitter.image %>">
+    <meta name="twitter:card" content="<%=        twitter.card %>">
+    <% } %>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="imge/x-icon">
+    <link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/favicon-64x64.png" sizes="64x64">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+
+    <% if (process.NODE_ENV === "production" ) { %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90343888-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90343888-1');
+    </script>
+    <!-- End google -->
+    <!-- Matomo -->
+    <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//matomo.jitesoft.com/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '11']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+    <% } %>
+</head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>

@@ -1,67 +1,52 @@
-stages:
-  - build
-  - image
-  - deploy
+include:
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/kube_image_deploy.yml
 
-build:
+stages: [build, image, deploy]
+
+variables:
+  KUBE_DEPLOY_CONTAINER: web
+  KUBE_DEPLOY_DEPLOYMENT: jitesoft-dep
+
+build:project:
   stage: build
   image: jitesoft/node-base
   variables:
     NODE_ENV: production
-  before_script:
-    - npm install -g yarn
   script:
-    - yarn install
-    - yarn prod
+    - npm install
+    - npm run build:prod
   artifacts:
     paths:
       - dist
       - Dockerfile
     when: on_success
-    expire_in: 1 week
+    expire_in: 2 days
+  only:
+    - master
 
-page:
+build:docker:
   variables:
     GIT_STRATEGY: none
   stage: image
+  services:
+    - docker:dind
   dependencies:
-    - build
+    - build:project
   image: docker:latest
   before_script:
-    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
+    - echo ${CI_REGISTRY_PASSWORD} | docker login registry.gitlab.com -u ${CI_REGISTRY_USER} --password-stdin
   script:
-    - rm dist/index-labs.html
-    - mv dist/index-page.html dist/index.html
     - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
-    - docker build -t ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA} --no-cache .
+    - docker build -t ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA} .
     - docker push ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA}
-
-labs:
-  variables:
-    GIT_STRATEGY: none
-  stage: image
-  dependencies:
-    - build
-  image: docker:latest
-  before_script:
-    - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} registry.gitlab.com
-  script:
-    - rm dist/index-page.html
-    - mv dist/index-labs.html dist/index.html
-    - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
-    - docker build -t ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA} --no-cache .
-    - docker push ${CI_REGISTRY_IMAGE}/labs:${CI_COMMIT_SHA}
+  only:
+    - master
 
 deploy:
-  variables:
-    HOME_DIR: /home/johannes/docker/services/jitesoft.web
+  extends: .k8s_deploy
   stage: deploy
-  image: jitesoft/alpine-ssh:latest
-  before_script:
-    - eval $(ssh-agent -s)
-    - echo "${DEPLOY_KEY}" | ssh-add -
-    - echo "${JITESOFT_SERVER_KEY}" > ~/.ssh/known_hosts
-  script:
-    - sed -i -e "s/latest/${CI_COMMIT_SHA}/g" docker-compose.yml
-    - scp  ./docker-compose.yml ${DEPLOY_USER}@jitesoft.com:${HOME_DIR}
-    - ssh ${DEPLOY_USER}@jitesoft.com "docker stack deploy -c ${HOME_DIR}/docker-compose.yml --with-registry-auth jitesoft"
+  only:
+    - master
+  environment:
+    name: production
+    url: https://jitesoft.com
