@@ -3,11 +3,6 @@ include:
 
 stages: [build, image, deploy]
 
-variables:
-  KUBE_DEPLOY_CONTAINER: web
-  KUBE_DEPLOY_DEPLOYMENT: jitesoft-dep
-  KUBE_DEPLOY_NAMESPACE: jitesoft
-
 build:project:
   stage: build
   image: jitesoft/node-base
@@ -46,6 +41,12 @@ build:docker:
 deploy:
   extends: .k8s_deploy
   stage: deploy
+  variables:
+    KUBE_DEPLOY_NAMESPACE: jitesoft
+    KUBE_DEPLOY_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
+    GIT_STRATEGY: none
+    KUBE_DEPLOY_CONTAINER: web
+    KUBE_DEPLOY_DEPLOYMENT: jitesoft-dep
   only:
     - master
   environment:
