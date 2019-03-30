@@ -1,11 +1,11 @@
 <template>
-    <div class="footer">
+    <footer class="footer">
         <address>
             <span v-for="(item, index) in addressLines" :key="index">
                 {{ item }}
             </span>
         </address>
-    </div>
+    </footer>
 </template>
 
 <script>
@@ -27,6 +27,22 @@ export default Vue.component('footer', {
 </script>
 
 <style lang="scss" scoped>
+
+footer {
+  position: relative;
+  padding: 2rem;
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+  }
+}
 
 
 address {
