@@ -1,0 +1,52 @@
+include:
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/kube_image_deploy.yml
+
+stages: [build, image, deploy]
+
+variables:
+  KUBE_DEPLOY_CONTAINER: web
+  KUBE_DEPLOY_DEPLOYMENT: jitesoft-dep
+
+build:project:
+  stage: build
+  image: jitesoft/node-base
+  variables:
+    NODE_ENV: production
+  script:
+    - npm install
+    - npm run build:prod
+  artifacts:
+    paths:
+      - dist
+      - Dockerfile
+    when: on_success
+    expire_in: 2 days
+  only:
+    - master
+
+build:docker:
+  variables:
+    GIT_STRATEGY: none
+  stage: image
+  services:
+    - docker:dind
+  dependencies:
+    - build
+  image: docker:latest
+  before_script:
+    - echo ${CI_REGISTRY_PASSWORD} | docker login registry.gitlab.com -u ${CI_REGISTRY_USER} --password-stdin
+  script:
+    - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
+    - docker build -t ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA} .
+    - docker push ${CI_REGISTRY_IMAGE}/page:${CI_COMMIT_SHA}
+  only:
+    - master
+
+deploy:
+  extends: .k8s_deploy
+  stage: deploy
+  only:
+    - master
+  environment:
+    name: production
+    url: https://jitesoft.com

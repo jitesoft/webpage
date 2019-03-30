@@ -2,13 +2,13 @@
   <div>
     <HeaderSection />
     <div class="grid">
-      <div class="spacer">
+      <div class="column col1">
           <SiteNav />
       </div>
-      <div class="content">
+      <div class="column col4">
         <slot />
       </div>
-      <div class="spacer"></div>
+      <div class="column col1"></div>
     </div>
     <FooterSection />
   </div>
@@ -33,7 +33,6 @@ export default {
   @media($small) {
     display: flex;
   }
-
 }
 
 .grid {
@@ -44,13 +43,15 @@ export default {
   justify-content: space-between;
 }
 
-.content {
-  width: 60%;
-}
+.column {
+  &.col1 {
+    width: 15%;
+    min-width: 3.5em;
+  }
 
-.spacer {
-  width: 15%;
-  min-width: 3.5em;
+  &.col4 {
+    width: 60%;
+  }
 }
 
 .row {
