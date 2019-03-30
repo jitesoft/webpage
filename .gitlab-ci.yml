@@ -6,6 +6,7 @@ stages: [build, image, deploy]
 variables:
   KUBE_DEPLOY_CONTAINER: web
   KUBE_DEPLOY_DEPLOYMENT: jitesoft-dep
+  KUBE_DEPLOY_NAMESPACE: jitesoft
 
 build:project:
   stage: build
