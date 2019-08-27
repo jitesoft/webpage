@@ -13,7 +13,7 @@
     "@jitesoft/on-load": "gist:5a23bb38e2f802b43806381d3472032f",
     "@jitesoft/yolog": "^2.1.0",
     "@vue/babel-preset-app": "^3.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-loader": "^8.0.5",
     "core-js": "^3.0.0",
     "cross-env": "^5.2.0",
