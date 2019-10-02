@@ -37,7 +37,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.5.1",
     "eslint-plugin-vue": "^5.2.3",
-    "semistandard": "^14.2.0",
+    "@jitesoft/eslint-config": "^1.7.0",
     "webpack-dev-server": "^3.8.1"
   },
   "browserslist": [
@@ -48,12 +48,12 @@
     "build:prod": "cross-env NODE_ENV=production webpack -p",
     "watch": "cross-env NODE_ENV=development webpack-dev-server",
     "dev": "npm run watch",
-    "test": "semistandard /src"
+    "test": "eslint --ext .js,.vue src/"
   },
   "eslintConfig": {
     "parserOptions": {
       "parser": "babel-eslint",
-      "ecmaVersion": 2017,
+      "ecmaVersion": 2019,
       "sourceType": "module"
     },
     "env": {
@@ -61,7 +61,7 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "semistandard"
+      "@jitesoft"
     ],
     "overrides": [
       {
