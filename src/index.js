@@ -2,10 +2,8 @@ import onLoad from '@jitesoft/on-load';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from '@/App';
-
 import DefaultLayout from '@/Layouts/Default';
 import 'styles/global.scss';
-
 // Favicons and OG image.
 import 'img/favicon-16x16.png';
 import 'img/favicon-32x32.png';
@@ -35,7 +33,6 @@ onLoad.then(() => {
     render: h => h(App),
     router
   }).$mount('#root');
-
 }).catch((error) => {
   console.error(error);
 });
