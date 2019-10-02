@@ -44,7 +44,6 @@ export default Vue.component('App', {
     }
   }
 
-
   $min-width: 320px;
   $max-width: 1200px;
   $min-font: 17px;
