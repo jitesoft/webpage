@@ -79,16 +79,16 @@
     "template": "src/template.html",
     "og": {
       "title": "Jitesoft",
-      "description": "A company specialized in backend development for Web, Games and Applications.",
-      "image": "img/Jitesoft-scaled.png",
+      "description": "A company specialized in backend development & ops for Web, Games and Applications.",
+      "image": "img/og-image.png",
       "url": "https://jitesoft.com"
     },
     "twitter": {
       "card": "summary_large_image",
-      "image": "img/Jitesoft-scaled.png",
-      "description": "A company specialized in backend development for Web, Games and Applications.",
+      "image": "img/og-image.png",
+      "description": "A company specialized in backend development & ops for Web, Games and Applications.",
       "title": "Jitesoft"
     },
-    "description": "A company specialized in backend development for Web, Games and Applications."
+    "description": "A company specialized in backend development & ops for Web, Games and Applications."
   }
 }
