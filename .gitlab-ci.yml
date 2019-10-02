@@ -32,13 +32,9 @@ build:docker:
   variables:
     GIT_STRATEGY: none
   stage: image
-  services:
-    - docker:dind
   dependencies:
     - build:project
   image: docker:latest
-  before_script:
-    - echo ${CI_REGISTRY_PASSWORD} | docker login registry.gitlab.com -u ${CI_REGISTRY_USER} --password-stdin
   script:
     - sed -i -e "s/.js/.js?v=${CI_COMMIT_SHA}/g" dist/index.html
     - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .
