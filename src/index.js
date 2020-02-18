@@ -13,6 +13,8 @@ import 'img/favicon.ico';
 import 'img/og-image.png';
 import 'img/Jitesoft.png';
 import 'img/Jitesoft-scaled.png';
+import './_redirects';
+import './sitemap.xml';
 
 Vue.use(VueRouter);
 Vue.component('default-layout', DefaultLayout);

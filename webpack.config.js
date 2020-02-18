@@ -74,12 +74,23 @@ let conf = {
         ]
       },
       {
-        test: `${src}/_redirects`,
+        test: /_redirects/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name]'
+            }
+          }
+        ]
+      },
+      {
+        test: /sitemap\.xml$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
             }
           }
         ]
