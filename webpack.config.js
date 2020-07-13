@@ -11,9 +11,6 @@ const meta = require('./package').meta;
 let conf = {
   mode: env,
   target: 'web',
-  node: {
-    fs: 'empty'
-  },
   entry: [
     `${src}/index.js`
   ],
