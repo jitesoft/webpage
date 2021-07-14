@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Jitesoft</title>
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="favicon.ico" type="imge/x-icon">
+        <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="favicon-64x64.png" sizes="64x64">
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+
+        <meta name="description" content="Jitesoft - Software and Ops">
+
+        <meta property="og:title" content="Jitesoft">
+        <meta property="og:description" content="Company specialized in backend development and operations.">
+        <meta property="og:image" content="https://jitesoft.com/og-image.png">
+        <meta property="og:url" content="https://jitesoft.com">
+
+        <meta name="twitter:title" content="Jitesoft">
+        <meta name="twitter:description" content="Company specialized in backend development and operations.">
+        <meta name="twitter:image" content="https://jitesoft.com/og-image.png">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <style>
+            body { padding-bottom: 5em; }
+            .header { display: flex; }
+            .header div { margin-right: 3vw; }
+            .logo img { max-height: 10vh; max-width: 10vw; }
+            .providers { width: 80%; display: flex; }
+            .providers a { width: 30%; }
+            .providers img { max-width: 70%; }
+            ul { list-style: none }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <img src="Jitesoft.svg">
+            </div>
+            <div class="title">
+                <h1>Jitesoft</h1>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="section home">
+            <p>
+                Jitesoft is a private company (sole proprietorship) based in Sweden. Our main focus is backend development,
+                containerization and operations within web, application and game development.
+            </p>
+            <p>
+                As our webpage design might show, we do not work with design, but we do have designers that we work with!<br/>
+                We will gladly create offers and products in collaboration with designers, your own or one of our partners.
+            </p>
+            <p>
+                If you wish to take a look at what we do, take a look at our open source projects.<br/>
+                A lot of projects that are developed for external customers are under NDA, so if you wish to see references,
+                feel free to contact us for more details.
+            </p>
+        </div>
+        <hr/>
+        <div class="section foss">
+            <h2 id="open-source">Open Source</h2>
+            <p>
+                Jitesoft as a company is both a consumer and creator/maintainer of open source projects.<br/>
+                Our whole infrastructure runs on it and most projects made at jitesoft - which are not customer owned - are
+                released under the <a href="https://mit-license.org/" target="_blank">MIT</a> or <a href="http://www.wtfpl.net" target="_blank">WTFPL</a> license.
+                Code is published to GitHub and GitLab and our containers and packages are deployed to a multitude of package
+                registries.<br/>
+            </p>
+            <p>
+                To find our code, go to:
+            </p>
+            <ul>
+                <li><a href="https://github.com/jitesoft" target="_blank">Jitesoft @ GitHub</a></li>
+                <li><a href="https://gitlab.com/jitesoft" target="_blank">Jitesoft @ GitLab</a></li>
+            </ul>
+
+            <p>We mainly use the following package registries:</p>
+            <ul>
+                <li><a href="https://hub.docker.com/u/jitesoft" target="_blank">Docker Hub</a></li>
+                <li><a href="https://packagist.org/packages/jitesoft/" target="_blank">Packagist</a></li>
+                <li><a href="https://www.npmjs.com/search?q=%40jitesoft" target="_blank">NPM</a></li>
+            </ul>
+            <hr/>
+            <h2>Sponsors and providers</h2>
+            Open Source might be free to use, but it takes time and money to create.<br/>
+            <br/>
+            <div>
+                The following lovely companies and/or organizations provides us with infrastructure
+                (such as servers) to work with open source:<br/><br/>
+                <div class="providers">
+                    <a href="https://fosshost.org" target="_blank" title="Fosshost">
+                        <img src="images/fosshost.png" alt="Fosshost">
+                    </a><br/>
+                    <a href="https://civo.com" target="_blank" title="Civo">
+                        <img src="images/civo.png" alt="Civo">
+                    </a>
+                </div>
+                We love our providers and are very grateful for their support.<br/>
+
+            </div>
+            <div>
+                Our open source work is dependent on donations and server help, if you wish to give us a hand
+                feel free to donate to us at:
+                <ul>
+                    <li><a href="https://github.com/sponsors/jitesoft" target="_blank">GitHub</a></li>
+                    <li><a href="https://www.patreon.com/jitesoft" target="_blank">Patreon</a></li>
+                    <li><a href="https://opencollective.com/jitesoft-open-source" target="_blank">Open Collective</a></li>
+                </ul>
+                or just send an email!
+            </div>
+        </div>
+
+        <hr/>
+        <div class="section contact">
+            <h2 id="contact">Contact</h2>
+            <address className={classNames(style.email, style.icon)} aria-label="Email address">
+                johannes@jitesoft.com
+            </address>
+            <br/>
+
+            <address className={classNames(style.phone, style.icon)} aria-label="Phone number">
+                +46 72 889 49 19
+            </address>
+
+            <br/>
+            <address className={classNames(style.mail, style.icon)} aria-label="Physical address">
+                Jitesoft<br/>
+                851003-xxxx<br/>
+                c/o Johannes Tegnér<br/>
+                Juryvägen 10<br/>
+                226 57<br/>
+                Lund - Sweden
+            </address>
+        </div>
+    </body>
+</html>
