@@ -13,13 +13,16 @@
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
 
         <meta name="description" content="Company specialized in backend development and operations.">
+        <meta name="title" content="Jitesoft">
 
         <meta property="og:title" content="Jitesoft">
         <meta property="og:description" content="Company specialized in backend development and operations.">
         <meta property="og:image" content="https://jitesoft.com/og-image.png">
         <meta property="og:url" content="https://jitesoft.com">
+        <meta property="og:type" content="website">
 
         <meta name="twitter:title" content="Jitesoft">
+        <meta property="twitter:url" content="https://jitesoft.com/">
         <meta name="twitter:description" content="Company specialized in backend development and operations.">
         <meta name="twitter:image" content="https://jitesoft.com/og-image.png">
         <meta name="twitter:card" content="summary_large_image">
@@ -32,7 +35,20 @@
             .providers { width: 80%; display: flex; }
             .providers a { width: 30%; }
             .providers img { max-width: 70%; max-height: 10vh; }
+            .projects { width: 80%; display: flex; }
+            .projects a { width: 30%; }
+            .projects img { max-width: 70%; max-height: 10vh; }
+            .partners { width: 80%; display: flex; }
+            .partners a { width: 30%; }
+            .partners img { max-width: 70%; max-height: 10vh; }
             ul { list-style: none }
+            .social-box { padding-top: 2em; }
+            .social { display: block; }
+            .social::before { vertical-align: -.125em; margin-right: 0.5em; width: 1em; height: 1em; background-repeat: no-repeat; background-size: cover; display: inline-block; content: "";}
+            .twitter::before { background:url('images/twitter-brands.svg'); }
+            .facebook::before { background:url('images/facebook-brands.svg'); }
+            .linkedin::before { background:url('images/linkedin-brands.svg'); }
+
         </style>
         <script>
             const _j_l = console.log;
@@ -137,6 +153,7 @@
                 <li><a href="https://www.npmjs.com/search?q=%40jitesoft" target="_blank">NPM</a></li>
             </ul>
             <hr/>
+
             <h2>Sponsors and providers</h2>
             Open Source might be free to use, but it takes time and money to create.<br/>
             <br/>
@@ -188,6 +205,13 @@
                 226 57<br/>
                 Lund - Sweden
             </address>
+
+            <div class="social-box" arial-label="Social platforms">
+                <a class="social twitter" title="Jitesoft on twitter" target="_blank" href="https://twitter.com/jitesoft">@jitesoft</a>
+                <a class="social facebook" title="Jitesoft on facebook" target="_blank" href="https://facebook.com/jitesoft">jitesoft</a>
+                <a class="social linkedin" title="jitesoft on linkedin" target="_blank" href="https://linkedin.com/company/jitesoft">jitesoft</a>
+            </div>
+
         </div>
     <script>
         _j_l(Array(80).fill(42).map(x => _j_c(x)).join(''));
